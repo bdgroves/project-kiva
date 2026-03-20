@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CHACO-LIDAR — Archaeological Remote Sensing Survey</title>
+
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- Leaflet plugins -->
+  <script src="https://unpkg.com/leaflet.fullscreen@3.0.0/Control.FullScreen.js"></script>
+  <link  rel="stylesheet" href="https://unpkg.com/leaflet.fullscreen@3.0.0/Control.FullScreen.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --sand:    #e8d5a3;
+      --rust:    #b5541c;
+      --ochre:   #c4962a;
+      --dark:    #0e0c08;
+      --panel:   rgba(14,12,8,0.88);
+      --border:  rgba(232,213,163,0.2);
+    }
+
+    html, body { height: 100%; background: var(--dark); }
+
+    /* ── Header ── */
+    #header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: linear-gradient(180deg, rgba(14,12,8,0.97) 0%, rgba(14,12,8,0.0) 100%);
+      padding: 16px 24px 32px;
+      pointer-events: none;
+    }
+    #header h1 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(18px, 2.5vw, 28px);
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--sand);
+      text-shadow: 0 2px 12px rgba(0,0,0,0.8);
+    }
+    #header .subtitle {
+      font-family: 'Crimson Pro', serif;
+      font-size: clamp(12px, 1.4vw, 15px);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--ochre);
+      letter-spacing: 0.08em;
+      margin-top: 3px;
+    }
+
+    /* ── Map ── */
+    #map {
+      position: fixed; inset: 0;
+      z-index: 1;
+    }
+
+    /* ── Legend panel ── */
+    #legend {
+      position: fixed; bottom: 32px; left: 20px; z-index: 900;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 16px 18px;
+      min-width: 200px;
+      backdrop-filter: blur(8px);
+    }
+    #legend h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--ochre);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .legend-item {
+      display: flex; align-items: center; gap: 10px;
+      font-family: 'Crimson Pro', serif;
+      font-size: 13px; color: var(--sand);
+      margin-bottom: 7px;
+    }
+    .legend-dot {
+      width: 12px; height: 12px; border-radius: 50%;
+      flex-shrink: 0; border: 1.5px solid rgba(255,255,255,0.3);
+    }
+    .legend-line {
+      width: 24px; height: 3px; flex-shrink: 0;
+    }
+
+    /* ── Info panel ── */
+    #info-panel {
+      position: fixed; top: 80px; right: 20px; z-index: 900;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 18px 20px;
+      width: 260px;
+      backdrop-filter: blur(8px);
+      transition: opacity 0.3s;
+    }
+    #info-panel.hidden { opacity: 0; pointer-events: none; }
+    #info-panel h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 13px; font-weight: 600;
+      color: var(--sand); margin-bottom: 10px;
+      letter-spacing: 0.06em;
+    }
+    #info-panel .field {
+      font-family: 'Crimson Pro', serif;
+      font-size: 13px; color: rgba(232,213,163,0.75);
+      margin-bottom: 5px; line-height: 1.5;
+    }
+    #info-panel .field span {
+      color: var(--sand); font-style: italic;
+    }
+    #info-panel .badge {
+      display: inline-block;
+      padding: 2px 8px; border-radius: 2px;
+      font-size: 10px; font-family: 'Cinzel', serif;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      margin-top: 8px;
+    }
+    .badge-great-house { background: rgba(181,84,28,0.35); color: #f4a261; border: 1px solid #b5541c; }
+    .badge-great-kiva   { background: rgba(100,160,200,0.25); color: #90cdf4; border: 1px solid #4a90c0; }
+    .badge-candidate    { background: rgba(255,215,0,0.15); color: #ffd700; border: 1px solid rgba(255,215,0,0.4); }
+    #info-close {
+      position: absolute; top: 10px; right: 12px;
+      cursor: pointer; color: rgba(232,213,163,0.4);
+      font-size: 16px; font-family: monospace;
+      background: none; border: none; padding: 2px 4px;
+      transition: color 0.2s;
+    }
+    #info-close:hover { color: var(--sand); }
+
+    /* ── Scale notice ── */
+    #notice {
+      position: fixed; bottom: 32px; right: 20px; z-index: 900;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 10px 14px;
+      font-family: 'Crimson Pro', serif;
+      font-size: 11px; font-style: italic;
+      color: rgba(232,213,163,0.5);
+      max-width: 240px; line-height: 1.5;
+      backdrop-filter: blur(8px);
+    }
+
+    /* Leaflet popup overrides */
+    .leaflet-popup-content-wrapper {
+      background: var(--panel) !important;
+      border: 1px solid var(--border) !important;
+      border-radius: 4px !important;
+      color: var(--sand) !important;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.6) !important;
+      backdrop-filter: blur(8px);
+    }
+    .leaflet-popup-tip { background: var(--panel) !important; }
+    .leaflet-popup-content {
+      font-family: 'Crimson Pro', serif;
+      font-size: 13px; line-height: 1.6;
+      margin: 12px 14px !important;
+    }
+    .popup-title {
+      font-family: 'Cinzel', serif; font-size: 14px; font-weight: 600;
+      color: var(--sand); margin-bottom: 8px; letter-spacing: 0.04em;
+    }
+    .popup-field { color: rgba(232,213,163,0.7); margin-bottom: 3px; }
+    .popup-field b { color: var(--sand); }
+  </style>
+</head>
+<body>
+
+<div id="header">
+  <h1>CHACO-LIDAR</h1>
+  <div class="subtitle">Archaeological Remote Sensing Survey · Chaco Canyon, New Mexico</div>
+</div>
+
+<div id="map"></div>
+
+<div id="legend">
+  <h3>Legend</h3>
+  <div class="legend-item">
+    <div class="legend-dot" style="background:#f4a261; border-color:#b5541c;"></div>
+    Great House
+  </div>
+  <div class="legend-item">
+    <div class="legend-dot" style="background:#90cdf4; border-color:#4a90c0;"></div>
+    Great Kiva
+  </div>
+  <div class="legend-item">
+    <div class="legend-dot" style="background:#ffd700; border-color:rgba(255,215,0,0.5);"></div>
+    Mound candidate
+  </div>
+  <div class="legend-item">
+    <div class="legend-dot" style="background:#00ffcc; border-color:rgba(0,255,204,0.4);"></div>
+    Kiva candidate
+  </div>
+  <div class="legend-item">
+    <div class="legend-line" style="background:#c4962a;"></div>
+    Chacoan road segment
+  </div>
+</div>
+
+<div id="info-panel" class="hidden">
+  <button id="info-close">✕</button>
+  <h3 id="info-title">—</h3>
+  <div id="info-body"></div>
+</div>
+
+<div id="notice">
+  Candidate detections are unverified automated outputs.<br>
+  Not for citation as archaeological findings.
+</div>
+
+<script>
+// ── Map init ──────────────────────────────────────────────────────────────────
+const map = L.map('map', {
+  center: [36.062, -107.958],
+  zoom: 13,
+  zoomControl: false,
+  attributionControl: true
+});
+
+L.control.zoom({ position: 'topright' }).addTo(map);
+
+// ── Base layers ───────────────────────────────────────────────────────────────
+const esriTopo = L.tileLayer(
+  'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',
+  { attribution: 'Tiles © Esri', maxZoom: 19 }
+);
+
+const esriImagery = L.tileLayer(
+  'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+  { attribution: 'Imagery © Esri', maxZoom: 19 }
+).addTo(map);
+
+const stamenTerrain = L.tileLayer(
+  'https://tiles.stadiamaps.com/tiles/stamen_terrain/{z}/{x}/{y}{r}.png',
+  { attribution: '© Stadia / Stamen', maxZoom: 18 }
+);
+
+const baseLayers = {
+  '🛰 Satellite': esriImagery,
+  '🗺 Topo': esriTopo,
+  '⛰ Terrain': stamenTerrain
+};
+
+// ── Marker factories ──────────────────────────────────────────────────────────
+function greatHouseMarker(latlng) {
+  return L.circleMarker(latlng, {
+    radius: 9, fillColor: '#f4a261', color: '#b5541c',
+    weight: 2, fillOpacity: 0.85
+  });
+}
+
+function greatKivaMarker(latlng) {
+  return L.circleMarker(latlng, {
+    radius: 9, fillColor: '#90cdf4', color: '#4a90c0',
+    weight: 2, fillOpacity: 0.85
+  });
+}
+
+function moundCandidateMarker(latlng) {
+  return L.circleMarker(latlng, {
+    radius: 6, fillColor: '#ffd700', color: 'rgba(255,215,0,0.5)',
+    weight: 1.5, fillOpacity: 0.7
+  });
+}
+
+function kivaCandidateMarker(latlng) {
+  return L.circleMarker(latlng, {
+    radius: 6, fillColor: '#00ffcc', color: 'rgba(0,255,204,0.4)',
+    weight: 1.5, fillOpacity: 0.7
+  });
+}
+
+// ── Known sites ───────────────────────────────────────────────────────────────
+const knownSites = [
+  { name: 'Pueblo Bonito',     lat: 36.0608, lon: -107.9614, type: 'great_house', rooms: 800,  period: '850–1150 CE',  notes: 'Largest great house; D-shaped plan with 4-story north wall.' },
+  { name: 'Chetro Ketl',       lat: 36.0614, lon: -107.9549, type: 'great_house', rooms: 500,  period: '990–1075 CE',  notes: 'Notable for its elevated kiva plaza and colonnade.' },
+  { name: 'Pueblo del Arroyo', lat: 36.0586, lon: -107.9673, type: 'great_house', rooms: 280,  period: '1075–1115 CE', notes: 'Late-period construction; unusual tri-walled structure attached.' },
+  { name: 'Hungo Pavi',        lat: 36.0652, lon: -107.9467, type: 'great_house', rooms: 150,  period: '900–1000 CE',  notes: 'Early great house; unexcavated, well preserved.' },
+  { name: 'Una Vida',          lat: 36.0562, lon: -107.9303, type: 'great_house', rooms: 150,  period: '850–1000 CE',  notes: 'Among earliest great houses; petroglyphs on adjacent cliff.' },
+  { name: 'Wijiji',            lat: 36.0499, lon: -107.9091, type: 'great_house', rooms: 100,  period: '1100–1150 CE', notes: 'Late, compact design; nearly symmetrical plan.' },
+  { name: 'Penasco Blanco',    lat: 36.0770, lon: -108.0008, type: 'great_house', rooms: 150,  period: '900–1125 CE',  notes: 'Mesa-top great house; supernova pictograph nearby.' },
+  { name: 'Casa Rinconada',    lat: 36.0533, lon: -107.9625, type: 'great_kiva',  rooms: null, period: '1000–1100 CE', notes: 'Largest isolated great kiva; 19.5m diameter, highly formal.' },
+  { name: 'Kin Kletso',        lat: 36.0628, lon: -107.9750, type: 'great_house', rooms: 55,   period: '1125–1150 CE', notes: 'Compact McElmo-style; distinct from earlier buildings.' },
+];
+
+const sitesLayer = L.layerGroup();
+
+knownSites.forEach(site => {
+  const latlng = [site.lat, site.lon];
+  const marker = site.type === 'great_kiva'
+    ? greatKivaMarker(latlng)
+    : greatHouseMarker(latlng);
+
+  const popupHtml = `
+    <div class="popup-title">${site.name}</div>
+    <div class="popup-field"><b>Type:</b> ${site.type.replace('_', ' ')}</div>
+    ${site.rooms ? `<div class="popup-field"><b>Rooms:</b> ~${site.rooms}</div>` : ''}
+    <div class="popup-field"><b>Period:</b> ${site.period}</div>
+    <div class="popup-field" style="margin-top:6px; font-style:italic; color:rgba(232,213,163,0.6)">${site.notes}</div>
+  `;
+
+  marker.bindPopup(popupHtml, { maxWidth: 280 });
+  marker.on('click', () => showInfoPanel(site));
+  sitesLayer.addLayer(marker);
+});
+
+sitesLayer.addTo(map);
+
+// ── Simulated candidate features ─────────────────────────────────────────────
+// In production these load from data/vectors/candidate_features.geojson
+// Here we seed plausible locations for the skeleton demo
+
+const candidatesLayer = L.layerGroup();
+
+const mockMounds = [
+  { lat: 36.068, lon: -107.972, radius: 12, lrm: 0.31 },
+  { lat: 36.057, lon: -107.945, radius:  8, lrm: 0.24 },
+  { lat: 36.075, lon: -107.960, radius: 15, lrm: 0.19 },
+  { lat: 36.050, lon: -107.980, radius:  9, lrm: 0.27 },
+  { lat: 36.063, lon: -107.935, radius: 11, lrm: 0.22 },
+  { lat: 36.070, lon: -107.990, radius:  7, lrm: 0.35 },
+];
+
+const mockKivas = [
+  { lat: 36.064, lon: -107.968, radius:  6, score: 0.71 },
+  { lat: 36.059, lon: -107.955, radius:  5, score: 0.68 },
+  { lat: 36.072, lon: -107.942, radius:  7, score: 0.63 },
+  { lat: 36.055, lon: -107.972, radius:  5, score: 0.74 },
+];
+
+mockMounds.forEach((m, i) => {
+  const marker = moundCandidateMarker([m.lat, m.lon]);
+  marker.bindPopup(`
+    <div class="popup-title">Mound Candidate #${i+1}</div>
+    <div class="popup-field"><b>Detection:</b> LoG blob (LRM)</div>
+    <div class="popup-field"><b>Radius:</b> ~${m.radius}m</div>
+    <div class="popup-field"><b>LRM value:</b> +${m.lrm}m</div>
+    <div class="popup-field"><b>Confidence:</b> Low — unverified</div>
+  `);
+  candidatesLayer.addLayer(marker);
+});
+
+mockKivas.forEach((k, i) => {
+  const marker = kivaCandidateMarker([k.lat, k.lon]);
+  marker.bindPopup(`
+    <div class="popup-title">Kiva Candidate #${i+1}</div>
+    <div class="popup-field"><b>Detection:</b> Hough circle (SVF)</div>
+    <div class="popup-field"><b>Radius:</b> ~${k.radius}m</div>
+    <div class="popup-field"><b>Hough score:</b> ${k.score}</div>
+    <div class="popup-field"><b>Confidence:</b> Low — unverified</div>
+  `);
+  candidatesLayer.addLayer(marker);
+});
+
+candidatesLayer.addTo(map);
+
+// ── Chacoan road segments (schematic) ─────────────────────────────────────────
+const roadsLayer = L.layerGroup();
+
+// Approximate digitized road centerlines — replace with real GeoJSON from literature
+const roadSegments = [
+  // North Road (extends ~50km north — showing canyon portion)
+  [[36.078, -107.961], [36.095, -107.958], [36.115, -107.957]],
+  // South Road
+  [[36.053, -107.963], [36.040, -107.963], [36.025, -107.962]],
+  // Ahshislepah Road (west)
+  [[36.062, -107.975], [36.065, -108.001], [36.068, -108.020]],
+];
+
+roadSegments.forEach(coords => {
+  L.polyline(coords, {
+    color: '#c4962a', weight: 2.5, opacity: 0.7,
+    dashArray: '6, 4'
+  }).addTo(roadsLayer);
+});
+
+roadsLayer.addTo(map);
+
+// ── Layer control ─────────────────────────────────────────────────────────────
+const overlayLayers = {
+  '🏛 Known Sites': sitesLayer,
+  '🔵 Candidate Features': candidatesLayer,
+  '〰 Road Segments': roadsLayer,
+};
+
+L.control.layers(baseLayers, overlayLayers, {
+  position: 'topright',
+  collapsed: false
+}).addTo(map);
+
+// ── Info panel ────────────────────────────────────────────────────────────────
+function showInfoPanel(site) {
+  const panel = document.getElementById('info-panel');
+  document.getElementById('info-title').textContent = site.name;
+
+  const badgeClass = site.type === 'great_kiva' ? 'badge-great-kiva' : 'badge-great-house';
+  const badgeLabel = site.type.replace('_', ' ');
+
+  document.getElementById('info-body').innerHTML = `
+    <div class="field">Period: <span>${site.period}</span></div>
+    ${site.rooms ? `<div class="field">Est. rooms: <span>~${site.rooms}</span></div>` : ''}
+    <div class="field" style="margin-top:8px; line-height:1.6">${site.notes}</div>
+    <div class="badge ${badgeClass}">${badgeLabel}</div>
+  `;
+  panel.classList.remove('hidden');
+}
+
+document.getElementById('info-close').addEventListener('click', () => {
+  document.getElementById('info-panel').classList.add('hidden');
+});
+
+// ── Load real GeoJSON if available ────────────────────────────────────────────
+// Uncomment and update paths once the pipeline has run
+/*
+fetch('data/vectors/candidate_features.geojson')
+  .then(r => r.json())
+  .then(data => {
+    candidatesLayer.clearLayers();
+    L.geoJSON(data, {
+      pointToLayer: (feature, latlng) => {
+        return feature.properties.feature_type === 'kiva_candidate'
+          ? kivaCandidateMarker(latlng)
+          : moundCandidateMarker(latlng);
+      },
+      onEachFeature: (feature, layer) => {
+        const p = feature.properties;
+        layer.bindPopup(`
+          <div class="popup-title">${p.feature_type.replace('_', ' ')}</div>
+          <div class="popup-field"><b>Radius:</b> ${p.radius_m}m</div>
+          <div class="popup-field"><b>Notes:</b> ${p.notes}</div>
+        `);
+      }
+    }).addTo(candidatesLayer);
+  })
+  .catch(() => console.log('No candidate GeoJSON found — using mock data'));
+*/
+</script>
+</body>
+</html>

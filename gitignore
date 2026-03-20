@@ -1,0 +1,28 @@
+# Large data files — download locally, don't commit
+data/raw/
+data/processed/
+data/renders/
+*.laz
+*.las
+*.tif
+*.tiff
+
+# Keep vectors (small GeoJSON — commit these)
+!data/vectors/
+!data/vectors/*.geojson
+
+# pixi environment
+.pixi/
+
+# Python
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/

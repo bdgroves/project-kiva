@@ -1,0 +1,56 @@
+[workspace]
+name = "project-kiva"
+description = "Archaeological LiDAR survey — American Southwest"
+version = "0.1.0"
+channels = ["conda-forge"]
+platforms = ["win-64"]
+
+[tasks]
+# Core pipeline
+notebooks  = "jupyter lab notebooks/"
+serve      = "python -m http.server 8000 --directory web/"
+download   = "python scripts/download_dem.py"
+process    = "python scripts/run_pipeline.py"
+
+# Rendering
+render     = "python scripts/render_site.py"
+
+# Utilities
+clean-renders = "python -c \"import glob, os; [os.remove(f) for f in glob.glob('data/renders/*.png')]\""
+clean-processed = "python -c \"import glob, os; [os.remove(f) for f in glob.glob('data/processed/**/*.tif', recursive=True)]\""
+
+[dependencies]
+python        = ">=3.11"
+
+# Point cloud
+laspy         = ">=2.5"
+lazrs-python  = "*"
+
+# Raster / GIS
+rasterio      = ">=1.3"
+numpy         = ">=1.26"
+scipy         = ">=1.12"
+scikit-image  = ">=0.22"
+geopandas     = ">=0.14"
+shapely       = ">=2.0"
+pyogrio       = ">=0.7"
+pyproj        = ">=3.6"
+whitebox      = ">=2.3"
+
+# Visualization
+matplotlib    = ">=3.8"
+folium        = ">=0.16"
+branca        = ">=0.7"
+contextily    = ">=1.6"
+
+# Notebook / dev
+jupyterlab    = ">=4.1"
+ipywidgets    = ">=8.0"
+tqdm          = ">=4.66"
+pyyaml        = ">=6.0"
+click         = ">=8.1"
+requests      = ">=2.31"
+pillow        = ">=10.0"
+
+[pypi-dependencies]
+forge3d = { version = ">=1.13.0", extras = ["jupyter"] }

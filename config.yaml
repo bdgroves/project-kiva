@@ -1,0 +1,82 @@
+# Project Kiva — site configuration
+# Change `active_site` to switch between study areas
+
+active_site: chaco
+
+sites:
+  chaco:
+    name: "Chaco Culture NHP"
+    state: "NM"
+    bbox_wgs84: { west: -108.05, east: -107.75, south: 36.00, north: 36.25 }
+    crs: "EPSG:32613"
+    map_center: [36.062, -107.958]
+    map_zoom: 13
+    notes: "Core canyon corridor — great houses, road network, kivas"
+
+  mesa_verde:
+    name: "Mesa Verde NP"
+    state: "CO"
+    bbox_wgs84: { west: -108.55, east: -108.35, south: 37.15, north: 37.30 }
+    crs: "EPSG:32613"
+    map_center: [37.185, -108.49]
+    map_zoom: 13
+    notes: "Cliff Palace area — cliff dwellings, mesa-top villages"
+
+  hohokam_phoenix:
+    name: "Hohokam Canal Network"
+    state: "AZ"
+    bbox_wgs84: { west: -112.15, east: -111.85, south: 33.35, north: 33.55 }
+    crs: "EPSG:32612"
+    map_center: [33.45, -112.00]
+    map_zoom: 12
+    notes: "Salt River valley — canal network, platform mounds"
+
+  canyon_de_chelly:
+    name: "Canyon de Chelly NM"
+    state: "AZ"
+    bbox_wgs84: { west: -109.60, east: -109.35, south: 36.10, north: 36.25 }
+    crs: "EPSG:32612"
+    map_center: [36.15, -109.47]
+    map_zoom: 13
+    notes: "White House, Antelope House — canyon cliff dwellings"
+
+# Processing settings
+dem:
+  resolution: 1.0
+  interpolation: "idw"
+  nodata: -9999.0
+  output_dir: "data/processed/dem/"
+
+hillshade:
+  azimuths: [315, 45, 135, 225]
+  altitude: 35
+  z_factor: 1.5
+  output_dir: "data/processed/hillshade/"
+
+svf:
+  search_radius: 10
+  num_directions: 16
+  output_dir: "data/processed/svf/"
+
+lrm:
+  smoothing_radius: 15
+  output_dir: "data/processed/lrm/"
+
+feature_detection:
+  min_blob_sigma: 3
+  max_blob_sigma: 25
+  threshold: 0.08
+  overlap: 0.3
+
+# forge3d render settings
+render:
+  output_dir: "data/renders/"
+  colormap: "desert"
+  sun_azimuth_deg: 315
+  sun_elevation_deg: 32
+  default_camera:
+    phi_deg: 225
+    theta_deg: 35
+    radius: 1.3
+  snapshot_width: 3840
+  snapshot_height: 2160
