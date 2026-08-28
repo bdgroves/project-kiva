@@ -70,6 +70,20 @@ result this project exists to produce.
 
 ---
 
+## The canyon in three dimensions
+
+![Chaco Canyon rendered in 3D with forge3d](docs/images/chaco_canyon_forge3d.jpg)
+*The same square kilometer, rendered as terrain. Chaco Wash cuts the frame
+diagonally; the cliff line at left is the canyon's south wall. Built from the
+project's own bare-earth DEM with [forge3d](https://github.com/milos-agathon/forge3d),
+sun at 302 deg azimuth / 24 deg elevation — no compositing, no hand-editing.*
+
+```powershell
+pixi run python scripts/render_site.py --dem data/processed/pueblo_bonito_dem_1m.tif
+```
+
+---
+
 ## Study Areas
 
 | Site | State | Period | Key Features |

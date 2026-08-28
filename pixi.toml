@@ -53,4 +53,4 @@ requests      = ">=2.31"
 pillow        = ">=10.0"
 
 [pypi-dependencies]
-forge3d = { version = ">=1.13.0", extras = ["jupyter"] }
+forge3d = { version = ">=1.26.0", extras = ["jupyter"] }
