@@ -84,6 +84,56 @@ pixi run python scripts/render_site.py --dem data/processed/pueblo_bonito_dem_1m
 
 ---
 
+## Going global: Giza, and why Tikal doesn't work
+
+USGS 3DEP stops at the US border. For everywhere else there is
+**Copernicus GLO-30** — a global 30 m elevation model built from TanDEM-X
+radar, served as Cloud Optimized GeoTIFFs from a public AWS bucket. No
+account, no API key:
+
+```powershell
+pixi run python scripts/fetch_global_dem.py --lat 29.9792 --lon 31.1342 --name giza
+```
+
+![Giza plateau rendered from Copernicus GLO-30](docs/images/giza_pyramids_forge3d.jpg)
+*Khufu, Khafre and Menkaure, in their true diagonal alignment, read as three
+bright blocks on the escarpment. The Nile floodplain is the darker ground at
+upper left. Terrain, lighting and shading are forge3d; the desert palette is
+a luminance remap applied afterward.*
+
+Copernicus is a **surface** model — it includes buildings, vegetation and
+standing monuments. Usually that's a limitation. For monumental archaeology
+in a desert it is exactly the point: the pyramids are *in* the elevation data.
+No detection step required.
+
+**Then the same recipe fails completely at Tikal.**
+
+![Tikal Local Relief Model showing canopy noise, not architecture](docs/images/tikal_canopy_noise.jpg)
+*Same pipeline, same Local Relief Model treatment that resolved Pueblo
+Bonito's room blocks. Here: nothing. No straight lines, no right angles, no
+repeating structure — just organic blobs.*
+
+Those blobs are **treetops**. Tikal sits under 40+ m of rainforest canopy, and
+radar from orbit measures the top of it. The signal isn't entirely absent —
+sampling the DSM at Temple IV gives 317.6 m against 296.2 m at Temple I, a
+21 m difference in the right direction, since Temple IV really is both taller
+and on higher ground. But that faint signal is buried in canopy variation of
+the same magnitude, so the LRM returns noise.
+
+This is precisely why the landmark Maya LiDAR surveys used **airborne** LiDAR
+with ground-return classification rather than satellite radar. Laser pulses
+find gaps in the canopy and reach the forest floor; radar does not. Same
+technique, same code, entirely different data requirement — and worth
+recording as a negative result rather than quietly dropping the site.
+
+| Site | Source | Ground visible? | Result |
+|---|---|---|---|
+| Chaco Canyon | USGS airborne LiDAR (classified) | Yes — bare desert, ground returns | Room blocks and kivas resolved |
+| Giza | Copernicus GLO-30 radar DSM | Yes — bare desert, no canopy | Pyramids resolved as surface relief |
+| Tikal | Copernicus GLO-30 radar DSM | **No** — dense rainforest canopy | Canopy noise only |
+
+---
+
 ## Study Areas
 
 | Site | State | Period | Key Features |
