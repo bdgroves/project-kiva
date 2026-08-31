@@ -52,6 +52,8 @@ click         = ">=8.1"
 requests      = ">=2.31"
 pillow        = ">=10.0"
 ffmpeg = ">=9.0.1,<10"
+python-pdal = ">=3.5.3,<4"
+pdal = ">=2.10.0,<3"
 
 [pypi-dependencies]
 forge3d = { version = ">=1.26.0", extras = ["jupyter"] }

@@ -175,6 +175,61 @@ mountain reads as a flat silhouette with a bright ring.
 
 ---
 
+## Streaming raw points: 0.5 m bare earth from a 350 TB archive
+
+Everything above works from finished DEM rasters. The point clouds those DEMs
+were built from are also public — **75 trillion points, ~350 TB** — published
+as Entwine Point Tiles in a no-auth bucket:
+
+```
+aws s3 ls --no-sign-request s3://usgs-lidar-public/
+```
+
+PDAL's `readers.ept` walks the octree and pulls only the nodes intersecting a
+bounding box. Same range-request idea as a COG, applied to points instead of
+pixels — you never download the project.
+
+### Picking the densest source
+
+Every project publishes an `ept.json` with a total point count and bounds, so
+density is one division away. Washington projects, measured rather than
+assumed:
+
+| Project | Points | pts/m² |
+|---|---|---|
+| WA_FEMAHQ_B1_QL1_2018 | 653 M | **16.4** |
+| WA_PierceCounty_1_2020 | 59.3 B | **12.0** |
+| WA_NorthCentral_1_2021 | 102.7 B | 9.1 |
+| WA_KingCo_1_2021 | 31.0 B | 8.3 |
+| WA_ThurstonCo_1_2021 | 15.9 B | 5.3 |
+
+3DEP's QL1 spec is 8 pts/m². Pierce County 2020 runs about 12 project-wide
+and 15+ locally — enough to support a **0.5 m** bare-earth grid, four times
+finer than the 1 m DEM product covering the same ground.
+
+![Fort Steilacoom bare earth at 0.5 m](docs/images/fort_steilacoom_05m_hillshade.jpg)
+
+*Fort Steilacoom, Lakewood — grounds of the 1849 US Army post, later Western
+State Hospital. 1.2 km square, 8.3 million ground returns, 0.5 m bare earth.
+Black rectangles are buildings: structures are not ground, so a true bare-earth
+model leaves voids where they stood. Waughop Lake is bottom left. Note the
+field boundaries, terracing and old track alignments crossing the open ground —
+none of which survive at 1 m.*
+
+```powershell
+pixi run python scripts/fetch_pointcloud.py --name fort_steilacoom `
+    --west -122.5680 --east -122.5520 --south 47.1720 --north 47.1830
+```
+
+`fetch_pointcloud.py` streams the window, drops ASPRS class 7 (noise),
+reprojects to a metric CRS, and writes three products: the clipped `.laz`, a
+bare-earth DTM from ground returns, and a first-return DSM. The bounds must
+be given in the octree's own CRS — the USGS EPT resources are stored in
+**EPSG:3857**, not the survey CRS, which is easy to get wrong and returns
+zero points silently.
+
+---
+
 ## Five dates, two surfaces: the 3DEP epoch trap
 
 The National Map lists **five published epochs** of the tile covering Mount
@@ -358,6 +413,7 @@ project-kiva/
 │   ├── run_pipeline.py          Ground points -> DEM -> Local Relief Model
 │   ├── render_site.py           forge3d 3D terrain renderer (stills)
 │   ├── epoch_check.py           Are two 3DEP "epochs" actually different data?
+│   ├── fetch_pointcloud.py     Stream 3DEP points from AWS -> DTM + DSM
 │   ├── flythrough.py            Orbiting camera animation -> frame sequence
 │   └── postprocess_frames.py    Colour grade frames (fixed bounds, no flicker)
 │
