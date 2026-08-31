@@ -175,6 +175,85 @@ mountain reads as a flat silhouette with a bright ring.
 
 ---
 
+## Five dates, two surfaces: the 3DEP epoch trap
+
+The National Map lists **five published epochs** of the tile covering Mount
+St. Helens — 2021-06, 2021-11, 2022-05, 2023-06, 2025-08. An active volcano
+with a free time series looks like an obvious change-detection study.
+
+It isn't. Over the crater, **four of those five files are pixel-identical.**
+
+```
+20211129 vs 20220505: IDENTICAL
+20211129 vs 20230608: IDENTICAL
+20211129 vs 20250813: IDENTICAL
+20210615 vs 20211129: differs, max|d|=365.4 m
+```
+
+3DEP seamless tiles are republished whenever *any* source project inside the
+1-degree tile is refreshed. Look at what actually triggered each release:
+
+| Published | Triggering source project |
+|---|---|
+| 2021-06-15 | WA_PierceCounty_2020 |
+| 2021-11-29 | WA_FEMAHQ_2018 |
+| 2022-05-05 | WA_ThurstonCounty_2021 |
+| 2023-06-08 | WA_Nisqually_TopoBathy_2020 |
+| 2025-08-13 | WA_CentralWildfire_D22 |
+
+Pierce, Thurston, Nisqually — none of them is Mount St. Helens. Each release
+refreshed a different corner of a 1-degree tile and left the volcano
+untouched. **The publication date describes the tile, not your pixels.**
+
+The acquisition dates make it worse. ScienceBase gives the 2021-06 tile a
+survey window of 2020-04 to 2020-06, and the *later* 2021-11 tile a window of
+2018-08 to 2019-05 — the newer publication carries the older survey. Those
+ranges describe the triggering project, so they cannot date the crater
+either.
+
+### The one real difference, and how to know it's real
+
+![Elevation difference between the two distinct St. Helens surfaces](docs/images/sthelens_epoch_diff.jpg)
+
+*Red is higher in the newer surface, blue is lower. The crater floor rises by
+hundreds of metres; a thin blue collar traces the rim; faint radial streaks
+follow the flank gullies.*
+
+Only one pair differs, and a stable-ground check says the signal is genuine:
+
+| Ring from peak change | Median Δ | p95 abs Δ |
+|---|---|---|
+| 0-400 m | **+279.9 m** | 350.3 m |
+| 400-800 m | +74.8 m | 198.9 m |
+| 800-1,200 m | -1.9 m | 74.5 m |
+| 1,800-2,500 m | -3.1 m | 14.5 m |
+| 3,500-5,000 m | -2.1 m | 7.2 m |
+
+Far-field terrain agrees to about **2 m** while the crater differs by **280 m** —
+two orders of magnitude apart. Had the outer rings drifted with the centre,
+this would be a co-registration or vertical-datum artefact and the whole
+thing would be noise. They don't, so the crater signal is real ground.
+
+A few hundred metres of fill in that crater is the scale of the 2004-2008
+dome-building episode. But this is a difference between two *source
+vintages*, and the metadata cannot date either one over these pixels — so
+the honest statement is that it is real change of unknown epoch, not a
+measurement of dome growth between two known dates. Dating it needs the
+per-source survey footprints, or purpose-built repeat surveys such as the
+Cascades Volcano Observatory's.
+
+```powershell
+pixi run python scripts/epoch_check.py --tile n47w123 `
+    --west -122.225 --east -122.165 --south 46.165 --north 46.215
+```
+
+`epoch_check.py` runs this check for any 3DEP tile and window: it lists the
+published epochs and what triggered them, reports which are pixel-identical,
+and runs the radial stable-ground test on whichever pair actually differs.
+Worth running **before** building an analysis on "multi-temporal" 3DEP.
+
+---
+
 ## Going global: Giza, and why Tikal doesn't work
 
 USGS 3DEP stops at the US border. For everywhere else there is
@@ -278,6 +357,7 @@ project-kiva/
 │   ├── fetch_global_dem.py      Copernicus GLO-30 tiles for sites outside the US
 │   ├── run_pipeline.py          Ground points -> DEM -> Local Relief Model
 │   ├── render_site.py           forge3d 3D terrain renderer (stills)
+│   ├── epoch_check.py           Are two 3DEP "epochs" actually different data?
 │   ├── flythrough.py            Orbiting camera animation -> frame sequence
 │   └── postprocess_frames.py    Colour grade frames (fixed bounds, no flicker)
 │
