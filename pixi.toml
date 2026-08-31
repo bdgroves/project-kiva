@@ -51,6 +51,7 @@ pyyaml        = ">=6.0"
 click         = ">=8.1"
 requests      = ">=2.31"
 pillow        = ">=10.0"
+ffmpeg = ">=9.0.1,<10"
 
 [pypi-dependencies]
 forge3d = { version = ">=1.26.0", extras = ["jupyter"] }

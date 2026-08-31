@@ -84,6 +84,59 @@ pixi run python scripts/render_site.py --dem data/processed/pueblo_bonito_dem_1m
 
 ---
 
+## Fly the fort: Fort Worden, Washington
+
+![Fort Worden flythrough](docs/images/fort_worden_flythrough.gif)
+
+*Ten seconds, one orbit, 241 frames. Artillery Hill at Fort Worden State Park
+in Port Townsend — the zigzag notches on the right are Battery Kinzie and its
+neighbours, concrete gun emplacements built to close the entrance to Puget
+Sound. Bare-earth lidar, no imagery, no 3D model. Just the ground.*
+
+Source: **USGS 3DEP**, `WA_Olympic_Peninsula_C1_2017`, one 1-metre bare-earth
+tile, 53 MB. Washington DNR's [lidar portal](https://lidarportal.dnr.wa.gov)
+also covers this ground with eight overlapping projects, but 3DEP served the
+same coverage as a single clean tile with one API call.
+
+```powershell
+# 1. orbit the DEM, write raw frames
+pixi run python scripts/flythrough.py --dem data/processed/artillery_hill.tif
+
+# 2. grade them (see below for why this step exists)
+pixi run python scripts/postprocess_frames.py
+
+# 3. mux
+pixi run ffmpeg -y -framerate 24 -i data/renders/frames_final/frame_%04d.png `
+    -c:v libx264 -pix_fmt yuv420p -crf 18 data/renders/flythrough.mp4
+```
+
+### Three things that make or break this
+
+**The grade is not optional.** forge3d's terrain shading is driven by an
+elevation colormap, not by the sun vector — moving `set_sun` from 25 deg to
+10 deg elevation barely changes the image, and raw frames come out washed-out
+green. `postprocess_frames.py` does the real work: luminance, unsharp mask,
+then a steel palette. That is what turns a pale mound into legible concrete.
+
+**Grade with fixed bounds, or the clip flickers.** The contrast stretch is
+computed once across a sample of frames and reused for all 241. Normalise
+per frame and the histogram breathes as the camera moves, which reads as a
+pulsing flicker in the finished video.
+
+**Crop before you fight the water.** Fort Worden is a peninsula; the first
+crop was half Puget Sound, rendering as a flat plane across the frame.
+Masking sea level to NoData did nothing — forge3d's terrain loader ignores
+the NoData flag. Re-cropping tight onto the high ground took water from 50%
+of the frame to 20% and let the batteries fill it instead.
+
+Camera settings that work, for the next site: orbit with `phi/theta/radius`
+and leave `target` alone (an explicit projected-coordinate target trips the
+viewer's internal coordinate rebasing); keep `z_scale` in the 2-3 range
+(larger values inflate the vertical bounding box until auto-framing pushes
+the terrain off-screen); set `radius` to roughly 0.7-1.4x the tile width.
+
+---
+
 ## Going global: Giza, and why Tikal doesn't work
 
 USGS 3DEP stops at the US border. For everywhere else there is
@@ -184,8 +237,11 @@ project-kiva/
 │
 ├── scripts/
 │   ├── download_dem.py          Download GeoTIFF DEMs / LAZ tiles from USGS
+│   ├── fetch_global_dem.py      Copernicus GLO-30 tiles for sites outside the US
 │   ├── run_pipeline.py          Ground points -> DEM -> Local Relief Model
-│   └── render_site.py           forge3d 3D terrain renderer
+│   ├── render_site.py           forge3d 3D terrain renderer (stills)
+│   ├── flythrough.py            Orbiting camera animation -> frame sequence
+│   └── postprocess_frames.py    Colour grade frames (fixed bounds, no flicker)
 │
 ├── data/
 │   ├── raw/          LAZ point cloud tiles (gitignored)
