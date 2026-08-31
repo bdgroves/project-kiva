@@ -137,6 +137,44 @@ the terrain off-screen); set `radius` to roughly 0.7-1.4x the tile width.
 
 ---
 
+## Mount St. Helens: 485 MB you never download
+
+![Mount St. Helens flythrough](docs/images/st_helens_flythrough.gif)
+
+*The 1980 blast amphitheatre, opening north, with the lava dome on the crater
+floor and erosion gullies radiating down every flank. Summit reads 2,535 m in
+the data — the pre-eruption cone was 2,950 m.*
+
+The elevation source here is a **1/3 arc-second USGS tile — 485 MB for one
+degree of Washington.** Nothing about this project needs a whole degree, and
+downloading one to crop out 11 km would be silly. These tiles are Cloud
+Optimized GeoTIFFs on S3, so GDAL can range-request just the window:
+
+```python
+gdal.SetConfigOption("GDAL_DISABLE_READDIR_ON_OPEN", "EMPTY_DIR")
+url = "/vsicurl/https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/13/" \
+      "TIFF/historical/n47w123/USGS_13_n47w123_20250813.tif"
+gdal.Translate("st_helens.tif", gdal.Open(url),
+               projWin=[-122.32, 46.30, -122.07, 46.10])
+```
+
+Twenty-two seconds, no 485 MB download, no cleanup. Worth doing for any
+CONUS site before reaching for a full tile.
+
+```powershell
+pixi run python scripts/flythrough.py --dem data/processed/st_helens_cone.tif `
+    --z-scale 2.2 --radius-wide 13000 --radius-close 7200
+pixi run python scripts/postprocess_frames.py --palette volcanic --gamma 0.55
+```
+
+The grade uses the `volcanic` palette (basalt to ash to snow) against Fort
+Worden's `steel`. Same script, same flicker-free fixed bounds — only the
+ramp and gamma change. Lifting gamma from 0.85 to 0.55 is what recovers the
+radial drainages on the flanks; at the default they crush to black and the
+mountain reads as a flat silhouette with a bright ring.
+
+---
+
 ## Going global: Giza, and why Tikal doesn't work
 
 USGS 3DEP stops at the US border. For everywhere else there is
