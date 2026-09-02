@@ -173,6 +173,57 @@ was half Puget Sound, rendering as a flat plane. Masking sea level to NoData
 did nothing — forge3d's terrain loader ignores the NoData flag. Re-cropping
 onto the high ground took water from 50% of the frame to 20%.
 
+### Cahokia — the largest earthwork in North America
+
+![Cahokia flythrough](docs/images/cahokia_flythrough.gif)
+
+*Monks Mound and the Mississippian city around it, across the Mississippi
+from St. Louis. 100 ft tall, four terraces, a footprint about the size of the
+Great Pyramid of Giza — and roughly 120 more mounds in the surrounding
+2,000 acres. Occupied 800-1400 CE.*
+
+![Cahokia bare-earth hillshade](docs/images/cahokia_hillshade.jpg)
+
+*Bare earth at 1 m. Monks Mound is the terraced mass at centre, modern
+staircase and all. The Grand Plaza is the flat ground south of it, dozens of
+smaller mounds read as distinct bumps, and I-55/70 cuts across the top — a
+1,200-year-old city and an interstate in the same frame.*
+
+**The data lied about its own extent, again.** The newest lidar over Cahokia
+(`IL_10CountyNRCS_D23`, 2023) advertises a bounding box covering the whole
+site. It does not: valid data stops partway down, and the Grand Plaza, Twin
+Mounds and Mound 72 all fall in nodata. Sampling three overlapping projects at
+four known site locations sorted it out:
+
+| Project | Monks Mound | Grand Plaza | Twin Mounds | Mound 72 |
+|---|---|---|---|---|
+| IL_10CountyNRCS_D23 (2023) | 145.3 m | nodata | nodata | nodata |
+| IL_HicksDome_2019 | 145.5 m | 127.3 m | 127.6 m | 127.4 m |
+| IL_MadisonCo_2014 | 145.5 m | 127.2 m | 127.6 m | 127.3 m |
+
+Over the study window the newest project is 53% valid, HicksDome 63%, and
+MadisonCo 2014 is **100%**. Older data won, because one consistent source
+beats a mosaic with a seam running through the middle of the flythrough.
+
+The DEM also confirmed itself: the highest point in the crop is 158.2 m and
+sits **52 m from the published Monks Mound coordinate**. The mound found
+itself.
+
+```powershell
+pixi run python scripts/flythrough.py --dem data/processed/cahokia_dtm_clean.tif `
+    --z-scale 8 --radius-wide 4200 --radius-close 2300
+pixi run python scripts/postprocess_frames.py --palette earth --gamma 0.42
+```
+
+Cahokia needed a new palette. `steel` suits concrete and `volcanic` suits
+basalt; neither suits an earthwork on a floodplain, so `earth` (umber to
+ochre to bone) joined the set. Its first grade came out muddy — most of a
+floodplain sits at the low end of the ramp, where that palette is darkest,
+and the smaller mounds vanished. Gamma 0.42 rather than the usual 0.85 is
+what brings them back.
+
+---
+
 ### Mount St. Helens — 485 MB you never download
 
 ![Mount St. Helens flythrough](docs/images/st_helens_flythrough.gif)
