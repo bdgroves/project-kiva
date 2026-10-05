@@ -2,7 +2,7 @@ name: Build sites
 
 # For each site: stream lidar points -> bare-earth DTM -> relief products ->
 # web layers -> NAIP -> forge3d stills and an orbit video (on GitHub's CPUs,
-# Mesa's software Vulkan under a virtual display). Then commit web/sites/.
+# Mesa's software Vulkan under a virtual display). Then commit sites/.
 on:
   workflow_dispatch:
     inputs:
@@ -75,7 +75,7 @@ jobs:
           pixi run kiva encode ${{ matrix.site }}
       - name: Keep the log
         if: always()
-        run: mkdir -p web/sites/${{ matrix.site }} && cp build.log web/sites/${{ matrix.site }}/build.log || true
+        run: mkdir -p sites/${{ matrix.site }} && cp build.log sites/${{ matrix.site }}/build.log || true
       - name: Push the log when a step fails
         if: failure()
         env:
@@ -88,7 +88,7 @@ jobs:
         if: always()
         with:
           name: site-${{ matrix.site }}
-          path: web/sites/${{ matrix.site }}/
+          path: sites/${{ matrix.site }}/
           retention-days: 7
       - uses: actions/upload-artifact@v4
         if: matrix.site == 'cahokia'
@@ -113,32 +113,12 @@ jobs:
           name: pixi-lock
           path: lock
       - name: Commit the sites
+        run: bash scripts/publish_sites.sh 2>&1 | tee publish.log
+      - name: Push the log when publishing fails
+        if: failure()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          mkdir -p logs
-          for d in incoming/site-*; do
-            id=${d#incoming/site-}
-            if [ -f "$d/build.log" ]; then mv "$d/build.log" "logs/$id.log"; fi
-            if [ -f "$d/site.json" ]; then
-              mkdir -p "web/sites/$id" && cp -r "$d/." "web/sites/$id/"
-            fi
-          done
-          if [ -f lock/pixi.lock ]; then cp lock/pixi.lock pixi.lock; fi
-          python3 - <<'EOF'
-          import json, yaml, pathlib
-          out = []
-          for sid in yaml.safe_load(open("sites.yaml"))["sites"]:
-              p = pathlib.Path("web/sites") / sid / "site.json"
-              if p.exists():
-                  s = json.loads(p.read_text())
-                  out.append({k: s.get(k) for k in ("id","name","place","region","center","blurb","res_m","ground_density","stills","video")})
-          pathlib.Path("web/sites.json").write_text(json.dumps(out, indent=1, ensure_ascii=False))
-          print(len(out), "sites")
-          EOF
-          git config user.name  "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          mkdir -p web/sites
-          git add -A web/sites web/sites.json logs
-          if [ -f pixi.lock ]; then git add pixi.lock; fi
-          git commit -q -m "sites: lidar relief and forge3d renders [skip ci]" || exit 0
-          for i in 1 2 3; do git pull -q --rebase origin main && git push -q && exit 0; sleep 5; done
-          exit 1
+          mkdir -p /tmp/l && cp publish.log /tmp/l/; cd /tmp/l && git init -q -b logs
+          git config user.name "github-actions[bot]"; git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A && git commit -q -m log && git push -f -q "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" logs:publish-log

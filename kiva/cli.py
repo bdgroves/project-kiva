@@ -6,7 +6,7 @@ Project Kiva command line.
     pixi run kiva photo cahokia         # NAIP for the "from the air" render
     pixi run kiva render cahokia        # forge3d stills + orbit video
     pixi run kiva all cahokia           # all of the above
-    pixi run kiva index                 # web/sites.json from every built site
+    pixi run kiva index                 # sites.json from every built site
 """
 from __future__ import annotations
 
@@ -21,7 +21,7 @@ import yaml
 
 ROOT = Path(__file__).resolve().parent.parent
 WORK = ROOT / "data" / "sites"
-WEB = ROOT / "web" / "sites"
+WEB = ROOT / "sites"
 
 
 def catalog():
@@ -201,16 +201,9 @@ def all_(ctx, sid):
 
 @main.command()
 def index():
-    """Gather every built site into web/sites.json for the atlas."""
-    out = []
-    for sid in catalog():
-        p = WEB / sid / "site.json"
-        if p.exists():
-            s = json.loads(p.read_text())
-            out.append({k: s.get(k) for k in ("id", "name", "place", "region", "center", "blurb",
-                                               "res_m", "ground_density", "stills", "video")})
-    (ROOT / "web" / "sites.json").write_text(json.dumps(out, indent=1, ensure_ascii=False))
-    click.echo(f"{len(out)} sites in web/sites.json")
+    """Gather every built site into sites.json for the atlas."""
+    import runpy
+    runpy.run_path(str(ROOT / "scripts" / "site_index.py"))
 
 
 if __name__ == "__main__":

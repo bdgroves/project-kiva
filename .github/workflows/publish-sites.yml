@@ -1,0 +1,41 @@
+name: Publish sites
+
+# Collect the built sites from a Build sites run (by run ID) and commit them.
+on:
+  workflow_dispatch:
+    inputs:
+      run_id:
+        description: "Build sites run ID"
+        required: true
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: site-*
+          path: incoming
+          run-id: ${{ inputs.run_id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          name: pixi-lock
+          path: lock
+          run-id: ${{ inputs.run_id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - run: bash scripts/publish_sites.sh 2>&1 | tee publish.log
+      - name: Push the log when publishing fails
+        if: failure()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p /tmp/l && cp publish.log /tmp/l/; cd /tmp/l && git init -q -b logs
+          git config user.name "github-actions[bot]"; git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A && git commit -q -m log && git push -f -q "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" logs:publish-log

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Project Kiva: reading the ground with lasers</title>
+<meta name="description" content="Bare-earth lidar of ten archaeological places in the United States, from Chaco Canyon to Cahokia. Drag the line to peel the aerial photo back to the ground underneath.">
+<meta property="og:title" content="Project Kiva">
+<meta property="og:description" content="Drag the line to peel the aerial photo back to the ground underneath: bare-earth lidar of ten archaeological places.">
+<meta property="og:image" content="https://brooksgroves.com/project-kiva/sites/cahokia/relief.jpg">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='none' stroke='%23d4a03a' stroke-width='10'/><circle cx='50' cy='50' r='14' fill='%23d4a03a'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+:root{
+  --basalt:#1f2421; --shale:#2c322e; --seam:#3b433e; --lichen:#a3ad9b; --bone:#ebe6da; --ochre:#d4a03a;
+  --ui:'Archivo',system-ui,sans-serif; --text:'Source Serif 4',Georgia,serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--basalt);color:var(--bone)}
+body{font-family:var(--text);font-size:17px;line-height:1.6;min-height:100vh;display:flex;flex-direction:column}
+a{color:var(--bone);text-decoration-color:var(--ochre);text-underline-offset:3px}
+a:hover{color:var(--ochre)}
+:focus-visible{outline:2px solid var(--ochre);outline-offset:2px}
+
+/* header: wordmark and the site list */
+header{display:flex;align-items:stretch;gap:20px;padding:14px 22px 0;border-bottom:1px solid var(--seam)}
+.mark{font-family:var(--ui);font-stretch:125%;font-weight:800;font-size:22px;letter-spacing:.02em;line-height:1;padding-bottom:14px;white-space:nowrap;display:flex;flex-direction:column;justify-content:center}
+.mark small{display:block;font-family:var(--text);font-stretch:100%;font-weight:400;font-style:italic;font-size:14px;letter-spacing:0;color:var(--lichen);margin-top:5px}
+nav.sites{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;flex:1;align-items:flex-end}
+nav.sites::-webkit-scrollbar{display:none}
+nav.sites button{font-family:var(--ui);font-stretch:75%;font-weight:600;font-size:16px;color:var(--lichen);background:none;border:0;
+  padding:8px 10px 12px;white-space:nowrap;cursor:pointer;border-bottom:3px solid transparent}
+nav.sites button:hover{color:var(--bone)}
+nav.sites button[aria-current="true"]{color:var(--bone);border-bottom-color:var(--ochre)}
+header .out{font-family:var(--ui);font-stretch:75%;font-size:15px;align-self:center;padding-bottom:14px;white-space:nowrap;color:var(--lichen)}
+
+main{flex:1;display:grid;grid-template-columns:minmax(0,1fr) 400px;min-height:0}
+#mapwrap{position:relative;min-height:520px}
+#map{position:absolute;inset:0;background:#141816}
+
+/* the laser line */
+#laser{position:absolute;top:0;bottom:0;width:0;z-index:600;pointer-events:none}
+#laser::before{content:"";position:absolute;top:0;bottom:0;left:-1px;width:2px;background:var(--ochre);box-shadow:0 0 12px 1px rgba(212,160,58,.7)}
+#knob{position:absolute;top:50%;left:-22px;width:44px;height:44px;margin-top:-22px;border-radius:50%;background:var(--basalt);
+  border:2px solid var(--ochre);pointer-events:auto;cursor:ew-resize;display:grid;place-items:center;touch-action:none}
+#knob svg{width:22px;height:22px}
+.side-tag{position:absolute;top:14px;z-index:601;font-family:var(--ui);font-stretch:75%;font-size:14px;font-weight:600;padding:4px 9px;
+  background:rgba(31,36,33,.82);border-radius:3px;pointer-events:none}
+#tag-photo{left:14px} #tag-relief{right:14px}
+
+/* layer picker */
+.layers{position:absolute;left:14px;bottom:18px;z-index:601;display:flex;flex-wrap:wrap;gap:6px;max-width:calc(100% - 28px)}
+.layers button{font-family:var(--ui);font-stretch:85%;font-size:14px;font-weight:600;color:var(--bone);background:rgba(31,36,33,.88);
+  border:1px solid var(--seam);border-radius:20px;padding:6px 12px;cursor:pointer}
+.layers button[aria-pressed="true"]{border-color:var(--ochre);color:var(--ochre)}
+
+/* side panel */
+aside{border-left:1px solid var(--seam);overflow-y:auto;padding:26px 26px 40px}
+aside h1{font-family:var(--ui);font-stretch:110%;font-weight:800;font-size:34px;line-height:1.05;letter-spacing:-.005em}
+aside .place{color:var(--lichen);font-style:italic;margin:6px 0 16px}
+aside p{margin-bottom:14px}
+.figures{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;margin:18px 0 22px;font-size:15px}
+.figures dt{font-family:var(--ui);font-stretch:80%;font-weight:600;color:var(--lichen)}
+.figures dd{font-variant-numeric:tabular-nums}
+.render{margin:6px 0 10px;border-radius:4px;overflow:hidden;background:#141816;aspect-ratio:16/9}
+.render video,.render img{display:block;width:100%;height:100%;object-fit:cover}
+.render-tabs{display:flex;gap:14px;font-family:var(--ui);font-stretch:85%;font-size:14px;margin-bottom:22px}
+.render-tabs button{background:none;border:0;color:var(--lichen);cursor:pointer;font:inherit;padding:2px 0;border-bottom:2px solid transparent}
+.render-tabs button[aria-pressed="true"]{color:var(--bone);border-bottom-color:var(--ochre)}
+.explain{border-top:1px solid var(--seam);padding-top:16px;margin-top:6px}
+.explain h2{font-family:var(--ui);font-stretch:90%;font-size:18px;font-weight:700;margin-bottom:6px}
+.legend{height:10px;border-radius:2px;margin:10px 0 4px}
+.legend-ends{display:flex;justify-content:space-between;font-size:13px;color:var(--lichen)}
+.foot{font-size:14px;color:var(--lichen);border-top:1px solid var(--seam);margin-top:24px;padding-top:14px}
+
+/* pins */
+.pin{background:none;border:0;color:var(--bone);font-family:var(--ui);font-stretch:80%;font-weight:700;font-size:14px;
+  text-shadow:0 0 3px #000,0 0 6px #000;box-shadow:none;padding:0 0 0 4px}
+.pin::before{display:none}
+.leaflet-container{font-family:var(--ui)}
+.leaflet-control-attribution{background:rgba(31,36,33,.8)!important;color:var(--lichen)!important;font-size:11px}
+.leaflet-control-attribution a{color:var(--bone)!important}
+.leaflet-bar a{background:var(--basalt);color:var(--bone);border-color:var(--seam)}
+
+@media (max-width:900px){
+  header{flex-wrap:wrap;gap:4px 16px}
+  nav.sites{order:3;flex-basis:100%}
+  header .out{padding-bottom:0}
+  main{grid-template-columns:1fr}
+  #mapwrap{height:62vh;min-height:380px}
+  aside{border-left:0;border-top:1px solid var(--seam);padding:22px 16px 40px}
+  aside h1{font-size:28px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<header>
+  <div class="mark">Project Kiva <small>Reading the ground with lasers</small></div>
+  <nav class="sites" id="sites" aria-label="Sites"></nav>
+  <a class="out" href="https://github.com/bdgroves/project-kiva">Code and notes on GitHub</a>
+</header>
+<main>
+  <div id="mapwrap">
+    <div id="map" aria-label="Map"></div>
+    <span class="side-tag" id="tag-photo">Aerial photo</span>
+    <span class="side-tag" id="tag-relief">Bare-earth lidar</span>
+    <div id="laser"><div id="knob" tabindex="0" role="slider" aria-label="Laser line: drag to compare the photo with the lidar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#d4a03a" stroke-width="2"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6"/></svg></div></div>
+    <div class="layers" id="layers" aria-label="Lidar view"></div>
+  </div>
+  <aside id="panel" aria-live="polite"></aside>
+</main>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const LAYERS = {
+  composite: {name: "Composite", title: "The composite",
+    text: "Several of the views blended together, the way archaeologists usually take a first look. Walls, mounds and ditches read as sharp edges whichever way they run.",
+    legend: null},
+  lrm: {name: "Local relief", title: "Local relief",
+    text: "The ground minus a smoothed copy of itself. Hills and canyons cancel out; what's left is everything smaller than about 15 m. Warm is higher than its surroundings (walls, mounds, berms), blue is lower (rooms, pits, ditches).",
+    legend: "linear-gradient(90deg,#265494,#6ea0cd,#eee8da,#e69650,#962d14)"},
+  svf: {name: "Sky view", title: "Sky-view factor",
+    text: "How much of the sky each spot can see. A ditch, a pit or a sunken room sees less sky and goes dark; ridge tops and the tops of walls stay bright. It doesn't depend on where the sun is.",
+    legend: "linear-gradient(90deg,#000,#fff)"},
+  neg_openness: {name: "Openness", title: "Negative openness",
+    text: "The same horizon scan read the other way up: hollows and the insides of rooms glow, and wall tops and ridge lines go dark. Good for finding kivas and pit houses.",
+    legend: "linear-gradient(90deg,#000,#fff)"},
+  multi_hillshade: {name: "Hillshade", title: "Hillshade from 16 suns",
+    text: "Ordinary shaded relief hides any feature that lines up with the light. This one is lit from sixteen directions at once and averaged, so nothing hides.",
+    legend: null},
+};
+const ENDS = {lrm: ["lower", "higher"], svf: ["less sky", "more sky"], neg_openness: ["ridges", "hollows"]};
+
+const map = L.map("map", {zoomControl: true, attributionControl: true, zoomSnap: 0.25});
+L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
+  maxZoom: 20, maxNativeZoom: 19,
+  attribution: "Photo: Esri, Maxar, USDA NAIP · Lidar: USGS 3DEP"}).addTo(map);
+map.createPane("relief");
+const reliefPane = map.getPane("relief");
+reliefPane.style.zIndex = 450;
+
+let sites = [], site = null, overlay = null, layerKey = "composite", split = 0.5, renderMode = "video";
+const pins = L.layerGroup().addTo(map);
+
+function clip() {
+  const size = map.getSize();
+  const nw = map.containerPointToLayerPoint([0, 0]);
+  const se = map.containerPointToLayerPoint(size);
+  const x = map.containerPointToLayerPoint([size.x * split, 0]).x;
+  reliefPane.style.clip = `rect(${nw.y}px, ${se.x}px, ${se.y}px, ${x}px)`;
+  document.getElementById("laser").style.left = (split * 100) + "%";
+  document.getElementById("knob").setAttribute("aria-valuenow", Math.round(split * 100));
+  document.getElementById("tag-photo").style.opacity = split < 0.12 ? 0 : 1;
+  document.getElementById("tag-relief").style.opacity = split > 0.88 ? 0 : 1;
+}
+map.on("move zoom resize", clip);
+
+(function laser() {
+  const knob = document.getElementById("knob"), wrap = document.getElementById("mapwrap");
+  let dragging = false;
+  const at = e => {
+    const r = wrap.getBoundingClientRect();
+    split = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width));
+    clip();
+  };
+  knob.addEventListener("pointerdown", e => { dragging = true; knob.setPointerCapture(e.pointerId); map.dragging.disable(); });
+  knob.addEventListener("pointermove", e => dragging && at(e));
+  knob.addEventListener("pointerup", () => { dragging = false; map.dragging.enable(); });
+  knob.addEventListener("keydown", e => {
+    const step = e.shiftKey ? 0.1 : 0.03;
+    if (e.key === "ArrowLeft") split = Math.max(0, split - step);
+    else if (e.key === "ArrowRight") split = Math.min(1, split + step);
+    else if (e.key === "Home") split = 0;
+    else if (e.key === "End") split = 1;
+    else return;
+    e.preventDefault(); clip();
+  });
+})();
+
+function layerButtons() {
+  const box = document.getElementById("layers");
+  box.innerHTML = "";
+  Object.entries(LAYERS).forEach(([k, l]) => {
+    if (site && !site.layers[k]) return;
+    const b = document.createElement("button");
+    b.textContent = l.name;
+    b.setAttribute("aria-pressed", k === layerKey);
+    b.onclick = () => { layerKey = k; showLayer(); layerButtons(); explain(); };
+    box.appendChild(b);
+  });
+}
+
+function showLayer() {
+  if (overlay) map.removeLayer(overlay);
+  const l = site.layers[layerKey];
+  overlay = L.imageOverlay(`sites/${site.id}/${l.file}`, site.bounds, {pane: "relief", opacity: 1}).addTo(map);
+  clip();
+}
+
+function fmt(n) { return n.toLocaleString("en-US"); }
+
+function explain() {
+  const l = LAYERS[layerKey], el = document.getElementById("explain");
+  if (!el) return;
+  const clipM = site.lrm_clip_m;
+  const ends = layerKey === "lrm" ? [`${clipM} m lower`, `${clipM} m higher`] : ENDS[layerKey];
+  el.innerHTML = `<h2>${l.title}</h2><p>${l.text}</p>` +
+    (l.legend ? `<div class="legend" style="background:${l.legend}"></div><div class="legend-ends"><span>${ends[0]}</span><span>${ends[1]}</span></div>` : "");
+}
+
+function renderBlock() {
+  const box = document.getElementById("render"), tabs = document.getElementById("rtabs");
+  if (!box) return;
+  const opts = [];
+  if (site.video) opts.push(["video", "Orbit"]);
+  (site.stills || []).forEach(s => opts.push([s.replace(".jpg", ""), s.startsWith("photo") ? "From the air" : "Bare earth"]));
+  if (!opts.length) { box.remove(); tabs.remove(); return; }
+  if (!opts.find(o => o[0] === renderMode)) renderMode = opts[0][0];
+  const base = `sites/${site.id}/`;
+  box.innerHTML = renderMode === "video"
+    ? `<video src="${base}${site.video}" poster="${base}${site.poster || ""}" autoplay muted loop playsinline controls aria-label="The lidar block of ${site.name} turning slowly, rendered with forge3d"></video>`
+    : `<img src="${base}${renderMode}.jpg" alt="${site.name} rendered in 3D with forge3d: ${renderMode === "photo" ? "the aerial photo draped over the terrain" : "the bare-earth relief draped over the terrain"}">`;
+  tabs.innerHTML = opts.map(([k, n]) => `<button aria-pressed="${k === renderMode}" data-k="${k}">${n}</button>`).join("");
+  tabs.querySelectorAll("button").forEach(b => b.onclick = () => { renderMode = b.dataset.k; renderBlock(); });
+}
+
+function panel() {
+  const s = site;
+  const pts = s.ground_points ? fmt(s.ground_points) : "–";
+  document.getElementById("panel").innerHTML = `
+    <h1>${s.name}</h1>
+    <p class="place">${s.place}</p>
+    <p>${s.blurb || ""}</p>
+    <div class="render" id="render"></div>
+    <div class="render-tabs" id="rtabs" aria-label="3D render"></div>
+    <dl class="figures">
+      <dt>Ground returns</dt><dd>${pts} (${s.ground_density} per m²)</dd>
+      <dt>Grid</dt><dd>${s.res_m} m, ${fmt(s.size_m[0])} × ${fmt(s.size_m[1])} m</dd>
+      <dt>Ground seen</dt><dd>${Math.round(s.coverage * 1000) / 10}% of cells</dd>
+      <dt>Survey</dt><dd>${s.project.replace(/_/g, " ")}</dd>
+      ${s.photo ? `<dt>Photo</dt><dd>${s.photo.source} ${s.photo.year}</dd>` : ""}
+    </dl>
+    <div class="explain" id="explain"></div>
+    <p class="foot">Bare earth means the laser returns classified as ground: trees, buildings and water are gone, and where nothing reached the ground the map is blank. The relief views show shape, not age; a bump is a question, not a find.
+    <br><a href="https://github.com/bdgroves/project-kiva#readme">How this works</a></p>`;
+  renderBlock();
+  explain();
+}
+
+function showPins() {
+  pins.clearLayers();
+  (site.features || []).forEach(f => {
+    L.circleMarker([f.lat, f.lon], {radius: 5, color: "#1f2421", weight: 2, fillColor: "#d4a03a", fillOpacity: 1, pane: "markerPane"})
+      .bindTooltip(f.name, {permanent: true, direction: "right", className: "pin", offset: [6, 0]})
+      .addTo(pins);
+  });
+}
+
+async function choose(id, push = true) {
+  const meta = await fetch(`sites/${id}/site.json`).then(r => r.json());
+  site = meta;
+  document.querySelectorAll("nav.sites button").forEach(b => b.setAttribute("aria-current", b.dataset.id === id));
+  if (!site.layers[layerKey]) layerKey = "composite";
+  map.fitBounds(site.bounds, {animate: false, padding: [10, 10]});
+  showLayer(); layerButtons(); showPins(); panel();
+  document.title = `${site.name} · Project Kiva`;
+  if (push) history.replaceState(null, "", "#" + id);
+}
+
+fetch("sites.json").then(r => r.json()).then(list => {
+  sites = list;
+  const nav = document.getElementById("sites");
+  list.forEach(s => {
+    const b = document.createElement("button");
+    b.textContent = s.name; b.dataset.id = s.id;
+    b.onclick = () => choose(s.id);
+    nav.appendChild(b);
+  });
+  const want = location.hash.slice(1);
+  choose(list.find(s => s.id === want) ? want : (list.find(s => s.id === "pueblo-bonito") || list[0]).id, false);
+}).catch(() => {
+  document.getElementById("panel").innerHTML = "<h1>No sites yet</h1><p>The site list didn't load. Run the Build sites workflow, or <code>pixi run kiva all &lt;site&gt;</code> locally, then reload.</p>";
+});
+</script>
+</body>
+</html>
