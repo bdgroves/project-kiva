@@ -76,6 +76,14 @@ jobs:
       - name: Keep the log
         if: always()
         run: mkdir -p web/sites/${{ matrix.site }} && cp build.log web/sites/${{ matrix.site }}/build.log || true
+      - name: Push the log when a step fails
+        if: failure()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p /tmp/l && cp build.log /tmp/l/ 2>/dev/null; cd /tmp/l && git init -q -b logs
+          git config user.name "github-actions[bot]"; git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A && git commit -q -m log && git push -f -q "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" logs:build-log-${{ matrix.site }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -128,6 +136,7 @@ jobs:
           EOF
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          mkdir -p web/sites
           git add -A web/sites web/sites.json logs
           if [ -f pixi.lock ]; then git add pixi.lock; fi
           git commit -q -m "sites: lidar relief and forge3d renders [skip ci]" || exit 0

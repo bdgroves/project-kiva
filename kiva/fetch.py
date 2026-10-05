@@ -118,6 +118,7 @@ def fetch_tnm(site, out_tif: Path, cache: Path, log=print) -> dict:
     the site's `project`)."""
     bounds = utm_bounds(site)
     tiles = tnm_tiles(site)
+    log(f"  {len(tiles)} LAZ tiles over the window: " + ", ".join(sorted({t['project'] for t in tiles})))
     want = site.get("project")
     if want:
         tiles = [t for t in tiles if want in t["project"]] or tiles
