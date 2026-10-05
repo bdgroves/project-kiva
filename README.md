@@ -5,13 +5,17 @@
 </p>
 
 <p align="center">
-  <em>Reading the ground with lasers — American Southwest, and wherever else it works</em>
+  <em>Reading the ground with lasers, from Chaco Canyon to Cahokia</em>
+</p>
+
+<p align="center">
+  <strong><a href="https://brooksgroves.com/project-kiva/">brooksgroves.com/project-kiva</a></strong>: drag the line to peel the aerial photo back to the ground underneath.
 </p>
 
 ---
 
 **Somewhere under a bare-earth point cloud is a wall nobody has stood next to
-in a thousand years. This project goes and finds it — and, just as often,
+in a thousand years. This project goes and finds it, and, just as often,
 finds out why it can't.**
 
 No shovel, no dig permit, no helicopter. An aircraft flies a laser over the
@@ -21,43 +25,73 @@ cloud of dots hanging in space, every one a place the beam hit something.
 
 The trick that makes archaeology possible: a laser pulse is small enough to
 slip between leaves. One pulse can clip a branch, then a lower branch, then
-the dirt, and all of it gets recorded. Throw away everything except the last
-returns and you have **the shape of the ground with the forest deleted**.
+the dirt, and all of it gets recorded. Throw away everything except the
+returns classified as ground and you have **the shape of the ground with the
+forest and the buildings deleted**.
 
-Named for the **kiva** — the sunken ceremonial chamber at the heart of
+Named for the **kiva**, the sunken ceremonial chamber at the heart of
 Ancestral Puebloan architecture, and exactly the sort of low, soft-edged
 feature that a thousand years of wind tries to erase and a laser refuses to
 forget.
 
 ---
 
+## The atlas
+
+![Serpent Mound in bare-earth lidar, rendered with forge3d](sites/serpent-mound/relief.jpg)
+
+*Serpent Mound, Ohio: 3.5 million ground returns, gridded at half a metre and
+draped with the relief composite, lit by forge3d from a low north-west sun.*
+
+Ten places, each a window of bare-earth lidar streamed from the USGS 3DEP
+archive and run through the same pipeline. On the web page you drag a line
+across the aerial photo to reveal the ground beneath it, switch between five
+ways of looking at relief, and see the site turned in 3D.
+
+| Site | Where | What the lidar shows |
+|---|---|---|
+| **Pueblo Bonito** | Chaco Canyon, NM | The great houses of the canyon floor, from a 2024 gap-fill tile |
+| **Aztec Ruins** | Aztec, NM | West Ruin and its great kiva; East Ruin's rooms as rubble mounds |
+| **Far View** | Mesa Verde, CO | Mesa-top pueblos, and Mummy Lake, a 27 m ring on a ridge |
+| **Chimney Rock** | Pagosa Springs, CO | A great house on a knife-edge ridge beside two pinnacles |
+| **Pueblo Grande** | Phoenix, AZ | A Hohokam platform mound and ball court, between freeways |
+| **Cahokia** | Collinsville, IL | Monks Mound's terraces and the mounds of the city around it |
+| **Serpent Mound** | Adams County, OH | Every coil of a 411 m effigy, a metre high |
+| **Newark Earthworks** | Newark, OH | The Octagon and the Great Circle, 2,000-year-old geometry |
+| **Poverty Point** | West Carroll Parish, LA | Six concentric ridges, Mound A and Mound B |
+| **Fort Steilacoom** | Lakewood, WA | Field boundaries and tracks of the 1849 Army post |
+
+Every pin on the map was checked against the lidar itself, not just copied
+from a gazetteer (see *Checking the pins*, below).
+
+---
+
 ## I. The reveal
 
 Chaco Canyon's Pueblo Bonito is among the most excavated, most photographed
-sites in North America — 700-plus rooms, the centre of the Chacoan world,
-built 850-1150 CE. You should not be able to *discover* anything about it from
+sites in North America: 700-plus rooms, the centre of the Chacoan world,
+built 850–1150 CE. You should not be able to *discover* anything about it from
 a laptop. And yet:
 
 ![Pueblo Bonito Local Relief Model reveal](docs/images/pueblo_bonito_lrm_reveal.jpg)
 
 *The D-shaped arc of room blocks and the two great kivas in the plaza,
-generated from raw LiDAR points downloaded the same day.*
+generated from raw lidar points downloaded the same day.*
 
 What happened, in order:
 
-1. **The finished product has a hole exactly where it matters.** USGS's 1-metre
+1. **The finished product has a hole exactly where it matters.** USGS's 1 m
    DEM has no coverage over the canyon core. The most important square
    kilometre in the park simply isn't in the polished dataset.
-2. **The raw data does.** A newer gap-fill acquisition (`CO_CONMGaps_D24`) has
-   a point cloud tile sitting right on the canyon that was never turned into a
+2. **The raw data does.** A newer gap-fill acquisition (`CONMGaps_D24`) has
+   a point-cloud tile sitting right on the canyon that was never turned into a
    DEM. 55 MB, one `.laz`, 1 km square.
 3. **Built the surface from scratch.** 14,792,731 points, 13,026,412 already
-   classified as ground — 88%, dense and clean. Gridded to a 1 m bare-earth
-   surface.
+   classified as ground: 88%, dense and clean. Gridded to a bare-earth surface.
 4. **Then made the faint things visible.** A two-foot wall is nothing beside a
    300-foot canyon; the big shape drowns the small one. So: blur the terrain
    heavily, subtract the blur from the sharp original. The landforms cancel.
-   What survives is only fine relief — wall stubs, room depressions, midden
+   What survives is only fine relief: wall stubs, room depressions, midden
    mounds. That's a **Local Relief Model**, and it is the whole magic trick.
 5. **Zoomed to the coordinates.** No enhancement, no guessing. The room-block
    arc and the kiva depressions fell straight out of a tight, zero-centred
@@ -68,14 +102,9 @@ extensively excavated site**. Not a new discovery, not automated detection.
 It's here because turning raw laser returns into a recognisable floor plan on
 the same day the cloud was downloaded is exactly what this project exists to do.
 
-### The same canyon, in three dimensions
-
-![Chaco Canyon rendered in 3D with forge3d](docs/images/chaco_canyon_forge3d.jpg)
-
-*Chaco Wash cuts the frame diagonally; the cliff line at left is the canyon's
-south wall. Built from the project's own bare-earth DEM with
-[forge3d](https://github.com/milos-agathon/forge3d), sun at 302°/24°. No
-compositing, no hand-editing.*
+In v2 the whole sequence is one command, `pixi run kiva build pueblo-bonito`:
+it asks The National Map which point-cloud tiles cover the window, takes the
+gap-fill project first and fills any edges from the next-best survey.
 
 ---
 
@@ -88,7 +117,7 @@ GLO-30**, a global 30 m model built from TanDEM-X radar, served as Cloud
 Optimized GeoTIFFs from a public bucket. No account, no key:
 
 ```powershell
-pixi run python scripts/fetch_global_dem.py --lat 29.9792 --lon 31.1342 --name giza
+pixi run global --lat 29.9792 --lon 31.1342 --name giza
 ```
 
 ### Giza: it works
@@ -96,11 +125,9 @@ pixi run python scripts/fetch_global_dem.py --lat 29.9792 --lon 31.1342 --name g
 ![Giza plateau rendered from Copernicus GLO-30](docs/images/giza_pyramids_forge3d.jpg)
 
 *Khufu, Khafre and Menkaure in their true diagonal alignment, three bright
-blocks on the escarpment. The Nile floodplain is the darker ground upper left.
-Terrain, lighting and shading are forge3d; the desert palette is a luminance
-remap applied afterward.*
+blocks on the escarpment. The Nile floodplain is the darker ground upper left.*
 
-Copernicus is a **surface** model — it includes buildings, vegetation and
+Copernicus is a **surface** model: it includes buildings, vegetation and
 standing monuments. Usually that's a limitation. For monumental architecture
 in a desert it's the entire point: the pyramids are *in* the elevation data.
 No detection step required.
@@ -109,87 +136,42 @@ No detection step required.
 
 ![Tikal Local Relief Model showing canopy noise, not architecture](docs/images/tikal_canopy_noise.jpg)
 
-*Same pipeline. Same Local Relief Model that resolved Pueblo Bonito's room
-blocks. Here: nothing. No straight lines, no right angles, no repeating
-structure — organic blobs.*
+*Same Local Relief Model that resolved Pueblo Bonito's room blocks. Here:
+nothing. No straight lines, no right angles, no repeating structure, just
+organic blobs.*
 
 Those blobs are **treetops**. Tikal sits under 40+ m of rainforest, and radar
-from orbit measures the top of it. The signal isn't entirely gone — sampling
+from orbit measures the top of it. The signal isn't entirely gone: sampling
 the surface at Temple IV gives 317.6 m against 296.2 m at Temple I, a 21 m
 difference in the right direction, since Temple IV really is taller and on
 higher ground. But that faint signal is buried under canopy variation of the
 same magnitude.
 
-This is precisely why the landmark Maya LiDAR surveys used **airborne** laser
+This is precisely why the landmark Maya lidar surveys used **airborne** laser
 with ground-return classification instead of satellite radar. Laser pulses
 find gaps in the canopy and reach the forest floor. Radar does not. Same
 technique, same code, entirely different instrument requirement.
 
 | Site | Source | Ground visible? | Result |
 |---|---|---|---|
-| Chaco Canyon | USGS airborne LiDAR (classified) | Yes — bare desert, ground returns | Room blocks and kivas resolved |
-| Giza | Copernicus GLO-30 radar DSM | Yes — bare desert, no canopy | Pyramids resolved as surface relief |
-| Tikal | Copernicus GLO-30 radar DSM | **No** — dense rainforest canopy | Canopy noise only |
+| Chaco Canyon | USGS airborne lidar (classified) | Yes: bare desert, ground returns | Room blocks and kivas resolved |
+| Giza | Copernicus GLO-30 radar DSM | Yes: bare desert, no canopy | Pyramids resolved as surface relief |
+| Tikal | Copernicus GLO-30 radar DSM | **No**: dense rainforest canopy | Canopy noise only |
 
 ---
 
 ## III. Closer to home
 
-### Fly the fort — Fort Worden, Washington
+### Cahokia: the mound found itself, twice
 
-![Fort Worden flythrough](docs/images/fort_worden_flythrough.gif)
-
-*Ten seconds, one orbit, 241 frames. Artillery Hill at Fort Worden State Park,
-Port Townsend — the zigzag notches are Battery Kinzie and its neighbours,
-concrete emplacements built to close the entrance to Puget Sound. Bare-earth
-lidar. No imagery, no 3D model. Just the ground.*
-
-Source: **USGS 3DEP**, `WA_Olympic_Peninsula_C1_2017`, one 1-metre bare-earth
-tile, 53 MB. Washington DNR's [lidar portal](https://lidarportal.dnr.wa.gov)
-also covers this ground with eight overlapping projects, but 3DEP served the
-same coverage as a single clean tile with one API call.
-
-```powershell
-pixi run python scripts/flythrough.py --dem data/processed/artillery_hill.tif
-pixi run python scripts/postprocess_frames.py --palette steel
-pixi run ffmpeg -y -framerate 24 -i data/renders/frames_final/frame_%04d.png `
-    -c:v libx264 -pix_fmt yuv420p -crf 18 data/renders/flythrough.mp4
-```
-
-Three things that make or break a flythrough:
-
-**The grade is not optional.** forge3d's terrain shading is driven by an
-elevation colormap, not the sun vector — moving `set_sun` from 25° to 10°
-barely changes the image, and raw frames come out washed-out green.
-`postprocess_frames.py` does the real work: luminance, unsharp mask, palette.
-That's what turns a pale mound into legible concrete.
-
-**Grade with fixed bounds or the clip flickers.** The contrast stretch is
-computed once across a sample and reused for all 241 frames. Normalise per
-frame and the histogram breathes as the camera moves, which reads as a pulse.
-
-**Crop before you fight the water.** Fort Worden is a peninsula; the first crop
-was half Puget Sound, rendering as a flat plane. Masking sea level to NoData
-did nothing — forge3d's terrain loader ignores the NoData flag. Re-cropping
-onto the high ground took water from 50% of the frame to 20%.
-
-### Cahokia — the largest earthwork in North America
-
-![Cahokia flythrough](docs/images/cahokia_flythrough.gif)
+![Cahokia in bare-earth lidar, rendered with forge3d](sites/cahokia/relief.jpg)
 
 *Monks Mound and the Mississippian city around it, across the Mississippi
-from St. Louis. 100 ft tall, four terraces, a footprint about the size of the
-Great Pyramid of Giza — and roughly 120 more mounds in the surrounding
-2,000 acres. Occupied 800-1400 CE.*
+from St. Louis. Monks Mound is about 30 m tall with four terraces, and roughly
+120 more mounds were built in the surrounding 2,000 acres. The city peaked
+around 1050–1350 CE.*
 
-![Cahokia bare-earth hillshade](docs/images/cahokia_hillshade.jpg)
-
-*Bare earth at 1 m. Monks Mound is the terraced mass at centre, modern
-staircase and all. The Grand Plaza is the flat ground south of it, dozens of
-smaller mounds read as distinct bumps, and I-55/70 cuts across the top — a
-1,200-year-old city and an interstate in the same frame.*
-
-**The data lied about its own extent, again.** The newest lidar over Cahokia
+**The data lied about its own extent.** The newest lidar over Cahokia
 (`IL_10CountyNRCS_D23`, 2023) advertises a bounding box covering the whole
 site. It does not: valid data stops partway down, and the Grand Plaza, Twin
 Mounds and Mound 72 all fall in nodata. Sampling three overlapping projects at
@@ -203,38 +185,76 @@ four known site locations sorted it out:
 
 Over the study window the newest project is 53% valid, HicksDome 63%, and
 MadisonCo 2014 is **100%**. Older data won, because one consistent source
-beats a mosaic with a seam running through the middle of the flythrough.
+beats a mosaic with a seam running through the middle of the site. The atlas
+uses MadisonCo 2014 too.
 
-The DEM also confirmed itself: the highest point in the crop is 158.2 m and
-sits **52 m from the published Monks Mound coordinate**. The mound found
-itself.
+The DEM also confirmed itself. In v1 the highest point in the crop was
+158.2 m and sat 52 m from the published Monks Mound coordinate. In v2 the
+build records the highest points in every window, and Cahokia's top again
+comes out at **158.2 m on Monks Mound**, now from points streamed straight out
+of the cloud archive rather than a downloaded DEM.
 
-```powershell
-pixi run python scripts/flythrough.py --dem data/processed/cahokia_dtm_clean.tif `
-    --z-scale 8 --radius-wide 4200 --radius-close 2300
-pixi run python scripts/postprocess_frames.py --palette earth --gamma 0.42
+### Fort Steilacoom: streaming raw points from a 350 TB archive
+
+The point clouds behind the USGS elevation models are public: 75 trillion
+points, about 350 TB, published as Entwine Point Tiles in a no-auth bucket:
+
+```
+aws s3 ls --no-sign-request s3://usgs-lidar-public/
 ```
 
-Cahokia needed a new palette. `steel` suits concrete and `volcanic` suits
-basalt; neither suits an earthwork on a floodplain, so `earth` (umber to
-ochre to bone) joined the set. Its first grade came out muddy — most of a
-floodplain sits at the low end of the ramp, where that palette is darkest,
-and the smaller mounds vanished. Gamma 0.42 rather than the usual 0.85 is
-what brings them back.
+PDAL's `readers.ept` walks the octree and pulls only the nodes intersecting a
+bounding box. Same range-request idea as a COG, applied to points instead of
+pixels. You never download the project. This is now how nine of the ten atlas
+sites are built.
 
----
+Every project publishes an `ept.json` with a point count and bounds, so density
+is one division away, measured, not assumed:
 
-### Mount St. Helens — 485 MB you never download
+| Project | Points | pts/m² |
+|---|---|---|
+| WA_FEMAHQ_B1_QL1_2018 | 653 M | **16.4** |
+| WA_PierceCounty_1_2020 | 59.3 B | **12.0** |
+| WA_NorthCentral_1_2021 | 102.7 B | 9.1 |
+| WA_KingCo_1_2021 | 31.0 B | 8.3 |
+
+3DEP's QL1 spec is 8 pts/m². Pierce County runs about 12 project-wide and 15+
+locally: enough for a **0.5 m** grid, four times finer than the 1 m DEM
+covering the same ground. And it covers Lakewood.
+
+![Fort Steilacoom bare earth at 0.5 m](docs/images/fort_steilacoom_05m_hillshade.jpg)
+
+*Fort Steilacoom, Lakewood: grounds of the 1849 US Army post, later Western
+State Hospital. Black rectangles are buildings: structures are not ground, so
+a true bare-earth model leaves voids where they stood. The field boundaries,
+terracing and old track alignments crossing the open ground do not survive
+at 1 m.*
+
+One trap worth knowing: USGS EPT resources are stored in **EPSG:3857**, not
+the survey CRS. Pass bounds in the wrong CRS and you get zero points back
+with no error at all.
+
+### Fort Worden and Mount St. Helens: the v1 flights
+
+![Fort Worden flythrough](docs/images/fort_worden_flythrough.gif)
+
+*Artillery Hill at Fort Worden State Park, Port Townsend: the zigzag notches
+are Battery Kinzie and its neighbours, built to close the entrance to Puget
+Sound. From the 1 m 3DEP DEM (`WA_Olympic_Peninsula_C1_2017`).*
+
+Fort Worden isn't in the atlas: the only survey in the point-cloud archive
+there (2016) reaches about a third of the window. The DEM above was built from
+a different survey that never went into the archive.
 
 ![Mount St. Helens flythrough](docs/images/st_helens_flythrough.gif)
 
-*The 1980 blast amphitheatre opening north, lava dome on the crater floor,
-erosion gullies radiating down every flank. Summit reads 2,535 m; the
-pre-eruption cone was 2,950 m. The missing 400 m is the eruption.*
+*The 1980 blast amphitheatre opening north, lava dome on the crater floor.
+Summit reads 2,535 m; the pre-eruption cone was 2,950 m. The missing 400 m is
+the eruption.*
 
 The source tile is **485 MB for one degree of Washington**, and this needed
 11 km out of the middle of it. These are Cloud Optimized GeoTIFFs on S3, so
-GDAL can range-request just the window — like reading one chapter instead of
+GDAL can range-request just the window, like reading one chapter instead of
 buying the book:
 
 ```python
@@ -245,58 +265,7 @@ gdal.Translate("st_helens.tif", gdal.Open(url),
                projWin=[-122.32, 46.30, -122.07, 46.10])
 ```
 
-Twenty-two seconds, no download, no cleanup. Worth doing for any CONUS site.
-
-The grade uses the `volcanic` palette against Fort Worden's `steel` — same
-script, same flicker-free bounds, only the ramp and gamma change. Lifting
-gamma from 0.85 to 0.55 is what recovers the flank drainages; at the default
-they crush to black and the mountain reads as a silhouette with a bright ring.
-
-### Fort Steilacoom — streaming raw points from a 350 TB archive
-
-Everything above works from finished DEM rasters. The **point clouds** those
-DEMs were built from are also public — 75 trillion points, ~350 TB — published
-as Entwine Point Tiles in a no-auth bucket:
-
-```
-aws s3 ls --no-sign-request s3://usgs-lidar-public/
-```
-
-PDAL's `readers.ept` walks the octree and pulls only the nodes intersecting a
-bounding box. Same range-request idea as a COG, applied to points instead of
-pixels. You never download the project.
-
-Every project publishes an `ept.json` with a point count and bounds, so density
-is one division away — measured, not assumed:
-
-| Project | Points | pts/m² |
-|---|---|---|
-| WA_FEMAHQ_B1_QL1_2018 | 653 M | **16.4** |
-| WA_PierceCounty_1_2020 | 59.3 B | **12.0** |
-| WA_NorthCentral_1_2021 | 102.7 B | 9.1 |
-| WA_KingCo_1_2021 | 31.0 B | 8.3 |
-
-3DEP's QL1 spec is 8 pts/m². Pierce County runs ~12 project-wide and 15+
-locally — enough for a **0.5 m** grid, four times finer than the 1 m DEM
-covering the same ground. And it covers Lakewood.
-
-![Fort Steilacoom bare earth at 0.5 m](docs/images/fort_steilacoom_05m_hillshade.jpg)
-
-*Fort Steilacoom, Lakewood — grounds of the 1849 US Army post, later Western
-State Hospital. 1.2 km square, 8.3 million ground returns, 0.5 m bare earth.
-Black rectangles are buildings: structures are not ground, so a true
-bare-earth model leaves voids where they stood. Waughop Lake bottom left. The
-field boundaries, terracing and old track alignments crossing the open ground
-do not survive at 1 m.*
-
-```powershell
-pixi run python scripts/fetch_pointcloud.py --name fort_steilacoom `
-    --west -122.5680 --east -122.5520 --south 47.1720 --north 47.1830
-```
-
-One trap worth knowing: USGS EPT resources are stored in **EPSG:3857**, not
-the survey CRS. Pass bounds in the wrong CRS and you get zero points back
-with no error at all.
+Twenty-two seconds, no download, no cleanup.
 
 ---
 
@@ -309,7 +278,7 @@ wrong.
 ### Five dates, two surfaces
 
 The National Map lists **five published epochs** of the tile covering Mount
-St. Helens — 2021-06, 2021-11, 2022-05, 2023-06, 2025-08. An active volcano
+St. Helens: 2021-06, 2021-11, 2022-05, 2023-06, 2025-08. An active volcano
 with a free time series looks like an obvious change-detection study.
 
 It isn't. Over the crater, **four of those five files are pixel-identical.**
@@ -332,7 +301,7 @@ tile is refreshed. Look at what actually triggered each release:
 | 2023-06-08 | WA_Nisqually_TopoBathy_2020 |
 | 2025-08-13 | WA_CentralWildfire_D22 |
 
-Pierce, Thurston, Nisqually — not one of them is Mount St. Helens. Each
+Pierce, Thurston, Nisqually: not one of them is Mount St. Helens. Each
 release refreshed a different corner of a 70-mile square and left the volcano
 untouched. **The publication date describes the tile, not your pixels.**
 
@@ -345,37 +314,118 @@ survey window of 2020-04 to 2020-06, and the *later* 2021-11 tile a window of
 ![Elevation difference between the two distinct St. Helens surfaces](docs/images/sthelens_epoch_diff.jpg)
 
 *Red is higher in the newer surface, blue lower. The crater floor rises by
-hundreds of metres; a thin blue collar traces the rim; faint radial streaks
-follow the flank gullies.*
+hundreds of metres; a thin blue collar traces the rim.*
 
-One pair genuinely differs. So run the check that matters — **if the change is
-real, stable ground far away should agree:**
+One pair genuinely differs. So run the check that matters: **if the change is
+real, stable ground far away should agree.**
 
 | Ring from peak change | Median Δ | p95 abs Δ |
 |---|---|---|
-| 0-400 m | **+279.9 m** | 350.3 m |
-| 800-1,200 m | -1.9 m | 74.5 m |
-| 3,500-5,000 m | **-2.1 m** | 7.2 m |
+| 0–400 m | **+279.9 m** | 350.3 m |
+| 800–1,200 m | -1.9 m | 74.5 m |
+| 3,500–5,000 m | **-2.1 m** | 7.2 m |
 
-Far-field terrain agrees to about **2 m** while the crater differs by **280 m**
-— two orders of magnitude apart. Had the outer rings drifted with the centre,
+Far-field terrain agrees to about **2 m** while the crater differs by **280 m**,
+two orders of magnitude apart. Had the outer rings drifted with the centre,
 this would be a co-registration or datum artefact and the whole thing noise.
 They don't, so that crater fill is real ground.
 
-A few hundred metres is the scale of the 2004-2008 dome-building episode. But
+A few hundred metres is the scale of the 2004–2008 dome-building episode. But
 this is a difference between two *source vintages* and the metadata can date
 neither over these pixels. The honest statement is **real change of unknown
-epoch** — not a measurement of dome growth between two known dates.
+epoch**, not a measurement of dome growth between two known dates.
 
 ```powershell
-pixi run python scripts/epoch_check.py --tile n47w123 `
-    --west -122.225 --east -122.165 --south 46.165 --north 46.215
+pixi run epoch --tile n47w123 --west -122.225 --east -122.165 --south 46.165 --north 46.215
 ```
 
-`epoch_check.py` runs this for any 3DEP tile and window: lists the epochs and
-what triggered them, reports which are pixel-identical, and runs the radial
-stable-ground test on whichever pair actually differs. Run it **before**
-building an analysis on "multi-temporal" 3DEP.
+`scripts/epoch_check.py` runs this for any 3DEP tile and window: lists the
+epochs and what triggered them, reports which are pixel-identical, and runs
+the radial stable-ground test on whichever pair actually differs. Run it
+**before** building an analysis on "multi-temporal" 3DEP.
+
+---
+
+## How it works
+
+```
+sites.yaml (window, survey, grid, pins)
+    │
+    ▼  kiva build
+points ─► ground returns (class 2) ─► IDW grid ─► bare-earth DTM
+          (EPT stream, or TNM tiles)               (blank where no ground was seen)
+    │
+    ▼  kiva/relief.py
+hillshade · 16-sun hillshade · slope · local relief · sky-view · openness
+    │                                    └─ blended into the composite
+    ├─► web layers: Web Mercator WebP, transparent where there's no data
+    │
+    ▼  kiva photo / stills / orbit / encode
+NAIP photo ─┐
+composite  ─┴─► forge3d: the block, draped and lit ─► stills + orbit video
+```
+
+### The relief views
+
+Ordinary shading is dominated by the big landforms. Each view strips the big
+shape away in a different way.
+
+| View | What it does | Reference |
+|---|---|---|
+| **Local relief** | The DTM minus a Gaussian-smoothed copy of itself (σ = 7.5 m). Bumps smaller than about 15 m survive. | after Hesse (2010) |
+| **Sky-view factor** | How much of the sky each cell can see, scanning 16 directions out to 10 m. Pits and ditches see less. | Zakšek et al. (2011) |
+| **Openness** | The same horizon scan read as angles; negative openness makes hollows glow. | Yokoyama et al. (2002) |
+| **16-sun hillshade** | Lit from 16 directions and averaged, so no feature hides in its own shadow. | |
+| **Composite** | Hillshade, slope, positive openness and sky-view blended with the VAT recipe. | Kokalj & Somrak (2019) |
+
+`tests/test_relief.py` checks them against synthetic ground: a 1 m deep pit
+must come out negative in local relief and darker in sky view, a 60 cm wall
+positive, and a plane rising to the east must face a western sun.
+
+### The 3D blocks (forge3d)
+
+`kiva/render.py` drives forge3d 1.40.1's terrain viewer headless: Mesa's
+llvmpipe Vulkan driver under Xvfb, so it runs on GitHub's CPUs with no GPU.
+The DTM is the mesh, the relief composite (or the NAIP photograph) is draped
+over it as a texture, and the viewer lights it with PBR shading, shadows and
+ambient occlusion from a low north-west sun, the raking light archaeologists
+wait for. The block is cut out of the frame and set on a dark backdrop like a
+specimen.
+
+What I learned since the v1 flights, which changes some of v1's advice:
+
+* **The sun matters once PBR is on.** v1 found that moving the sun barely
+  changed anything and that colour grading did all the work. That was the
+  viewer's default shading. With `set_terrain_pbr` (shadows, height AO, soft
+  sun visibility) and `set_terrain_sun`, the light does the work.
+* **You can aim the camera.** `set_terrain_camera` takes an absolute target in
+  viewer world coordinates: x = easting, y = (elevation − DEM minimum) ×
+  zscale, z = −northing. Pins and the block's silhouette are projected with
+  the same maths, so labels land on the ground.
+* **The viewer won't look flatter than 5° below horizontal.** It raises the
+  camera instead.
+* **The mesh is at most 2048 vertices across.** The render DEM is resampled
+  to fit and smoothed very lightly so cliffs don't stair-step.
+* **Draping is the trick.** Any image can be an overlay with `load_overlay`;
+  the relief composite tinted earth-brown reads as ground, not as a printout.
+
+### Checking the pins
+
+Each pin in `sites.yaml` was placed by finding the feature in the relief
+views, not by trusting a coordinate list, and cross-checked where a published
+figure exists:
+
+* **Monks Mound** sits on the top terrace, and the window's highest point
+  (158.2 m) is on it.
+* **Mummy Lake** at Mesa Verde comes out within a few metres of the published
+  coordinate (37.2406, −108.5048).
+* **Poverty Point's Mound A and Mound B** come out 611 m apart; the published
+  figure is 625 m (2,050 ft).
+* **Serpent Mound's** head and coiled tail are read straight off the 0.5 m
+  composite.
+
+`site.json` for every site records the three highest points in the window, a
+cheap way to catch a pin that has wandered.
 
 ---
 
@@ -395,154 +445,87 @@ Collected from things that went wrong here, so they don't have to go wrong again
   points, silently, for a correct-looking query in the survey CRS.
 * **Measure density, don't assume it.** `ept.json` gives points and bounds;
   the division takes a second and decides your achievable resolution.
-
-Camera settings that work, for the next site: orbit with `phi/theta/radius`
-and leave `target` alone — an explicit projected-coordinate target trips the
-viewer's internal coordinate rebasing. Keep `z_scale` in the 2-3 range; larger
-values inflate the vertical bounding box until auto-framing pushes the terrain
-off-screen. Set `radius` to roughly 0.7-1.4× the tile width.
+* **Don't trust a gazetteer coordinate.** Several of v1's map pins were
+  hundreds of metres to kilometres off. Find the feature in the data.
+* **A bump is a question, not a find.** Relief views show shape, not age.
 
 ---
 
-## Study Areas
-
-| Site | State | Period | Key Features |
-|------|-------|--------|-------------|
-| **Chaco Canyon** | NM | 850-1150 CE | Great houses, road network, kivas |
-| **Mesa Verde** | CO | 600-1300 CE | Cliff dwellings, mesa-top villages |
-| **Hohokam Phoenix** | AZ | 300-1450 CE | Canal network, platform mounds |
-| **Canyon de Chelly** | AZ | 2500 BCE-present | Cliff dwellings, petroglyphs |
-
-Switch sites by changing `active_site` in `config.yaml`.
-
----
-
-## Quickstart
+## Run it
 
 ```powershell
 pixi install
-
-# US sites: USGS 3DEP DEMs and point cloud tiles
-pixi run python scripts/download_dem.py
-
-# Everywhere else: Copernicus GLO-30
-pixi run python scripts/fetch_global_dem.py --lat 29.9792 --lon 31.1342 --name giza
-
-# Raw points -> bare-earth DEM -> Local Relief Model
-pixi run python scripts/run_pipeline.py
-
-# 3D render, and an orbiting flythrough
-pixi run python scripts/render_site.py --dem data/processed/pueblo_bonito_dem_1m.tif
-pixi run python scripts/flythrough.py --dem data/processed/artillery_hill.tif
-pixi run python scripts/postprocess_frames.py --palette steel
-
-pixi run notebooks
+pixi run sites                       # the catalog
+pixi run kiva build cahokia          # points -> DTM -> relief -> web layers
+pixi run kiva photo cahokia          # NAIP for the comparison render
+pixi run kiva stills cahokia         # forge3d stills (needs a GPU, or Mesa + Xvfb)
+pixi run kiva orbit cahokia          # orbit frames
+pixi run kiva encode cahokia         # -> sites/cahokia/orbit.mp4
+pixi run kiva index                  # sites.json for the atlas
+pixi run serve                       # http://localhost:8000
+pixi run test
 ```
 
-## Project Structure
+Or run **Actions → Build sites** to build any or all of them on GitHub, which
+commits the results to `sites/`; **Publish sites** collects a finished run.
+Add a site by giving it a window in `sites.yaml`; the
+[3DEP boundaries file](https://github.com/hobuinc/usgs-lidar/blob/master/boundaries/resources.geojson)
+says which survey covers it.
+
+## Project structure
 
 ```
 project-kiva/
-├── config.yaml                  ← switch sites here
-├── pixi.toml                    ← environment
-│
-├── notebooks/
-│   ├── 01_data_acquisition      Download USGS 3DEP tiles
-│   ├── 02_render_forge3d        3D terrain renders
-│   ├── 03_lidar_processing      Point cloud -> bare-earth DEM     (roadmap)
-│   ├── 04_archaeological_viz    SVF, LRM, hillshade products      (roadmap)
-│   └── 05_feature_detection     Automated mound/kiva detection    (roadmap)
-│
+├── index.html            the atlas (served by GitHub Pages)
+├── sites.yaml            the site catalog
+├── sites.json            built sites, for the atlas
+├── sites/<id>/           web layers, site.json, stills, orbit video (committed)
+├── kiva/
+│   ├── cli.py            pixi run kiva ...
+│   ├── fetch.py          EPT streaming and TNM tiles -> bare-earth DTM (PDAL)
+│   ├── relief.py         the relief views
+│   ├── web.py            web layers
+│   ├── imagery.py        NAIP from the Planetary Computer
+│   ├── render.py         forge3d blocks
+│   └── fonts/            Cinzel, Crimson Text, Courier Prime (OFL)
 ├── scripts/
-│   ├── download_dem.py          USGS 3DEP DEMs / LAZ tiles
-│   ├── fetch_global_dem.py      Copernicus GLO-30, non-US sites
-│   ├── fetch_pointcloud.py      Stream 3DEP points from AWS -> DTM + DSM
-│   ├── epoch_check.py           Are two 3DEP "epochs" actually different data?
-│   ├── run_pipeline.py          Ground points -> DEM -> Local Relief Model
-│   ├── render_site.py           forge3d terrain renderer (stills)
-│   ├── flythrough.py            Orbiting camera animation -> frames
-│   └── postprocess_frames.py    Colour grade (fixed bounds, no flicker)
-│
-├── data/
-│   ├── raw/          LAZ tiles (gitignored)
-│   ├── processed/    GeoTIFFs and raster products (gitignored)
-│   ├── renders/      Full-res outputs (gitignored)
-│   ├── vectors/      GeoJSON site features (committed)
-│   └── assets/       Project imagery
-│
-├── docs/images/      Compressed figures for this README (committed)
-└── web/index.html    GitHub Pages interactive map
+│   ├── epoch_check.py    are two 3DEP "epochs" actually different data?
+│   ├── fetch_global_dem.py  Copernicus GLO-30 for sites outside the US
+│   ├── publish_sites.sh  commit built sites (used by the workflows)
+│   └── site_index.py
+├── tests/                relief maths on synthetic ground
+├── docs/images/          figures for this README
+├── data/sites/           working files: DTMs, products, frames (gitignored)
+└── .github/workflows/    Build sites, Publish sites
 ```
-
-## Pipeline
-
-```
-USGS 3DEP (LAZ / GeoTIFF)  ·  Copernicus GLO-30 (COG)
-    |
-Ground classification -> bare-earth DEM
-    |
-+-------------------------------------------------------+
-|  Archaeological visualisation                          |
-|  * Local Relief Model      -- built                    |  <- wall stubs, mounds, plaza edges
-|  * Multi-azimuth hillshade -- roadmap                  |
-|  * Sky-View Factor         -- roadmap                  |  <- kiva depressions, road berms
-+-------------------------------------------------------+
-    |
-Automated detection -> candidate_features.geojson        (roadmap)
-    |
-forge3d -> stills, orbiting flythroughs
-    |
-Leaflet web map -> GitHub Pages
-```
-
-## forge3d Rendering
-
-Project Kiva uses [forge3d](https://github.com/milos-agathon/forge3d) for
-GPU-accelerated terrain visualisation through its headless viewer — no Rust
-toolchain or viewer binary required.
-
-```python
-import forge3d as f3d
-
-with f3d.open_viewer_async(terrain_path=dem, width=1280, height=720) as v:
-    v.set_z_scale(2.5)
-    v.set_orbit_camera(phi_deg=225, theta_deg=45, radius=700, fov_deg=42)
-    v.set_sun(azimuth_deg=302, elevation_deg=24)
-    v.snapshot("render.png", width=1920, height=1080)
-```
-
-## Web Map
-
-Live at **[bdgroves.github.io/project-kiva](https://bdgroves.github.io/project-kiva)**
-
-- Satellite, topo and terrain basemaps
-- Known great house and kiva locations with historical notes
-- Automated candidate detections (roadmap)
-- Schematic road and canal overlays
 
 ## Related
 
-**[lidar-explore](https://github.com/bdgroves/lidar-explore)** — the same
-discipline pointed at forestry instead of archaeology. Individual-tree
-detection validated against 1,295 stands of Finland's national forest
-inventory, a published null result on harvest ranking, terrain-based machine
-planning, and a test of slope against Washington DNR's own unstable-slope
-determinations across 1,024 harvest applications.
+**[lidar-explore](https://github.com/bdgroves/lidar-explore)**: the same
+discipline pointed at forestry instead of archaeology. **[SOLSTICE](https://brooksgroves.com/solstice/)**:
+the sky over Chaco Canyon, computed against the real skyline, with a forge3d
+flight down the canyon.
 
 ## References
 
-- Lekson, S.H. (1999). *The Chaco Meridian.* AltaMira Press.
+- Hesse, R. (2010). LiDAR-derived Local Relief Models: a new tool for archaeological prospection. *Archaeological Prospection*, 17(2).
+- Zakšek, K., Oštir, K. & Kokalj, Ž. (2011). Sky-View Factor as a relief visualization technique. *Remote Sensing*, 3(2).
+- Yokoyama, R., Shirasawa, M. & Pike, R. J. (2002). Visualizing topography by openness. *Photogrammetric Engineering & Remote Sensing*, 68(3).
+- Kokalj, Ž. & Somrak, M. (2019). Why not a single image? Combining visualizations to facilitate fieldwork and on-screen mapping. *Remote Sensing*, 11(7).
 - Chase, A. et al. (2011). Airborne LiDAR, archaeology, and the ancient Maya landscape. *Journal of Archaeological Science*, 38(2).
-- Evans, D. et al. (2013). Uncovering archaeological landscapes at Angkor using LiDAR. *PNAS*, 110(31).
+- Evans, D. et al. (2013). Uncovering archaeological landscapes at Angkor using lidar. *PNAS*, 110(31).
 - Opitz, R. & Cowley, D. (Eds.) (2013). *Interpreting Archaeological Topography.* Oxbow Books.
+- Data: [USGS 3DEP](https://www.usgs.gov/3d-elevation-program) point clouds via the [AWS open data archive](https://registry.opendata.aws/usgs-lidar/) and [The National Map](https://apps.nationalmap.gov/); USDA NAIP via [Microsoft Planetary Computer](https://planetarycomputer.microsoft.com/dataset/naip); Copernicus GLO-30 (ESA).
+- Software: [forge3d](https://github.com/milos-agathon/forge3d) by Milos Popovic, [PDAL](https://pdal.io), [rasterio](https://rasterio.readthedocs.io), [Leaflet](https://leafletjs.com).
 
 ---
 
 <p align="center">
-  Code: MIT &nbsp;&middot;&nbsp; Data: USGS 3DEP public domain, Copernicus GLO-30 (ESA) &nbsp;&middot;&nbsp; Built in Tacoma, WA
+  Code: MIT &nbsp;&middot;&nbsp; Data: USGS 3DEP and USDA NAIP, public domain; Copernicus GLO-30 (ESA) &nbsp;&middot;&nbsp; Built in Lakewood, WA
 </p>
 
 <p align="center">
-  <em>Visual identifications and feature detections here are exploratory outputs
-  against known, documented sites — not verified excavation-grade findings.</em>
+  <em>Pins and identifications here are against known, documented sites. They
+  are exploratory outputs, not excavation-grade findings. Several of these
+  places are sacred to living Native nations; please visit them with respect.</em>
 </p>

@@ -106,6 +106,10 @@ def tnm_tiles(site):
         url = it.get("downloadURL") or ""
         if not url.lower().endswith(".laz"):
             continue
+        bb = it.get("boundingBox") or {}
+        if bb and (bb.get("maxX", 999) < w or bb.get("minX", -999) > e or
+                   bb.get("maxY", 999) < s or bb.get("minY", -999) > n):
+            continue
         m = re.search(r"/Projects/([^/]+)/", url)
         tiles.append({"url": url, "project": m.group(1) if m else it.get("title", "?"),
                       "published": it.get("publicationDate", ""), "bytes": it.get("sizeInBytes", 0)})
@@ -132,10 +136,16 @@ def fetch_tnm(site, out_tif: Path, cache: Path, log=print) -> dict:
         mb = sum(t["bytes"] for t in by_proj[p]) / 1e6
         log(f"    {p}: {len(by_proj[p])} tiles, {mb:.0f} MB")
     order = order[:3]                      # the best few projects are plenty
+    budget = 2.5e9                         # bytes: stop before a runaway download
     cache.mkdir(parents=True, exist_ok=True)
     mosaic, used, n_total = None, [], 0
     for proj in order:
         laz = []
+        need = sum(t["bytes"] for t in by_proj[proj] if not (cache / t["url"].rsplit("/", 1)[-1]).exists())
+        if need > budget:
+            log(f"  skipping {proj}: {need / 1e9:.1f} GB is more than this window needs")
+            continue
+        budget -= need
         for t in by_proj[proj]:
             dst = cache / t["url"].rsplit("/", 1)[-1]
             if not dst.exists():

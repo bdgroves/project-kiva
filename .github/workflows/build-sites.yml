@@ -20,6 +20,9 @@ on:
 permissions:
   contents: write
 
+env:
+  PYTHONUNBUFFERED: "1"
+
 jobs:
   plan:
     runs-on: ubuntu-latest
@@ -77,7 +80,7 @@ jobs:
         if: always()
         run: mkdir -p sites/${{ matrix.site }} && cp build.log sites/${{ matrix.site }}/build.log || true
       - name: Push the log when a step fails
-        if: failure()
+        if: failure() || cancelled()
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
