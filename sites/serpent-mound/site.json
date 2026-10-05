@@ -5,40 +5,62 @@
  "region": "east",
  "blurb": "A 411 m effigy of a serpent along a ridge above Brush Creek, about a metre high. Who built it, the Adena around 300 BCE or the Fort Ancient people around 1070 CE, is still argued.",
  "center": [
-  39.0255,
+  39.0258,
   -83.4305
  ],
  "res_m": 0.5,
  "crs": "EPSG:26917",
  "size_m": [
-  700,
-  650
+  560,
+  520
  ],
  "source": "USGS 3DEP point cloud (EPT on AWS)",
  "project": "OH_StatewideP3_2_B21",
- "ground_points": 3491994,
- "ground_density": 7.67,
- "coverage": 0.9635,
+ "ground_points": 2287450,
+ "ground_density": 7.86,
+ "coverage": 0.9549,
  "elev_m": [
   202.9,
-  249.0
+  241.5
  ],
  "features": [
   {
-   "name": "Serpent Mound",
-   "short": "effigy",
-   "lat": 39.02639,
-   "lon": -83.43083
+   "name": "Serpent's head",
+   "short": "and the oval",
+   "lat": 39.02642,
+   "lon": -83.43103
+  },
+  {
+   "name": "Coiled tail",
+   "lat": 39.0252,
+   "lon": -83.43065
   }
+ ],
+ "highest": [
+  [
+   39.023787,
+   -83.428959,
+   241.5
+  ],
+  [
+   39.024062,
+   -83.430002,
+   240.5
+  ],
+  [
+   39.027951,
+   -83.427346,
+   240.2
+  ]
  ],
  "bounds": [
   [
-   39.0224853575261,
-   -83.43464488506179
+   39.02338927956559,
+   -83.43381563016068
   ],
   [
-   39.028505879370194,
-   -83.42636305477066
+   39.02820569691161,
+   -83.42719360787035
   ]
  ],
  "layers": {
@@ -52,7 +74,7 @@
   },
   "lrm": {
    "file": "lrm.webp",
-   "label": "Local relief, ±2 m"
+   "label": "Local relief, ±2.18 m"
   },
   "svf": {
    "file": "svf.webp",
@@ -63,7 +85,7 @@
    "label": "Negative openness"
   }
  },
- "lrm_clip_m": 2.0,
+ "lrm_clip_m": 2.18,
  "photo": {
   "source": "USDA NAIP",
   "year": 2023

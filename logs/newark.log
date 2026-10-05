@@ -1,0 +1,10 @@
+✨ Pixi task (kiva in default): python -m kiva.cli build newark
+Newark Earthworks: ept OH_Statewide_Phase2_4_2020
+  EPT OH_Statewide_Phase2_4_2020: 71,145,893,723 points in the project
+(PDAL Error) Can't load library /home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_hdf.so: Failed to load "/home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_hdf.so": libhdf5_cpp.so.320: cannot open shared object file: No such file or directory(PDAL Error) Can't load library /home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_icebridge.so: Failed to load "/home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_icebridge.so": libhdf5_cpp.so.320: cannot open shared object file: No such file or directory(PDAL Error) Can't load library /home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_hdf.so: Failed to load "/home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_hdf.so": libhdf5_cpp.so.320: cannot open shared object file: No such file or directory(PDAL Error) Can't load library /home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_icebridge.so: Failed to load "/home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_icebridge.so": libhdf5_cpp.so.320: cannot open shared object file: No such file or directory  40,935,627 ground returns in the window
+  DTM 2600 x 2400 at 1.0 m, 98.4% with ground returns
+  relief products...
+  done in 210 s -> sites/newark
+✨ Pixi task (kiva in default): python -m kiva.cli photo newark
+  NAIP [2023]: 100.0% covered
+✨ Pixi task (kiva in default): python -m kiva.cli stills newark

@@ -23,12 +23,12 @@
   "place": "Chapin Mesa, Mesa Verde National Park, Colorado",
   "region": "southwest",
   "center": [
-   37.234,
-   -108.496
+   37.2385,
+   -108.504
   ],
   "blurb": "The mesa-top villages above the cliff dwellings. Lidar can't see under an overhang, so Cliff Palace isn't here, but the farmhouses, check dams and the big round depression called Mummy Lake are.",
   "res_m": 1.0,
-  "ground_density": 5.17,
+  "ground_density": 5.1,
   "stills": [
    "relief.jpg",
    "photo.jpg"
@@ -95,12 +95,12 @@
   "place": "Adams County, Ohio",
   "region": "east",
   "center": [
-   39.0255,
+   39.0258,
    -83.4305
   ],
   "blurb": "A 411 m effigy of a serpent along a ridge above Brush Creek, about a metre high. Who built it, the Adena around 300 BCE or the Fort Ancient people around 1070 CE, is still argued.",
   "res_m": 0.5,
-  "ground_density": 7.67,
+  "ground_density": 7.86,
   "stills": [
    "relief.jpg",
    "photo.jpg"
@@ -144,17 +144,17 @@
   "video": null
  },
  {
-  "id": "fort-worden",
-  "name": "Fort Worden",
-  "place": "Port Townsend, Washington",
-  "region": "northwest",
+  "id": "newark",
+  "name": "Newark Earthworks",
+  "place": "Newark, Ohio",
+  "region": "east",
   "center": [
-   48.141,
-   -122.7625
+   40.047,
+   -82.436
   ],
-  "blurb": "Coast-artillery batteries dug into Artillery Hill from 1900 to guard the entrance to Puget Sound, now a state park.",
+  "blurb": "Geometric earthworks built by the Hopewell culture about 2,000 years ago: an octagon joined to a circle, and the Great Circle. Part of a UNESCO World Heritage listing since 2023. The octagon is a golf course.",
   "res_m": 1.0,
-  "ground_density": 3.09,
+  "ground_density": 6.56,
   "stills": [
    "relief.jpg",
    "photo.jpg"

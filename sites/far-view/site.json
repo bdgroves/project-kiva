@@ -5,33 +5,63 @@
  "region": "southwest",
  "blurb": "The mesa-top villages above the cliff dwellings. Lidar can't see under an overhang, so Cliff Palace isn't here, but the farmhouses, check dams and the big round depression called Mummy Lake are.",
  "center": [
-  37.234,
-  -108.496
+  37.2385,
+  -108.504
  ],
  "res_m": 1.0,
  "crs": "EPSG:26912",
  "size_m": [
-  2400,
-  2200
+  1500,
+  1400
  ],
  "source": "USGS 3DEP point cloud (EPT on AWS)",
  "project": "CO_Southwest_NRCS_B1_2018",
- "ground_points": 27302437,
- "ground_density": 5.17,
+ "ground_points": 10712384,
+ "ground_density": 5.1,
  "coverage": 1.0,
  "elev_m": [
-  2114.1,
-  2373.9
+  2144.5,
+  2379.4
  ],
- "features": [],
- "bounds": [
+ "features": [
+  {
+   "name": "Mummy Lake",
+   "short": "reservoir, or plaza?",
+   "lat": 37.24061,
+   "lon": -108.50483
+  },
+  {
+   "name": "Far View House",
+   "short": "mesa-top pueblo",
+   "lat": 37.23875,
+   "lon": -108.5035
+  }
+ ],
+ "highest": [
   [
-   37.22380269310186,
-   -108.50984736713019
+   37.244814,
+   -108.504773,
+   2379.4
   ],
   [
-   37.24419025060795,
-   -108.48216411580869
+   37.244232,
+   -108.512266,
+   2375.5
+  ],
+  [
+   37.244744,
+   -108.501472,
+   2369.4
+  ]
+ ],
+ "bounds": [
+  [
+   37.23201296250253,
+   -108.51266134796636
+  ],
+  [
+   37.24497537791029,
+   -108.49535193389502
   ]
  ],
  "layers": {
@@ -45,7 +75,7 @@
   },
   "lrm": {
    "file": "lrm.webp",
-   "label": "Local relief, ±2.06 m"
+   "label": "Local relief, ±2.04 m"
   },
   "svf": {
    "file": "svf.webp",
@@ -56,7 +86,7 @@
    "label": "Negative openness"
   }
  },
- "lrm_clip_m": 2.06,
+ "lrm_clip_m": 2.04,
  "photo": {
   "source": "USDA NAIP",
   "year": 2023

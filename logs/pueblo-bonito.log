@@ -1,6 +1,7 @@
 ✨ Pixi task (kiva in default): python -m kiva.cli build pueblo-bonito
-Pueblo Bonito: tnm_lpc CO_CONMGaps
+Pueblo Bonito: tnm_lpc CONMGaps
   9 LAZ tiles over the window: CO_CONMGaps_D24
+    CO_CONMGaps_D24: 9 tiles, 538 MB
   downloading USGS_LPC_CO_CONMGaps_D24_13SBV3293.laz (59 MB)
   downloading USGS_LPC_CO_CONMGaps_D24_13SBV3294.laz (54 MB)
   downloading USGS_LPC_CO_CONMGaps_D24_13SBV3295.laz (66 MB)

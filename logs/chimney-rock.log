@@ -4,7 +4,7 @@ Chimney Rock: ept CO_Southwest_NRCS_TL_2018
 (PDAL Error) Can't load library /home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_hdf.so: Failed to load "/home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_hdf.so": libhdf5_cpp.so.320: cannot open shared object file: No such file or directory(PDAL Error) Can't load library /home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_icebridge.so: Failed to load "/home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_icebridge.so": libhdf5_cpp.so.320: cannot open shared object file: No such file or directory(PDAL Error) Can't load library /home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_hdf.so: Failed to load "/home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_hdf.so": libhdf5_cpp.so.320: cannot open shared object file: No such file or directory(PDAL Error) Can't load library /home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_icebridge.so: Failed to load "/home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_icebridge.so": libhdf5_cpp.so.320: cannot open shared object file: No such file or directory  5,371,608 ground returns in the window
   DTM 1400 x 1100 at 1.0 m, 100.0% with ground returns
   relief products...
-  done in 33 s -> web/sites/chimney-rock
+  done in 41 s -> sites/chimney-rock
 ✨ Pixi task (kiva in default): python -m kiva.cli photo chimney-rock
   NAIP [2023]: 100.0% covered
 ✨ Pixi task (kiva in default): python -m kiva.cli stills chimney-rock
