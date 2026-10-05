@@ -2,6 +2,18 @@
 Pueblo Bonito: tnm_lpc CONMGaps
   9 LAZ tiles over the window: CO_CONMGaps_D24
     CO_CONMGaps_D24: 9 tiles, 538 MB
-  downloading USGS_LPC_CO_CONMGaps_D24_13SBV3293.laz (59 MB)
-  downloading USGS_LPC_CO_CONMGaps_D24_13SBV3294.laz (54 MB)
-  downloading USGS_LPC_CO_CONMGaps_D24_13SBV3295.laz (66 MB)
+  USGS_LPC_CO_CONMGaps_D24_13SBV3295.laz: prd-tnm.s3.amazonaws.com failed (HTTPError)
+  USGS_LPC_CO_CONMGaps_D24_13SBV3293.laz: prd-tnm.s3.amazonaws.com failed (HTTPError)
+  USGS_LPC_CO_CONMGaps_D24_13SBV3394.laz: prd-tnm.s3.amazonaws.com failed (HTTPError)
+  USGS_LPC_CO_CONMGaps_D24_13SBV3393.laz: prd-tnm.s3.amazonaws.com failed (HTTPError)
+  USGS_LPC_CO_CONMGaps_D24_13SBV3294.laz: prd-tnm.s3.amazonaws.com failed (HTTPError)
+  USGS_LPC_CO_CONMGaps_D24_13SBV3395.laz: prd-tnm.s3.amazonaws.com failed (HTTPError)
+  USGS_LPC_CO_CONMGaps_D24_13SBV3294.laz: 54 MB in 265 s from rockyweb.usgs.gov
+  USGS_LPC_CO_CONMGaps_D24_13SBV3493.laz: prd-tnm.s3.amazonaws.com failed (HTTPError)
+  USGS_LPC_CO_CONMGaps_D24_13SBV3394.laz: 55 MB in 266 s from rockyweb.usgs.gov
+  USGS_LPC_CO_CONMGaps_D24_13SBV3494.laz: prd-tnm.s3.amazonaws.com failed (HTTPError)
+  USGS_LPC_CO_CONMGaps_D24_13SBV3293.laz: 59 MB in 285 s from rockyweb.usgs.gov
+  USGS_LPC_CO_CONMGaps_D24_13SBV3495.laz: prd-tnm.s3.amazonaws.com failed (HTTPError)
+  USGS_LPC_CO_CONMGaps_D24_13SBV3393.laz: 60 MB in 289 s from rockyweb.usgs.gov
+  USGS_LPC_CO_CONMGaps_D24_13SBV3295.laz: 66 MB in 312 s from rockyweb.usgs.gov
+  USGS_LPC_CO_CONMGaps_D24_13SBV3395.laz: 67 MB in 319 s from rockyweb.usgs.gov
