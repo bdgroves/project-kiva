@@ -54,6 +54,11 @@ jobs:
         with:
           cache: false
           locked: false
+      - name: Cache downloaded point-cloud tiles
+        uses: actions/cache@v4
+        with:
+          path: data/sites/${{ matrix.site }}/laz
+          key: laz-${{ matrix.site }}-v1
       - name: Software Vulkan + virtual display
         run: sudo apt-get update -qq && sudo apt-get install -y -qq mesa-vulkan-drivers libvulkan1 xvfb libx11-xcb1 libxkbcommon-x11-0 libxkbcommon0 libxcursor1 libxi6 libxrandr2 libxcb-xkb1 libxcb-randr0 libxcb-shape0 libxcb-xfixes0 libwayland-client0 libegl1 >/dev/null
       - name: Lidar -> relief -> web layers
