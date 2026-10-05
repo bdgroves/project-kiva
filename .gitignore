@@ -36,3 +36,4 @@ data/renders/frames_final/
 
 # kiva work (DTMs, products, frames)
 data/sites/
+!__init__.py
