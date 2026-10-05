@@ -40,7 +40,7 @@ forget.
 
 ![Serpent Mound in bare-earth lidar, rendered with forge3d](sites/serpent-mound/relief.jpg)
 
-*Serpent Mound, Ohio: 3.5 million ground returns, gridded at half a metre and
+*Serpent Mound, Ohio: 2.3 million ground returns, gridded at half a metre and
 draped with the relief composite, lit by forge3d from a low north-west sun.*
 
 Ten places, each a window of bare-earth lidar streamed from the USGS 3DEP
