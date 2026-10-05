@@ -1,0 +1,116 @@
+{
+ "id": "pueblo-bonito",
+ "name": "Pueblo Bonito",
+ "place": "Chaco Culture National Historical Park, New Mexico",
+ "region": "southwest",
+ "blurb": "The great house at the centre of the Chacoan world, built in stages from about 850 to 1150 CE. The polished USGS elevation model has a hole over the canyon core; a 2024 gap-fill lidar tile does not.",
+ "center": [
+  36.0592,
+  -107.9612
+ ],
+ "res_m": 0.5,
+ "crs": "EPSG:26913",
+ "size_m": [
+  1600,
+  1400
+ ],
+ "source": "USGS 3DEP point-cloud tiles (The National Map)",
+ "project": "CO_CONMGaps_D24",
+ "ground_points": 32588118,
+ "ground_density": 14.55,
+ "coverage": 0.9998,
+ "elev_m": [
+  1857.6,
+  1954.4
+ ],
+ "features": [
+  {
+   "name": "Pueblo Bonito",
+   "short": "D-shaped great house",
+   "lat": 36.06064,
+   "lon": -107.9616
+  },
+  {
+   "name": "Chetro Ketl",
+   "short": "great house",
+   "lat": 36.06034,
+   "lon": -107.95418
+  },
+  {
+   "name": "Pueblo del Arroyo",
+   "short": "great house",
+   "lat": 36.06115,
+   "lon": -107.96565
+  },
+  {
+   "name": "Kin Kletso",
+   "short": "late great house",
+   "lat": 36.06513,
+   "lon": -107.96998
+  },
+  {
+   "name": "Casa Rinconada",
+   "short": "great kiva",
+   "lat": 36.05478,
+   "lon": -107.96027
+  }
+ ],
+ "highest": [
+  [
+   36.052885,
+   -107.965824,
+   1954.4
+  ],
+  [
+   36.052885,
+   -107.965818,
+   1954.4
+  ],
+  [
+   36.064737,
+   -107.955569,
+   1949.6
+  ]
+ ],
+ "bounds": [
+  [
+   36.05267500038023,
+   -107.97031031392036
+  ],
+  [
+   36.06571929040254,
+   -107.95209497971662
+  ]
+ ],
+ "layers": {
+  "composite": {
+   "file": "composite.webp",
+   "label": "Relief composite (after VAT)"
+  },
+  "multi_hillshade": {
+   "file": "multi_hillshade.webp",
+   "label": "Hillshade, 16 directions"
+  },
+  "lrm": {
+   "file": "lrm.webp",
+   "label": "Local relief, ±4.31 m"
+  },
+  "svf": {
+   "file": "svf.webp",
+   "label": "Sky-view factor"
+  },
+  "neg_openness": {
+   "file": "neg_openness.webp",
+   "label": "Negative openness"
+  }
+ },
+ "lrm_clip_m": 4.31,
+ "photo": {
+  "source": "USDA NAIP",
+  "year": 2022
+ },
+ "stills": [
+  "relief.jpg",
+  "photo.jpg"
+ ]
+}

@@ -2,18 +2,28 @@
 Pueblo Bonito: tnm_lpc CONMGaps
   9 LAZ tiles over the window: CO_CONMGaps_D24
     CO_CONMGaps_D24: 9 tiles, 538 MB
-  USGS_LPC_CO_CONMGaps_D24_13SBV3295.laz: prd-tnm.s3.amazonaws.com failed (HTTPError)
-  USGS_LPC_CO_CONMGaps_D24_13SBV3293.laz: prd-tnm.s3.amazonaws.com failed (HTTPError)
+  USGS_LPC_CO_CONMGaps_D24_13SBV3395.laz: prd-tnm.s3.amazonaws.com failed (HTTPError)
   USGS_LPC_CO_CONMGaps_D24_13SBV3394.laz: prd-tnm.s3.amazonaws.com failed (HTTPError)
+  USGS_LPC_CO_CONMGaps_D24_13SBV3295.laz: prd-tnm.s3.amazonaws.com failed (HTTPError)
   USGS_LPC_CO_CONMGaps_D24_13SBV3393.laz: prd-tnm.s3.amazonaws.com failed (HTTPError)
   USGS_LPC_CO_CONMGaps_D24_13SBV3294.laz: prd-tnm.s3.amazonaws.com failed (HTTPError)
-  USGS_LPC_CO_CONMGaps_D24_13SBV3395.laz: prd-tnm.s3.amazonaws.com failed (HTTPError)
-  USGS_LPC_CO_CONMGaps_D24_13SBV3294.laz: 54 MB in 265 s from rockyweb.usgs.gov
+  USGS_LPC_CO_CONMGaps_D24_13SBV3293.laz: prd-tnm.s3.amazonaws.com failed (HTTPError)
+  USGS_LPC_CO_CONMGaps_D24_13SBV3294.laz: 54 MB in 247 s from rockyweb.usgs.gov
   USGS_LPC_CO_CONMGaps_D24_13SBV3493.laz: prd-tnm.s3.amazonaws.com failed (HTTPError)
-  USGS_LPC_CO_CONMGaps_D24_13SBV3394.laz: 55 MB in 266 s from rockyweb.usgs.gov
+  USGS_LPC_CO_CONMGaps_D24_13SBV3394.laz: 55 MB in 251 s from rockyweb.usgs.gov
   USGS_LPC_CO_CONMGaps_D24_13SBV3494.laz: prd-tnm.s3.amazonaws.com failed (HTTPError)
-  USGS_LPC_CO_CONMGaps_D24_13SBV3293.laz: 59 MB in 285 s from rockyweb.usgs.gov
+  USGS_LPC_CO_CONMGaps_D24_13SBV3293.laz: 59 MB in 264 s from rockyweb.usgs.gov
   USGS_LPC_CO_CONMGaps_D24_13SBV3495.laz: prd-tnm.s3.amazonaws.com failed (HTTPError)
-  USGS_LPC_CO_CONMGaps_D24_13SBV3393.laz: 60 MB in 289 s from rockyweb.usgs.gov
-  USGS_LPC_CO_CONMGaps_D24_13SBV3295.laz: 66 MB in 312 s from rockyweb.usgs.gov
-  USGS_LPC_CO_CONMGaps_D24_13SBV3395.laz: 67 MB in 319 s from rockyweb.usgs.gov
+  USGS_LPC_CO_CONMGaps_D24_13SBV3393.laz: 60 MB in 273 s from rockyweb.usgs.gov
+  USGS_LPC_CO_CONMGaps_D24_13SBV3295.laz: 66 MB in 295 s from rockyweb.usgs.gov
+  USGS_LPC_CO_CONMGaps_D24_13SBV3395.laz: 67 MB in 295 s from rockyweb.usgs.gov
+  USGS_LPC_CO_CONMGaps_D24_13SBV3493.laz: 56 MB in 301 s from rockyweb.usgs.gov
+  USGS_LPC_CO_CONMGaps_D24_13SBV3494.laz: 57 MB in 307 s from rockyweb.usgs.gov
+  USGS_LPC_CO_CONMGaps_D24_13SBV3495.laz: 64 MB in 343 s from rockyweb.usgs.gov
+(PDAL Error) Can't load library /home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_hdf.so: Failed to load "/home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_hdf.so": libhdf5_cpp.so.320: cannot open shared object file: No such file or directory(PDAL Error) Can't load library /home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_icebridge.so: Failed to load "/home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_icebridge.so": libhdf5_cpp.so.320: cannot open shared object file: No such file or directory(PDAL Error) Can't load library /home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_hdf.so: Failed to load "/home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_hdf.so": libhdf5_cpp.so.320: cannot open shared object file: No such file or directory(PDAL Error) Can't load library /home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_icebridge.so: Failed to load "/home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_icebridge.so": libhdf5_cpp.so.320: cannot open shared object file: No such file or directory  CO_CONMGaps_D24: 9 tile(s), 32,588,118 ground returns
+  DTM 3200 x 2800 at 0.5 m, 100.0% with ground returns
+  relief products...
+  done in 835 s -> sites/pueblo-bonito
+✨ Pixi task (kiva in default): python -m kiva.cli photo pueblo-bonito
+  NAIP [2022]: 100.0% covered
+✨ Pixi task (kiva in default): python -m kiva.cli stills pueblo-bonito

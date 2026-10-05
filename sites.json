@@ -1,5 +1,23 @@
 [
  {
+  "id": "pueblo-bonito",
+  "name": "Pueblo Bonito",
+  "place": "Chaco Culture National Historical Park, New Mexico",
+  "region": "southwest",
+  "center": [
+   36.0592,
+   -107.9612
+  ],
+  "blurb": "The great house at the centre of the Chacoan world, built in stages from about 850 to 1150 CE. The polished USGS elevation model has a hole over the canyon core; a 2024 gap-fill lidar tile does not.",
+  "res_m": 0.5,
+  "ground_density": 14.55,
+  "stills": [
+   "relief.jpg",
+   "photo.jpg"
+  ],
+  "video": null
+ },
+ {
   "id": "aztec",
   "name": "Aztec Ruins",
   "place": "Aztec Ruins National Monument, New Mexico",
