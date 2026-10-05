@@ -1,0 +1,75 @@
+{
+ "id": "chimney-rock",
+ "name": "Chimney Rock",
+ "place": "Chimney Rock National Monument, Colorado",
+ "region": "southwest",
+ "blurb": "A Chacoan great house on a high ridge beside two rock pinnacles. Its timbers were cut in 1076 and 1093, both years of a major lunar standstill, when the Moon rises between the pinnacles.",
+ "center": [
+  37.1915,
+  -107.304
+ ],
+ "res_m": 1.0,
+ "crs": "EPSG:26913",
+ "size_m": [
+  1400,
+  1100
+ ],
+ "source": "USGS 3DEP point cloud (EPT on AWS)",
+ "project": "CO_Southwest_NRCS_TL_2018",
+ "ground_points": 5371608,
+ "ground_density": 3.49,
+ "coverage": 1.0,
+ "elev_m": [
+  2082.5,
+  2409.5
+ ],
+ "features": [
+  {
+   "name": "Great House",
+   "short": "Chacoan outlier",
+   "lat": 37.19167,
+   "lon": -107.30639
+  }
+ ],
+ "bounds": [
+  [
+   37.186385492044586,
+   -107.31203545726319
+  ],
+  [
+   37.1966013163877,
+   -107.29597448192163
+  ]
+ ],
+ "layers": {
+  "composite": {
+   "file": "composite.webp",
+   "label": "Relief composite (after VAT)"
+  },
+  "multi_hillshade": {
+   "file": "multi_hillshade.webp",
+   "label": "Hillshade, 16 directions"
+  },
+  "lrm": {
+   "file": "lrm.webp",
+   "label": "Local relief, ±3.15 m"
+  },
+  "svf": {
+   "file": "svf.webp",
+   "label": "Sky-view factor"
+  },
+  "neg_openness": {
+   "file": "neg_openness.webp",
+   "label": "Negative openness"
+  }
+ },
+ "lrm_clip_m": 3.15,
+ "photo": {
+  "source": "USDA NAIP",
+  "year": 2023
+ },
+ "stills": [
+  "relief.jpg",
+  "photo.jpg"
+ ]
+}

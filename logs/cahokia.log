@@ -2,43 +2,9 @@
 Cahokia: ept USGS_LPC_IL_MadisonCo_2014_LAS_2016
   EPT USGS_LPC_IL_MadisonCo_2014_LAS_2016: 12,645,182,002 points in the project
 (PDAL Error) Can't load library /home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_hdf.so: Failed to load "/home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_hdf.so": libhdf5_cpp.so.320: cannot open shared object file: No such file or directory(PDAL Error) Can't load library /home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_icebridge.so: Failed to load "/home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_icebridge.so": libhdf5_cpp.so.320: cannot open shared object file: No such file or directory(PDAL Error) Can't load library /home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_hdf.so: Failed to load "/home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_hdf.so": libhdf5_cpp.so.320: cannot open shared object file: No such file or directory(PDAL Error) Can't load library /home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_icebridge.so: Failed to load "/home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_icebridge.so": libhdf5_cpp.so.320: cannot open shared object file: No such file or directory  5,155,870 ground returns in the window
-Traceback (most recent call last):
-  File "rasterio/_io.pyx", line 1445, in rasterio._io.DatasetWriterBase.__init__
-  File "rasterio/_err.pyx", line 359, in rasterio._err.exc_wrap_pointer
-rasterio._err.CPLE_IllegalArgError: dtm.tif: BLOCKXSIZE must be a multiple of 16
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "<frozen runpy>", line 198, in _run_module_as_main
-  File "<frozen runpy>", line 88, in _run_code
-  File "/home/runner/work/project-kiva/project-kiva/kiva/cli.py", line 216, in <module>
-    main()
-  File "/home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/python3.12/site-packages/click/core.py", line 1631, in __call__
-    return self.main(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/python3.12/site-packages/click/core.py", line 1552, in main
-    rv = self.invoke(ctx)
-         ^^^^^^^^^^^^^^^^
-  File "/home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/python3.12/site-packages/click/core.py", line 2032, in invoke
-    return _process_result(sub_ctx.command.invoke(sub_ctx))
-                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/python3.12/site-packages/click/core.py", line 1415, in invoke
-    return ctx.invoke(self.callback, **ctx.params)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/python3.12/site-packages/click/core.py", line 910, in invoke
-    return callback(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/project-kiva/project-kiva/kiva/cli.py", line 78, in build
-    tif_write(work / "dtm.tif", dtm, prof)
-  File "/home/runner/work/project-kiva/project-kiva/kiva/cli.py", line 41, in tif_write
-    with rasterio.open(path, "w", **p) as d:
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/python3.12/site-packages/rasterio/env.py", line 464, in wrapper
-    return f(*args, **kwds)
-           ^^^^^^^^^^^^^^^^
-  File "/home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/python3.12/site-packages/rasterio/__init__.py", line 377, in open
-    dataset = writer(
-              ^^^^^^^
-  File "rasterio/_io.pyx", line 1451, in rasterio._io.DatasetWriterBase.__init__
-rasterio.errors.RasterBlockError: The height and width of TIFF dataset blocks must be multiples of 16
+  DTM 2600 x 2200 at 1.0 m, 96.8% with ground returns
+  relief products...
+  done in 103 s -> web/sites/cahokia
+✨ Pixi task (kiva in default): python -m kiva.cli photo cahokia
+  NAIP [2023]: 100.0% covered
+✨ Pixi task (kiva in default): python -m kiva.cli stills cahokia

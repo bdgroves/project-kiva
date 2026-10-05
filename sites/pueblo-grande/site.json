@@ -1,0 +1,75 @@
+{
+ "id": "pueblo-grande",
+ "name": "Pueblo Grande",
+ "place": "S'edav Va'aki, Phoenix, Arizona",
+ "region": "southwest",
+ "blurb": "A Hohokam platform mound at the head of one of the largest canal systems in pre-contact North America, now surrounded by Phoenix and its airport.",
+ "center": [
+  33.4464,
+  -111.9842
+ ],
+ "res_m": 0.5,
+ "crs": "EPSG:26912",
+ "size_m": [
+  900,
+  800
+ ],
+ "source": "USGS 3DEP point cloud (EPT on AWS)",
+ "project": "AZ_MaricopaPinal_1_2020",
+ "ground_points": 7504670,
+ "ground_density": 10.42,
+ "coverage": 0.9429,
+ "elev_m": [
+  337.9,
+  362.7
+ ],
+ "features": [
+  {
+   "name": "Platform Mound",
+   "short": "Hohokam",
+   "lat": 33.44639,
+   "lon": -111.98417
+  }
+ ],
+ "bounds": [
+  [
+   33.44275510287604,
+   -111.98908206456373
+  ],
+  [
+   33.45004545636502,
+   -111.979320739046
+  ]
+ ],
+ "layers": {
+  "composite": {
+   "file": "composite.webp",
+   "label": "Relief composite (after VAT)"
+  },
+  "multi_hillshade": {
+   "file": "multi_hillshade.webp",
+   "label": "Hillshade, 16 directions"
+  },
+  "lrm": {
+   "file": "lrm.webp",
+   "label": "Local relief, ±1.04 m"
+  },
+  "svf": {
+   "file": "svf.webp",
+   "label": "Sky-view factor"
+  },
+  "neg_openness": {
+   "file": "neg_openness.webp",
+   "label": "Negative openness"
+  }
+ },
+ "lrm_clip_m": 1.04,
+ "photo": {
+  "source": "USDA NAIP",
+  "year": 2023
+ },
+ "stills": [
+  "relief.jpg",
+  "photo.jpg"
+ ]
+}

@@ -1,0 +1,10 @@
+✨ Pixi task (kiva in default): python -m kiva.cli build pueblo-grande
+Pueblo Grande: ept AZ_MaricopaPinal_1_2020
+  EPT AZ_MaricopaPinal_1_2020: 249,923,645,502 points in the project
+(PDAL Error) Can't load library /home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_hdf.so: Failed to load "/home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_hdf.so": libhdf5_cpp.so.320: cannot open shared object file: No such file or directory(PDAL Error) Can't load library /home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_icebridge.so: Failed to load "/home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_icebridge.so": libhdf5_cpp.so.320: cannot open shared object file: No such file or directory(PDAL Error) Can't load library /home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_hdf.so: Failed to load "/home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_hdf.so": libhdf5_cpp.so.320: cannot open shared object file: No such file or directory(PDAL Error) Can't load library /home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_icebridge.so: Failed to load "/home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_icebridge.so": libhdf5_cpp.so.320: cannot open shared object file: No such file or directory  7,504,670 ground returns in the window
+  DTM 1800 x 1600 at 0.5 m, 94.3% with ground returns
+  relief products...
+  done in 58 s -> web/sites/pueblo-grande
+✨ Pixi task (kiva in default): python -m kiva.cli photo pueblo-grande
+  NAIP [2023]: 100.0% covered
+✨ Pixi task (kiva in default): python -m kiva.cli stills pueblo-grande

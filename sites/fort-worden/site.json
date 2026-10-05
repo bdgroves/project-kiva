@@ -1,0 +1,68 @@
+{
+ "id": "fort-worden",
+ "name": "Fort Worden",
+ "place": "Port Townsend, Washington",
+ "region": "northwest",
+ "blurb": "Coast-artillery batteries dug into Artillery Hill from 1900 to guard the entrance to Puget Sound, now a state park.",
+ "center": [
+  48.141,
+  -122.7625
+ ],
+ "res_m": 1.0,
+ "crs": "EPSG:26910",
+ "size_m": [
+  1400,
+  1200
+ ],
+ "source": "USGS 3DEP point cloud (EPT on AWS)",
+ "project": "USGS_LPC_CA_WestCoastElNinoUTM10_2016_LAS_2017",
+ "ground_points": 5193554,
+ "ground_density": 3.09,
+ "coverage": 0.3621,
+ "elev_m": [
+  -0.1,
+  89.2
+ ],
+ "features": [],
+ "bounds": [
+  [
+   48.13558335495972,
+   -122.77193361507918
+  ],
+  [
+   48.14641505076102,
+   -122.75306342897777
+  ]
+ ],
+ "layers": {
+  "composite": {
+   "file": "composite.webp",
+   "label": "Relief composite (after VAT)"
+  },
+  "multi_hillshade": {
+   "file": "multi_hillshade.webp",
+   "label": "Hillshade, 16 directions"
+  },
+  "lrm": {
+   "file": "lrm.webp",
+   "label": "Local relief, ±2.64 m"
+  },
+  "svf": {
+   "file": "svf.webp",
+   "label": "Sky-view factor"
+  },
+  "neg_openness": {
+   "file": "neg_openness.webp",
+   "label": "Negative openness"
+  }
+ },
+ "lrm_clip_m": 2.64,
+ "photo": {
+  "source": "USDA NAIP",
+  "year": 2023
+ },
+ "stills": [
+  "relief.jpg",
+  "photo.jpg"
+ ]
+}

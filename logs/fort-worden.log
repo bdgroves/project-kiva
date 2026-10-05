@@ -1,0 +1,10 @@
+✨ Pixi task (kiva in default): python -m kiva.cli build fort-worden
+Fort Worden: ept USGS_LPC_CA_WestCoastElNinoUTM10_2016_LAS_2017
+  EPT USGS_LPC_CA_WestCoastElNinoUTM10_2016_LAS_2017: 34,390,196,929 points in the project
+(PDAL Error) Can't load library /home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_hdf.so: Failed to load "/home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_hdf.so": libhdf5_cpp.so.320: cannot open shared object file: No such file or directory(PDAL Error) Can't load library /home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_icebridge.so: Failed to load "/home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_icebridge.so": libhdf5_cpp.so.320: cannot open shared object file: No such file or directory(PDAL Error) Can't load library /home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_hdf.so: Failed to load "/home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_hdf.so": libhdf5_cpp.so.320: cannot open shared object file: No such file or directory(PDAL Error) Can't load library /home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_icebridge.so: Failed to load "/home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_icebridge.so": libhdf5_cpp.so.320: cannot open shared object file: No such file or directory  5,193,554 ground returns in the window
+  DTM 1400 x 1200 at 1.0 m, 36.2% with ground returns
+  relief products...
+  done in 49 s -> web/sites/fort-worden
+✨ Pixi task (kiva in default): python -m kiva.cli photo fort-worden
+  NAIP [2023]: 100.0% covered
+✨ Pixi task (kiva in default): python -m kiva.cli stills fort-worden

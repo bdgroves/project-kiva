@@ -1,0 +1,75 @@
+{
+ "id": "serpent-mound",
+ "name": "Serpent Mound",
+ "place": "Adams County, Ohio",
+ "region": "east",
+ "blurb": "A 411 m effigy of a serpent along a ridge above Brush Creek, about a metre high. Who built it, the Adena around 300 BCE or the Fort Ancient people around 1070 CE, is still argued.",
+ "center": [
+  39.0255,
+  -83.4305
+ ],
+ "res_m": 0.5,
+ "crs": "EPSG:26917",
+ "size_m": [
+  700,
+  650
+ ],
+ "source": "USGS 3DEP point cloud (EPT on AWS)",
+ "project": "OH_StatewideP3_2_B21",
+ "ground_points": 3491994,
+ "ground_density": 7.67,
+ "coverage": 0.9635,
+ "elev_m": [
+  202.9,
+  249.0
+ ],
+ "features": [
+  {
+   "name": "Serpent Mound",
+   "short": "effigy",
+   "lat": 39.02639,
+   "lon": -83.43083
+  }
+ ],
+ "bounds": [
+  [
+   39.0224853575261,
+   -83.43464488506179
+  ],
+  [
+   39.028505879370194,
+   -83.42636305477066
+  ]
+ ],
+ "layers": {
+  "composite": {
+   "file": "composite.webp",
+   "label": "Relief composite (after VAT)"
+  },
+  "multi_hillshade": {
+   "file": "multi_hillshade.webp",
+   "label": "Hillshade, 16 directions"
+  },
+  "lrm": {
+   "file": "lrm.webp",
+   "label": "Local relief, ±2 m"
+  },
+  "svf": {
+   "file": "svf.webp",
+   "label": "Sky-view factor"
+  },
+  "neg_openness": {
+   "file": "neg_openness.webp",
+   "label": "Negative openness"
+  }
+ },
+ "lrm_clip_m": 2.0,
+ "photo": {
+  "source": "USDA NAIP",
+  "year": 2023
+ },
+ "stills": [
+  "relief.jpg",
+  "photo.jpg"
+ ]
+}

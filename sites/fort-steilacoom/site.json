@@ -1,0 +1,76 @@
+{
+ "id": "fort-steilacoom",
+ "name": "Fort Steilacoom",
+ "place": "Lakewood, Washington",
+ "region": "northwest",
+ "blurb": "The grounds of the 1849 US Army post, later Western State Hospital, in Lakewood. Old field boundaries, terraces and tracks survive under the grass.",
+ "center": [
+  47.1775,
+  -122.56
+ ],
+ "res_m": 0.5,
+ "crs": "EPSG:26910",
+ "size_m": [
+  1200,
+  1200
+ ],
+ "source": "USGS 3DEP point cloud (EPT on AWS)",
+ "project": "WA_PierceCounty_1_2020",
+ "ground_points": 8532286,
+ "ground_density": 5.93,
+ "coverage": 0.9774,
+ "elev_m": [
+  53.8,
+  99.0
+ ],
+ "features": [
+  {
+   "name": "Waughop Lake",
+   "short": "kettle lake",
+   "lat": 47.1727,
+   "lon": -122.5649,
+   "pin": false
+  }
+ ],
+ "bounds": [
+  [
+   47.17207016886319,
+   -122.56796217747998
+  ],
+  [
+   47.182928050256116,
+   -122.55203493841535
+  ]
+ ],
+ "layers": {
+  "composite": {
+   "file": "composite.webp",
+   "label": "Relief composite (after VAT)"
+  },
+  "multi_hillshade": {
+   "file": "multi_hillshade.webp",
+   "label": "Hillshade, 16 directions"
+  },
+  "lrm": {
+   "file": "lrm.webp",
+   "label": "Local relief, ±0.67 m"
+  },
+  "svf": {
+   "file": "svf.webp",
+   "label": "Sky-view factor"
+  },
+  "neg_openness": {
+   "file": "neg_openness.webp",
+   "label": "Negative openness"
+  }
+ },
+ "lrm_clip_m": 0.67,
+ "photo": {
+  "source": "USDA NAIP",
+  "year": 2023
+ },
+ "stills": [
+  "relief.jpg",
+  "photo.jpg"
+ ]
+}

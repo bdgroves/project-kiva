@@ -1,0 +1,10 @@
+✨ Pixi task (kiva in default): python -m kiva.cli build far-view
+Far View: ept CO_Southwest_NRCS_B1_2018
+  EPT CO_Southwest_NRCS_B1_2018: 46,020,121,049 points in the project
+(PDAL Error) Can't load library /home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_hdf.so: Failed to load "/home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_hdf.so": libhdf5_cpp.so.320: cannot open shared object file: No such file or directory(PDAL Error) Can't load library /home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_icebridge.so: Failed to load "/home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_icebridge.so": libhdf5_cpp.so.320: cannot open shared object file: No such file or directory(PDAL Error) Can't load library /home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_hdf.so: Failed to load "/home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_hdf.so": libhdf5_cpp.so.320: cannot open shared object file: No such file or directory(PDAL Error) Can't load library /home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_icebridge.so: Failed to load "/home/runner/work/project-kiva/project-kiva/.pixi/envs/default/lib/libpdal_plugin_reader_icebridge.so": libhdf5_cpp.so.320: cannot open shared object file: No such file or directory  27,302,437 ground returns in the window
+  DTM 2400 x 2200 at 1.0 m, 100.0% with ground returns
+  relief products...
+  done in 100 s -> web/sites/far-view
+✨ Pixi task (kiva in default): python -m kiva.cli photo far-view
+  NAIP [2023]: 100.0% covered
+✨ Pixi task (kiva in default): python -m kiva.cli stills far-view

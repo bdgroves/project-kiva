@@ -1,0 +1,75 @@
+{
+ "id": "aztec",
+ "name": "Aztec Ruins",
+ "place": "Aztec Ruins National Monument, New Mexico",
+ "region": "southwest",
+ "blurb": "A Chacoan great house on the Animas River, built in the 1100s, with a great kiva rebuilt by Earl Morris in the 1930s.",
+ "center": [
+  36.8362,
+  -107.9985
+ ],
+ "res_m": 1.0,
+ "crs": "EPSG:26913",
+ "size_m": [
+  1100,
+  900
+ ],
+ "source": "USGS 3DEP point cloud (EPT on AWS)",
+ "project": "USGS_LPC_NM_Animas_2014_LAS_2017",
+ "ground_points": 2378096,
+ "ground_density": 2.4,
+ "coverage": 0.9691,
+ "elev_m": [
+  1708.1,
+  1761.7
+ ],
+ "features": [
+  {
+   "name": "West Ruin",
+   "short": "great house",
+   "lat": 36.8358,
+   "lon": -107.9981
+  }
+ ],
+ "bounds": [
+  [
+   36.831983162803816,
+   -108.00482074496607
+  ],
+  [
+   36.840399668113555,
+   -107.99218359567892
+  ]
+ ],
+ "layers": {
+  "composite": {
+   "file": "composite.webp",
+   "label": "Relief composite (after VAT)"
+  },
+  "multi_hillshade": {
+   "file": "multi_hillshade.webp",
+   "label": "Hillshade, 16 directions"
+  },
+  "lrm": {
+   "file": "lrm.webp",
+   "label": "Local relief, ±1.09 m"
+  },
+  "svf": {
+   "file": "svf.webp",
+   "label": "Sky-view factor"
+  },
+  "neg_openness": {
+   "file": "neg_openness.webp",
+   "label": "Negative openness"
+  }
+ },
+ "lrm_clip_m": 1.09,
+ "photo": {
+  "source": "USDA NAIP",
+  "year": 2022
+ },
+ "stills": [
+  "relief.jpg",
+  "photo.jpg"
+ ]
+}

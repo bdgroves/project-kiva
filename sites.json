@@ -1,0 +1,164 @@
+[
+ {
+  "id": "aztec",
+  "name": "Aztec Ruins",
+  "place": "Aztec Ruins National Monument, New Mexico",
+  "region": "southwest",
+  "center": [
+   36.8362,
+   -107.9985
+  ],
+  "blurb": "A Chacoan great house on the Animas River, built in the 1100s, with a great kiva rebuilt by Earl Morris in the 1930s.",
+  "res_m": 1.0,
+  "ground_density": 2.4,
+  "stills": [
+   "relief.jpg",
+   "photo.jpg"
+  ],
+  "video": null
+ },
+ {
+  "id": "far-view",
+  "name": "Far View",
+  "place": "Chapin Mesa, Mesa Verde National Park, Colorado",
+  "region": "southwest",
+  "center": [
+   37.234,
+   -108.496
+  ],
+  "blurb": "The mesa-top villages above the cliff dwellings. Lidar can't see under an overhang, so Cliff Palace isn't here, but the farmhouses, check dams and the big round depression called Mummy Lake are.",
+  "res_m": 1.0,
+  "ground_density": 5.17,
+  "stills": [
+   "relief.jpg",
+   "photo.jpg"
+  ],
+  "video": null
+ },
+ {
+  "id": "chimney-rock",
+  "name": "Chimney Rock",
+  "place": "Chimney Rock National Monument, Colorado",
+  "region": "southwest",
+  "center": [
+   37.1915,
+   -107.304
+  ],
+  "blurb": "A Chacoan great house on a high ridge beside two rock pinnacles. Its timbers were cut in 1076 and 1093, both years of a major lunar standstill, when the Moon rises between the pinnacles.",
+  "res_m": 1.0,
+  "ground_density": 3.49,
+  "stills": [
+   "relief.jpg",
+   "photo.jpg"
+  ],
+  "video": null
+ },
+ {
+  "id": "pueblo-grande",
+  "name": "Pueblo Grande",
+  "place": "S'edav Va'aki, Phoenix, Arizona",
+  "region": "southwest",
+  "center": [
+   33.4464,
+   -111.9842
+  ],
+  "blurb": "A Hohokam platform mound at the head of one of the largest canal systems in pre-contact North America, now surrounded by Phoenix and its airport.",
+  "res_m": 0.5,
+  "ground_density": 10.42,
+  "stills": [
+   "relief.jpg",
+   "photo.jpg"
+  ],
+  "video": null
+ },
+ {
+  "id": "cahokia",
+  "name": "Cahokia",
+  "place": "Cahokia Mounds State Historic Site, Illinois",
+  "region": "mississippi",
+  "center": [
+   38.657,
+   -90.06
+  ],
+  "blurb": "The largest pre-Columbian city north of Mexico, around 1050–1350 CE. Monks Mound is the biggest earthwork in the Americas north of Mexico.",
+  "res_m": 1.0,
+  "ground_density": 0.9,
+  "stills": [
+   "relief.jpg",
+   "photo.jpg"
+  ],
+  "video": null
+ },
+ {
+  "id": "serpent-mound",
+  "name": "Serpent Mound",
+  "place": "Adams County, Ohio",
+  "region": "east",
+  "center": [
+   39.0255,
+   -83.4305
+  ],
+  "blurb": "A 411 m effigy of a serpent along a ridge above Brush Creek, about a metre high. Who built it, the Adena around 300 BCE or the Fort Ancient people around 1070 CE, is still argued.",
+  "res_m": 0.5,
+  "ground_density": 7.67,
+  "stills": [
+   "relief.jpg",
+   "photo.jpg"
+  ],
+  "video": null
+ },
+ {
+  "id": "poverty-point",
+  "name": "Poverty Point",
+  "place": "West Carroll Parish, Louisiana",
+  "region": "mississippi",
+  "center": [
+   32.6362,
+   -91.412
+  ],
+  "blurb": "Six concentric earthen ridges and a giant bird-shaped mound, built about 1700–1100 BCE by hunter-gatherers. A UNESCO World Heritage Site.",
+  "res_m": 1.0,
+  "ground_density": 6.61,
+  "stills": [
+   "relief.jpg",
+   "photo.jpg"
+  ],
+  "video": null
+ },
+ {
+  "id": "fort-steilacoom",
+  "name": "Fort Steilacoom",
+  "place": "Lakewood, Washington",
+  "region": "northwest",
+  "center": [
+   47.1775,
+   -122.56
+  ],
+  "blurb": "The grounds of the 1849 US Army post, later Western State Hospital, in Lakewood. Old field boundaries, terraces and tracks survive under the grass.",
+  "res_m": 0.5,
+  "ground_density": 5.93,
+  "stills": [
+   "relief.jpg",
+   "photo.jpg"
+  ],
+  "video": null
+ },
+ {
+  "id": "fort-worden",
+  "name": "Fort Worden",
+  "place": "Port Townsend, Washington",
+  "region": "northwest",
+  "center": [
+   48.141,
+   -122.7625
+  ],
+  "blurb": "Coast-artillery batteries dug into Artillery Hill from 1900 to guard the entrance to Puget Sound, now a state park.",
+  "res_m": 1.0,
+  "ground_density": 3.09,
+  "stills": [
+   "relief.jpg",
+   "photo.jpg"
+  ],
+  "video": null
+ }
+]

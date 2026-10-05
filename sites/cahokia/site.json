@@ -1,0 +1,75 @@
+{
+ "id": "cahokia",
+ "name": "Cahokia",
+ "place": "Cahokia Mounds State Historic Site, Illinois",
+ "region": "mississippi",
+ "blurb": "The largest pre-Columbian city north of Mexico, around 1050–1350 CE. Monks Mound is the biggest earthwork in the Americas north of Mexico.",
+ "center": [
+  38.657,
+  -90.06
+ ],
+ "res_m": 1.0,
+ "crs": "EPSG:26915",
+ "size_m": [
+  2600,
+  2200
+ ],
+ "source": "USGS 3DEP point cloud (EPT on AWS)",
+ "project": "USGS_LPC_IL_MadisonCo_2014_LAS_2016",
+ "ground_points": 5155870,
+ "ground_density": 0.9,
+ "coverage": 0.9684,
+ "elev_m": [
+  121.6,
+  158.2
+ ],
+ "features": [
+  {
+   "name": "Monks Mound",
+   "short": "30 m high",
+   "lat": 38.6604,
+   "lon": -90.062
+  }
+ ],
+ "bounds": [
+  [
+   38.64672957864378,
+   -90.07532826141073
+  ],
+  [
+   38.66727317794671,
+   -90.04467861514429
+  ]
+ ],
+ "layers": {
+  "composite": {
+   "file": "composite.webp",
+   "label": "Relief composite (after VAT)"
+  },
+  "multi_hillshade": {
+   "file": "multi_hillshade.webp",
+   "label": "Hillshade, 16 directions"
+  },
+  "lrm": {
+   "file": "lrm.webp",
+   "label": "Local relief, ±0.86 m"
+  },
+  "svf": {
+   "file": "svf.webp",
+   "label": "Sky-view factor"
+  },
+  "neg_openness": {
+   "file": "neg_openness.webp",
+   "label": "Negative openness"
+  }
+ },
+ "lrm_clip_m": 0.86,
+ "photo": {
+  "source": "USDA NAIP",
+  "year": 2023
+ },
+ "stills": [
+  "relief.jpg",
+  "photo.jpg"
+ ]
+}

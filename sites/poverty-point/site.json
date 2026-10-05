@@ -1,0 +1,75 @@
+{
+ "id": "poverty-point",
+ "name": "Poverty Point",
+ "place": "West Carroll Parish, Louisiana",
+ "region": "mississippi",
+ "blurb": "Six concentric earthen ridges and a giant bird-shaped mound, built about 1700–1100 BCE by hunter-gatherers. A UNESCO World Heritage Site.",
+ "center": [
+  32.6362,
+  -91.412
+ ],
+ "res_m": 1.0,
+ "crs": "EPSG:26915",
+ "size_m": [
+  2600,
+  2400
+ ],
+ "source": "USGS 3DEP point cloud (EPT on AWS)",
+ "project": "LA_NortheastDOTD_2_2017",
+ "ground_points": 41244246,
+ "ground_density": 6.61,
+ "coverage": 0.9878,
+ "elev_m": [
+  17.5,
+  50.9
+ ],
+ "features": [
+  {
+   "name": "Poverty Point",
+   "short": "concentric ridges",
+   "lat": 32.63667,
+   "lon": -91.41139
+  }
+ ],
+ "bounds": [
+  [
+   32.62520196988211,
+   -91.4260475913044
+  ],
+  [
+   32.64719529678193,
+   -91.39795234579786
+  ]
+ ],
+ "layers": {
+  "composite": {
+   "file": "composite.webp",
+   "label": "Relief composite (after VAT)"
+  },
+  "multi_hillshade": {
+   "file": "multi_hillshade.webp",
+   "label": "Hillshade, 16 directions"
+  },
+  "lrm": {
+   "file": "lrm.webp",
+   "label": "Local relief, ±0.86 m"
+  },
+  "svf": {
+   "file": "svf.webp",
+   "label": "Sky-view factor"
+  },
+  "neg_openness": {
+   "file": "neg_openness.webp",
+   "label": "Negative openness"
+  }
+ },
+ "lrm_clip_m": 0.86,
+ "photo": {
+  "source": "USDA NAIP",
+  "year": 2023
+ },
+ "stills": [
+  "relief.jpg",
+  "photo.jpg"
+ ]
+}

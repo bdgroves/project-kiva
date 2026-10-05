@@ -1,0 +1,68 @@
+{
+ "id": "far-view",
+ "name": "Far View",
+ "place": "Chapin Mesa, Mesa Verde National Park, Colorado",
+ "region": "southwest",
+ "blurb": "The mesa-top villages above the cliff dwellings. Lidar can't see under an overhang, so Cliff Palace isn't here, but the farmhouses, check dams and the big round depression called Mummy Lake are.",
+ "center": [
+  37.234,
+  -108.496
+ ],
+ "res_m": 1.0,
+ "crs": "EPSG:26912",
+ "size_m": [
+  2400,
+  2200
+ ],
+ "source": "USGS 3DEP point cloud (EPT on AWS)",
+ "project": "CO_Southwest_NRCS_B1_2018",
+ "ground_points": 27302437,
+ "ground_density": 5.17,
+ "coverage": 1.0,
+ "elev_m": [
+  2114.1,
+  2373.9
+ ],
+ "features": [],
+ "bounds": [
+  [
+   37.22380269310186,
+   -108.50984736713019
+  ],
+  [
+   37.24419025060795,
+   -108.48216411580869
+  ]
+ ],
+ "layers": {
+  "composite": {
+   "file": "composite.webp",
+   "label": "Relief composite (after VAT)"
+  },
+  "multi_hillshade": {
+   "file": "multi_hillshade.webp",
+   "label": "Hillshade, 16 directions"
+  },
+  "lrm": {
+   "file": "lrm.webp",
+   "label": "Local relief, ±2.06 m"
+  },
+  "svf": {
+   "file": "svf.webp",
+   "label": "Sky-view factor"
+  },
+  "neg_openness": {
+   "file": "neg_openness.webp",
+   "label": "Negative openness"
+  }
+ },
+ "lrm_clip_m": 2.06,
+ "photo": {
+  "source": "USDA NAIP",
+  "year": 2023
+ },
+ "stills": [
+  "relief.jpg",
+  "photo.jpg"
+ ]
+}
