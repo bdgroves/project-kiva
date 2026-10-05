@@ -77,9 +77,14 @@ def export(products: dict, prof, out_dir: Path) -> dict:
     out_dir.mkdir(parents=True, exist_ok=True)
     layers, bounds = {}, None
     clip = max(0.15, round(robust(products["lrm"], 98.5), 2))
+    def pct(a, lo, hi):
+        v = a[np.isfinite(a)]
+        return (float(np.percentile(v, lo)), float(np.percentile(v, hi))) if v.size else (0.0, 1.0)
+    c_lo, c_hi = pct(products["composite"], 0.5, 99.0)
+    h_lo, h_hi = pct(products["multi_hillshade"], 0.5, 99.5)
     specs = {
-        "composite": (lambda a: grey_rgba(a, 0.05, 0.95), "Relief composite (after VAT)"),
-        "multi_hillshade": (lambda a: grey_rgba(a, 0.25, 0.75), "Hillshade, 16 directions"),
+        "composite": (lambda a: grey_rgba(a, c_lo, c_hi, 1.3), "Relief composite (after VAT)"),
+        "multi_hillshade": (lambda a: grey_rgba(a, h_lo, h_hi), "Hillshade, 16 directions"),
         "lrm": (lambda a: lrm_rgba(a, clip), f"Local relief, ±{clip:g} m"),
         "svf": (lambda a: grey_rgba(a, 0.80, 1.0, 1.4), "Sky-view factor"),
         "neg_openness": (lambda a: grey_rgba(a, 80.0, 95.0), "Negative openness"),
