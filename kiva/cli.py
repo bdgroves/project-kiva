@@ -43,6 +43,25 @@ def tif_write(path, arr, prof):
         d.write(arr.astype("float32"), 1)
 
 
+def highest(dtm, prof, res, n=3, sep_m=80.0):
+    """The n highest points at least sep_m apart, as [lat, lon, elevation].
+    A cheap check on the pins: Monks Mound should find itself."""
+    from pyproj import Transformer
+    from scipy.ndimage import maximum_filter
+    z = np.where(np.isfinite(dtm), dtm, -1e9)
+    k = max(3, int(sep_m / res) | 1)
+    peak = (z == maximum_filter(z, size=k)) & np.isfinite(dtm)
+    rr, cc = np.nonzero(peak)
+    order = np.argsort(z[rr, cc])[::-1][:n]
+    t = Transformer.from_crs(prof["crs"], "EPSG:4326", always_xy=True)
+    out = []
+    for i in order:
+        x, y = rasterio.transform.xy(prof["transform"], int(rr[i]), int(cc[i]))
+        lon, lat = t.transform(x, y)
+        out.append([round(lat, 6), round(lon, 6), round(float(z[rr[i], cc[i]]), 1)])
+    return out
+
+
 @click.group()
 def main():
     """Project Kiva: reading the ground with lasers."""
@@ -87,6 +106,7 @@ def build(sid, refetch):
         tif_write(work / "products" / f"{k}.tif", v, prof)
     meta = web.export(prods, prof, out)
 
+    peaks = highest(dtm, prof, site["res"])
     area = dtm.size * site["res"] ** 2
     zf = dtm[np.isfinite(dtm)]
     info = {
@@ -99,6 +119,7 @@ def build(sid, refetch):
         "coverage": round(cover, 4),
         "elev_m": [round(float(zf.min()), 1), round(float(zf.max()), 1)],
         "features": site.get("features", []),
+        "highest": peaks,
         **meta,
     }
     web.write_json(info, out / "site.json")

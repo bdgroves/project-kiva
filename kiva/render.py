@@ -79,9 +79,15 @@ def prepare(site_dir: Path, products: dict, dtm_filled, prof, photo=None):
             im = im.resize((int(im.width * s), int(im.height * s)), Image.LANCZOS)
         im.save(work / name)
 
+    # half linear stretch, half histogram-equalised: flat sites keep their
+    # faint relief, rugged ones keep their contrast
     comp = products["composite"]
-    lo, hi = np.nanpercentile(comp, [1.5, 99.5])
-    t = 0.10 + 0.80 * np.clip((np.nan_to_num(comp, nan=float(np.nanmedian(comp))) - lo) / (hi - lo), 0, 1)
+    c = np.nan_to_num(comp, nan=float(np.nanmedian(comp)))
+    lo, hi = np.percentile(c, [1.0, 99.5])
+    lin = np.clip((c - lo) / (hi - lo), 0, 1)
+    qs = np.percentile(c, np.linspace(0, 100, 257))
+    eq = np.interp(c, qs, np.linspace(0, 1, 257))
+    t = 0.06 + 0.86 * (0.5 * lin + 0.5 * eq)
     tex(ramp(t, EARTH).astype(np.uint8), "relief.png")
     if photo is not None:
         tex(photo, "photo.png")
@@ -131,7 +137,7 @@ class Block:
         aspect = size[0] / size[1]
         hf = math.degrees(2 * math.atan(math.tan(math.radians(vfov) / 2) * aspect))
         relief = (float(self.dem.max()) - self.min_h) * self.zs
-        r = 1.25 * max(self.half / math.tan(math.radians(hf) / 2),
+        r = 0.95 * max(self.half / math.tan(math.radians(hf) / 2),
                        (self.half * math.sin(math.radians(elev_deg)) + relief) / math.tan(math.radians(vfov) / 2))
         r *= float(self.site.get("camera_zoom", 1.0))
         e, p = math.radians(elev_deg), math.radians(phi_deg)
@@ -264,7 +270,7 @@ class Viewer:
         self.v = open_viewer_async(width=size[0], height=size[1], terrain_path=str(block.work / "dem.tif"),
                                    fov_deg=fov, timeout=600)
         self.v.load_overlay("tex", str(block.work / texture), extent=(0.0, 0.0, 1.0, 1.0), z_order=0)
-        self.v.send_ipc({"cmd": "set_terrain_pbr", "enabled": True, "exposure": 0.55,
+        self.v.send_ipc({"cmd": "set_terrain_pbr", "enabled": True, "exposure": 0.46,
                          "shadow_map_res": 4096,
                          "height_ao": {"enabled": True, "strength": 0.9, "max_distance": 60.0},
                          "sun_visibility": {"enabled": True, "mode": "soft", "max_distance": 1500.0}})

@@ -120,8 +120,6 @@ def fetch_tnm(site, out_tif: Path, cache: Path, log=print) -> dict:
     tiles = tnm_tiles(site)
     log(f"  {len(tiles)} LAZ tiles over the window: " + ", ".join(sorted({t['project'] for t in tiles})))
     want = site.get("project")
-    if want:
-        tiles = [t for t in tiles if want in t["project"]] or tiles
     if not tiles:
         raise SystemExit("no point-cloud tiles over this window")
     by_proj: dict[str, list] = {}
@@ -130,6 +128,10 @@ def fetch_tnm(site, out_tif: Path, cache: Path, log=print) -> dict:
     order = sorted(by_proj, key=lambda p: max(t["published"] for t in by_proj[p]), reverse=True)
     if want:
         order.sort(key=lambda p: want not in p)
+    for p in order:
+        mb = sum(t["bytes"] for t in by_proj[p]) / 1e6
+        log(f"    {p}: {len(by_proj[p])} tiles, {mb:.0f} MB")
+    order = order[:3]                      # the best few projects are plenty
     cache.mkdir(parents=True, exist_ok=True)
     mosaic, used, n_total = None, [], 0
     for proj in order:

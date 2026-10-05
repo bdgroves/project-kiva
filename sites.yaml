@@ -19,7 +19,7 @@ sites:
     place: Chaco Culture National Historical Park, New Mexico
     region: southwest
     source: tnm_lpc
-    project: CO_CONMGaps
+    project: CONMGaps
     center: [36.0592, -107.9612]
     size_m: [1600, 1400]
     res: 0.5
@@ -57,7 +57,8 @@ sites:
       A Chacoan great house on the Animas River, built in the 1100s, with a
       great kiva rebuilt by Earl Morris in the 1930s.
     features:
-      - {name: West Ruin, short: great house, lat: 36.8358, lon: -107.9981}
+      - {name: West Ruin, short: great house and great kiva, lat: 36.83523, lon: -107.99960}
+      - {name: East Ruin, short: mostly unexcavated, lat: 36.83618, lon: -107.99708}
 
   far-view:
     name: Far View
@@ -65,8 +66,8 @@ sites:
     region: southwest
     source: ept
     project: CO_Southwest_NRCS_B1_2018
-    center: [37.2340, -108.4960]
-    size_m: [2400, 2200]
+    center: [37.2385, -108.5040]
+    size_m: [1500, 1400]
     res: 1.0
     crs: EPSG:26912
     zscale: 1.6
@@ -77,7 +78,9 @@ sites:
       The mesa-top villages above the cliff dwellings. Lidar can't see under
       an overhang, so Cliff Palace isn't here, but the farmhouses, check dams
       and the big round depression called Mummy Lake are.
-    features: []
+    features:
+      - {name: Mummy Lake, short: "reservoir, or plaza?", lat: 37.24061, lon: -108.50483}
+      - {name: Far View House, short: mesa-top pueblo, lat: 37.23875, lon: -108.50350}
 
   chimney-rock:
     name: Chimney Rock
@@ -118,7 +121,8 @@ sites:
       A Hohokam platform mound at the head of one of the largest canal systems
       in pre-contact North America, now surrounded by Phoenix and its airport.
     features:
-      - {name: Platform Mound, short: Hohokam, lat: 33.44639, lon: -111.98417}
+      - {name: Platform Mound, short: Hohokam, lat: 33.44571, lon: -111.98403}
+      - {name: Ball court, short: reconstructed, lat: 33.44705, lon: -111.98411}
 
   cahokia:
     name: Cahokia
@@ -146,8 +150,8 @@ sites:
     region: east
     source: ept
     project: OH_StatewideP3_2_B21
-    center: [39.0255, -83.4305]
-    size_m: [700, 650]
+    center: [39.0258, -83.4305]
+    size_m: [560, 520]
     res: 0.5
     crs: EPSG:26917
     zscale: 3.0
@@ -159,7 +163,8 @@ sites:
       metre high. Who built it, the Adena around 300 BCE or the Fort Ancient
       people around 1070 CE, is still argued.
     features:
-      - {name: Serpent Mound, short: effigy, lat: 39.02639, lon: -83.43083}
+      - {name: Serpent's head, short: and the oval, lat: 39.02642, lon: -83.43103}
+      - {name: Coiled tail, lat: 39.02520, lon: -83.43065}
 
   poverty-point:
     name: Poverty Point
@@ -179,7 +184,9 @@ sites:
       Six concentric earthen ridges and a giant bird-shaped mound, built
       about 1700–1100 BCE by hunter-gatherers. A UNESCO World Heritage Site.
     features:
-      - {name: Poverty Point, short: concentric ridges, lat: 32.63667, lon: -91.41139}
+      - {name: Mound A, short: 22 m high, lat: 32.63556, lon: -91.41104}
+      - {name: Mound B, short: the first earthwork, lat: 32.64106, lon: -91.41022}
+      - {name: Six ridges, short: concentric C, lat: 32.63724, lon: -91.40779}
 
   fort-steilacoom:
     name: Fort Steilacoom
@@ -199,24 +206,24 @@ sites:
       The grounds of the 1849 US Army post, later Western State Hospital, in
       Lakewood. Old field boundaries, terraces and tracks survive under the
       grass.
-    features:
-      - {name: Waughop Lake, short: kettle lake, lat: 47.1727, lon: -122.5649, pin: false}
+    features: []
 
-  fort-worden:
-    name: Fort Worden
-    place: Port Townsend, Washington
-    region: northwest
+  newark:
+    name: Newark Earthworks
+    place: Newark, Ohio
+    region: east
     source: ept
-    project: USGS_LPC_CA_WestCoastElNinoUTM10_2016_LAS_2017
-    center: [48.1410, -122.7625]
-    size_m: [1400, 1200]
+    project: OH_Statewide_Phase2_4_2020
+    center: [40.0470, -82.4360]
+    size_m: [2600, 2400]
     res: 1.0
-    crs: EPSG:26910
-    zscale: 2.0
-    view_az: 210
+    crs: EPSG:26917
+    zscale: 4.0
+    view_az: 200
     sun_az: 300
-    sun_el: 22
+    sun_el: 18
     blurb: >-
-      Coast-artillery batteries dug into Artillery Hill from 1900 to guard
-      the entrance to Puget Sound, now a state park.
+      Geometric earthworks built by the Hopewell culture about 2,000 years ago:
+      an octagon joined to a circle, and the Great Circle. Part of a UNESCO
+      World Heritage listing since 2023. The octagon is a golf course.
     features: []
