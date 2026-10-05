@@ -1,0 +1,222 @@
+# Project Kiva — the site catalog.
+#
+# Each site is a window of bare-earth lidar: where it is, where the points come
+# from, how fine to grid them, and the features worth pinning. Coordinates of
+# features were checked against the lidar itself (see README, "Checking the
+# pins"), not just copied from a gazetteer.
+#
+#   source: ept      stream from the USGS 3DEP point-cloud archive on AWS
+#   source: tnm_lpc  download point-cloud tiles from The National Map
+#   center:  [lat, lon] of the window;  size_m: [width, height] in metres
+#   res:     grid cell, metres;  crs: projected CRS for the grid
+#   zscale:  vertical exaggeration for the 3D block
+#   view_az: compass direction the camera looks FROM;  sun_*: raking light
+
+sites:
+
+  pueblo-bonito:
+    name: Pueblo Bonito
+    place: Chaco Culture National Historical Park, New Mexico
+    region: southwest
+    source: tnm_lpc
+    project: CO_CONMGaps
+    center: [36.0592, -107.9612]
+    size_m: [1600, 1400]
+    res: 0.5
+    crs: EPSG:26913
+    zscale: 1.6
+    view_az: 200
+    sun_az: 300
+    sun_el: 24
+    blurb: >-
+      The great house at the centre of the Chacoan world, built in stages from
+      about 850 to 1150 CE. The polished USGS elevation model has a hole over
+      the canyon core; a 2024 gap-fill lidar tile does not.
+    features:
+      - {name: Pueblo Bonito, short: D-shaped great house, lat: 36.06064, lon: -107.96160}
+      - {name: Chetro Ketl, short: great house, lat: 36.06034, lon: -107.95418}
+      - {name: Pueblo del Arroyo, short: great house, lat: 36.06115, lon: -107.96565}
+      - {name: Kin Kletso, short: late great house, lat: 36.06513, lon: -107.96998}
+      - {name: Casa Rinconada, short: great kiva, lat: 36.05478, lon: -107.96027}
+
+  aztec:
+    name: Aztec Ruins
+    place: Aztec Ruins National Monument, New Mexico
+    region: southwest
+    source: ept
+    project: USGS_LPC_NM_Animas_2014_LAS_2017
+    center: [36.8362, -107.9985]
+    size_m: [1100, 900]
+    res: 1.0
+    crs: EPSG:26913
+    zscale: 3.0
+    view_az: 190
+    sun_az: 300
+    sun_el: 22
+    blurb: >-
+      A Chacoan great house on the Animas River, built in the 1100s, with a
+      great kiva rebuilt by Earl Morris in the 1930s.
+    features:
+      - {name: West Ruin, short: great house, lat: 36.8358, lon: -107.9981}
+
+  far-view:
+    name: Far View
+    place: Chapin Mesa, Mesa Verde National Park, Colorado
+    region: southwest
+    source: ept
+    project: CO_Southwest_NRCS_B1_2018
+    center: [37.2340, -108.4960]
+    size_m: [2400, 2200]
+    res: 1.0
+    crs: EPSG:26912
+    zscale: 1.6
+    view_az: 200
+    sun_az: 300
+    sun_el: 22
+    blurb: >-
+      The mesa-top villages above the cliff dwellings. Lidar can't see under
+      an overhang, so Cliff Palace isn't here, but the farmhouses, check dams
+      and the big round depression called Mummy Lake are.
+    features: []
+
+  chimney-rock:
+    name: Chimney Rock
+    place: Chimney Rock National Monument, Colorado
+    region: southwest
+    source: ept
+    project: CO_Southwest_NRCS_TL_2018
+    center: [37.1915, -107.3040]
+    size_m: [1400, 1100]
+    res: 1.0
+    crs: EPSG:26913
+    zscale: 1.0
+    view_az: 220
+    sun_az: 300
+    sun_el: 24
+    blurb: >-
+      A Chacoan great house on a high ridge beside two rock pinnacles. Its
+      timbers were cut in 1076 and 1093, both years of a major lunar
+      standstill, when the Moon rises between the pinnacles.
+    features:
+      - {name: Great House, short: Chacoan outlier, lat: 37.19167, lon: -107.30639}
+
+  pueblo-grande:
+    name: Pueblo Grande
+    place: S'edav Va'aki, Phoenix, Arizona
+    region: southwest
+    source: ept
+    project: AZ_MaricopaPinal_1_2020
+    center: [33.4464, -111.9842]
+    size_m: [900, 800]
+    res: 0.5
+    crs: EPSG:26912
+    zscale: 4.0
+    view_az: 200
+    sun_az: 300
+    sun_el: 20
+    blurb: >-
+      A Hohokam platform mound at the head of one of the largest canal systems
+      in pre-contact North America, now surrounded by Phoenix and its airport.
+    features:
+      - {name: Platform Mound, short: Hohokam, lat: 33.44639, lon: -111.98417}
+
+  cahokia:
+    name: Cahokia
+    place: Cahokia Mounds State Historic Site, Illinois
+    region: mississippi
+    source: ept
+    project: USGS_LPC_IL_MadisonCo_2014_LAS_2016
+    center: [38.6570, -90.0600]
+    size_m: [2600, 2200]
+    res: 1.0
+    crs: EPSG:26915
+    zscale: 3.0
+    view_az: 200
+    sun_az: 300
+    sun_el: 20
+    blurb: >-
+      The largest pre-Columbian city north of Mexico, around 1050–1350 CE.
+      Monks Mound is the biggest earthwork in the Americas north of Mexico.
+    features:
+      - {name: Monks Mound, short: 30 m high, lat: 38.6604, lon: -90.0620}
+
+  serpent-mound:
+    name: Serpent Mound
+    place: Adams County, Ohio
+    region: east
+    source: ept
+    project: OH_StatewideP3_2_B21
+    center: [39.0255, -83.4305]
+    size_m: [700, 650]
+    res: 0.5
+    crs: EPSG:26917
+    zscale: 3.0
+    view_az: 200
+    sun_az: 300
+    sun_el: 18
+    blurb: >-
+      A 411 m effigy of a serpent along a ridge above Brush Creek, about a
+      metre high. Who built it, the Adena around 300 BCE or the Fort Ancient
+      people around 1070 CE, is still argued.
+    features:
+      - {name: Serpent Mound, short: effigy, lat: 39.02639, lon: -83.43083}
+
+  poverty-point:
+    name: Poverty Point
+    place: West Carroll Parish, Louisiana
+    region: mississippi
+    source: ept
+    project: LA_NortheastDOTD_2_2017
+    center: [32.6362, -91.4120]
+    size_m: [2600, 2400]
+    res: 1.0
+    crs: EPSG:26915
+    zscale: 5.0
+    view_az: 160
+    sun_az: 300
+    sun_el: 18
+    blurb: >-
+      Six concentric earthen ridges and a giant bird-shaped mound, built
+      about 1700–1100 BCE by hunter-gatherers. A UNESCO World Heritage Site.
+    features:
+      - {name: Poverty Point, short: concentric ridges, lat: 32.63667, lon: -91.41139}
+
+  fort-steilacoom:
+    name: Fort Steilacoom
+    place: Lakewood, Washington
+    region: northwest
+    source: ept
+    project: WA_PierceCounty_1_2020
+    center: [47.1775, -122.5600]
+    size_m: [1200, 1200]
+    res: 0.5
+    crs: EPSG:26910
+    zscale: 3.0
+    view_az: 200
+    sun_az: 300
+    sun_el: 20
+    blurb: >-
+      The grounds of the 1849 US Army post, later Western State Hospital, in
+      Lakewood. Old field boundaries, terraces and tracks survive under the
+      grass.
+    features:
+      - {name: Waughop Lake, short: kettle lake, lat: 47.1727, lon: -122.5649, pin: false}
+
+  fort-worden:
+    name: Fort Worden
+    place: Port Townsend, Washington
+    region: northwest
+    source: ept
+    project: USGS_LPC_CA_WestCoastElNinoUTM10_2016_LAS_2017
+    center: [48.1410, -122.7625]
+    size_m: [1400, 1200]
+    res: 1.0
+    crs: EPSG:26910
+    zscale: 2.0
+    view_az: 210
+    sun_az: 300
+    sun_el: 22
+    blurb: >-
+      Coast-artillery batteries dug into Artillery Hill from 1900 to guard
+      the entrance to Puget Sound, now a state park.
+    features: []

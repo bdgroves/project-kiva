@@ -17,7 +17,6 @@ Usage:
 """
 
 import math
-import subprocess
 from pathlib import Path
 
 import click
@@ -65,11 +64,15 @@ def main(lat, lon, name):
         return
 
     click.echo("Downloading...")
-    subprocess.run(["curl.exe", "-L", "--progress-bar", "-o", str(dest), url], check=True)
+    with requests.get(url, stream=True, timeout=600) as r:
+        r.raise_for_status()
+        with open(dest, "wb") as f:
+            for chunk in r.iter_content(1 << 20):
+                f.write(chunk)
     click.echo(f"Saved: {dest}")
     click.echo()
     click.echo("Next: crop to your area of interest, reproject to a metric CRS, then:")
-    click.echo(f"  pixi run python scripts/render_site.py --dem <cropped.tif>")
+    click.echo(f"  add it to sites.yaml, or look at it with the relief tools in kiva/relief.py")
 
 
 if __name__ == "__main__":

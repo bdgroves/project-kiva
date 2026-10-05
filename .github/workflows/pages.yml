@@ -4,6 +4,9 @@ on:
   push:
     branches: [main]
     paths: ["web/**", "data/vectors/**"]
+  workflow_run:
+    workflows: ["Build sites"]
+    types: [completed]
   workflow_dispatch:
 
 permissions:
@@ -22,7 +25,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Copy vectors into web
         run: |
           mkdir -p web/data/vectors

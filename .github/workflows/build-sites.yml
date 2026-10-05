@@ -1,0 +1,135 @@
+name: Build sites
+
+# For each site: stream lidar points -> bare-earth DTM -> relief products ->
+# web layers -> NAIP -> forge3d stills and an orbit video (on GitHub's CPUs,
+# Mesa's software Vulkan under a virtual display). Then commit web/sites/.
+on:
+  workflow_dispatch:
+    inputs:
+      sites:
+        description: "Site ids, comma-separated, or 'all'"
+        default: "all"
+      orbit:
+        description: "Render the orbit video"
+        type: boolean
+        default: true
+      seconds:
+        description: "Orbit length (s)"
+        default: "14"
+
+permissions:
+  contents: write
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      sites: ${{ steps.p.outputs.sites }}
+    steps:
+      - uses: actions/checkout@v5
+      - id: p
+        run: |
+          python3 - <<'EOF' >> "$GITHUB_OUTPUT"
+          import json, yaml
+          want = "${{ inputs.sites }}".strip()
+          cat = list(yaml.safe_load(open("sites.yaml"))["sites"])
+          ids = cat if want in ("", "all") else [s.strip() for s in want.split(",") if s.strip() in cat]
+          print("sites=" + json.dumps(ids))
+          EOF
+
+  site:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 170
+    strategy:
+      fail-fast: false
+      matrix:
+        site: ${{ fromJSON(needs.plan.outputs.sites) }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: prefix-dev/setup-pixi@v0.9.0
+        with:
+          cache: false
+          locked: false
+      - name: Software Vulkan + virtual display
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq mesa-vulkan-drivers libvulkan1 xvfb libx11-xcb1 libxkbcommon-x11-0 libxkbcommon0 libxcursor1 libxi6 libxrandr2 libxcb-xkb1 libxcb-randr0 libxcb-shape0 libxcb-xfixes0 libwayland-client0 libegl1 >/dev/null
+      - name: Lidar -> relief -> web layers
+        run: |
+          set -o pipefail
+          pixi run kiva build ${{ matrix.site }} 2>&1 | tee -a build.log
+          pixi run kiva photo ${{ matrix.site }} 2>&1 | tee -a build.log
+      - name: forge3d stills
+        env:
+          XDG_RUNTIME_DIR: /tmp
+        run: |
+          set -o pipefail
+          xvfb-run -a -s "-screen 0 1920x1080x24" pixi run kiva stills ${{ matrix.site }} 2>&1 | tee -a build.log
+      - name: forge3d orbit
+        if: inputs.orbit
+        env:
+          XDG_RUNTIME_DIR: /tmp
+        run: |
+          set -o pipefail
+          xvfb-run -a -s "-screen 0 1920x1080x24" pixi run kiva orbit ${{ matrix.site }} --seconds ${{ inputs.seconds }} 2>&1 | tee -a build.log | grep -v "  frame" || true
+          test -n "$(ls data/sites/${{ matrix.site }}/frames/frame_*.jpg 2>/dev/null)"
+          pixi run kiva encode ${{ matrix.site }}
+      - name: Keep the log
+        if: always()
+        run: mkdir -p web/sites/${{ matrix.site }} && cp build.log web/sites/${{ matrix.site }}/build.log || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: site-${{ matrix.site }}
+          path: web/sites/${{ matrix.site }}/
+          retention-days: 7
+      - uses: actions/upload-artifact@v4
+        if: matrix.site == 'cahokia'
+        with:
+          name: pixi-lock
+          path: pixi.lock
+          retention-days: 7
+
+  publish:
+    needs: site
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: site-*
+          path: incoming
+      - uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          name: pixi-lock
+          path: lock
+      - name: Commit the sites
+        run: |
+          mkdir -p logs
+          for d in incoming/site-*; do
+            id=${d#incoming/site-}
+            if [ -f "$d/build.log" ]; then mv "$d/build.log" "logs/$id.log"; fi
+            if [ -f "$d/site.json" ]; then
+              mkdir -p "web/sites/$id" && cp -r "$d/." "web/sites/$id/"
+            fi
+          done
+          if [ -f lock/pixi.lock ]; then cp lock/pixi.lock pixi.lock; fi
+          python3 - <<'EOF'
+          import json, yaml, pathlib
+          out = []
+          for sid in yaml.safe_load(open("sites.yaml"))["sites"]:
+              p = pathlib.Path("web/sites") / sid / "site.json"
+              if p.exists():
+                  s = json.loads(p.read_text())
+                  out.append({k: s.get(k) for k in ("id","name","place","region","center","blurb","res_m","ground_density","stills","video")})
+          pathlib.Path("web/sites.json").write_text(json.dumps(out, indent=1, ensure_ascii=False))
+          print(len(out), "sites")
+          EOF
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A web/sites web/sites.json logs
+          if [ -f pixi.lock ]; then git add pixi.lock; fi
+          git commit -q -m "sites: lidar relief and forge3d renders [skip ci]" || exit 0
+          for i in 1 2 3; do git pull -q --rebase origin main && git push -q && exit 0; sleep 5; done
+          exit 1

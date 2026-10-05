@@ -33,3 +33,6 @@ _*.py
 _*.txt
 data/renders/frames_raw/
 data/renders/frames_final/
+
+# kiva work (DTMs, products, frames)
+data/sites/
