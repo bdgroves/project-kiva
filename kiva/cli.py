@@ -36,8 +36,9 @@ def get_site(sid):
 
 
 def tif_write(path, arr, prof):
-    p = dict(prof, count=1, dtype="float32", nodata=np.nan, compress="deflate",
-             predictor=3, tiled=True, driver="GTiff")
+    p = {k: v for k, v in prof.items() if k not in ("blockxsize", "blockysize", "tiled", "interleave")}
+    p.update(count=1, dtype="float32", nodata=np.nan, compress="deflate", predictor=3,
+             tiled=True, blockxsize=256, blockysize=256, driver="GTiff")
     with rasterio.open(path, "w", **p) as d:
         d.write(arr.astype("float32"), 1)
 

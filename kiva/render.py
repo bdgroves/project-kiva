@@ -67,6 +67,7 @@ def prepare(site_dir: Path, products: dict, dtm_filled, prof, photo=None):
     else:
         p2 = dict(prof)
     dem = gaussian_filter(dem, 0.6).astype(np.float32)
+    p2 = {k: v for k, v in p2.items() if k not in ("blockxsize", "blockysize", "tiled", "compress", "predictor")}
     p2.update(count=1, dtype="float32", nodata=None, driver="GTiff")
     with rasterio.open(work / "dem.tif", "w", **p2) as d:
         d.write(dem, 1)
