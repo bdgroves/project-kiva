@@ -94,5 +94,7 @@
  "stills": [
   "relief.jpg",
   "photo.jpg"
- ]
+ ],
+ "video": "orbit.mp4",
+ "poster": "orbit.jpg"
 }

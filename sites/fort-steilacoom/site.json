@@ -23,14 +23,23 @@
   53.8,
   99.0
  ],
- "features": [
-  {
-   "name": "Waughop Lake",
-   "short": "kettle lake",
-   "lat": 47.1727,
-   "lon": -122.5649,
-   "pin": false
-  }
+ "features": [],
+ "highest": [
+  [
+   47.174418,
+   -122.567861,
+   99.0
+  ],
+  [
+   47.173548,
+   -122.564048,
+   87.1
+  ],
+  [
+   47.179357,
+   -122.558305,
+   77.5
+  ]
  ],
  "bounds": [
   [
@@ -72,5 +81,7 @@
  "stills": [
   "relief.jpg",
   "photo.jpg"
- ]
+ ],
+ "video": "orbit.mp4",
+ "poster": "orbit.jpg"
 }

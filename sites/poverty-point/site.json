@@ -25,11 +25,40 @@
  ],
  "features": [
   {
-   "name": "Poverty Point",
-   "short": "concentric ridges",
-   "lat": 32.63667,
-   "lon": -91.41139
+   "name": "Mound A",
+   "short": "22 m high",
+   "lat": 32.63556,
+   "lon": -91.41104
+  },
+  {
+   "name": "Mound B",
+   "short": "the first earthwork",
+   "lat": 32.64106,
+   "lon": -91.41022
+  },
+  {
+   "name": "Six ridges",
+   "short": "concentric C",
+   "lat": 32.63724,
+   "lon": -91.40779
   }
+ ],
+ "highest": [
+  [
+   32.635274,
+   -91.411205,
+   50.9
+  ],
+  [
+   32.641093,
+   -91.41059,
+   34.7
+  ],
+  [
+   32.628562,
+   -91.405386,
+   34.2
+  ]
  ],
  "bounds": [
   [
@@ -71,5 +100,7 @@
  "stills": [
   "relief.jpg",
   "photo.jpg"
- ]
+ ],
+ "video": "orbit.mp4",
+ "poster": "orbit.jpg"
 }

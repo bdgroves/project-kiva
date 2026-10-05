@@ -27,9 +27,32 @@
   {
    "name": "Platform Mound",
    "short": "Hohokam",
-   "lat": 33.44639,
-   "lon": -111.98417
+   "lat": 33.44571,
+   "lon": -111.98403
+  },
+  {
+   "name": "Ball court",
+   "short": "reconstructed",
+   "lat": 33.44705,
+   "lon": -111.98411
   }
+ ],
+ "highest": [
+  [
+   33.449937,
+   -111.982618,
+   362.7
+  ],
+  [
+   33.444161,
+   -111.980794,
+   360.4
+  ],
+  [
+   33.447252,
+   -111.981646,
+   359.8
+  ]
  ],
  "bounds": [
   [
@@ -71,5 +94,7 @@
  "stills": [
   "relief.jpg",
   "photo.jpg"
- ]
+ ],
+ "video": "orbit.mp4",
+ "poster": "orbit.jpg"
 }

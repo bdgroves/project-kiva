@@ -29,6 +29,12 @@
    "short": "Chacoan outlier",
    "lat": 37.19167,
    "lon": -107.30639
+  },
+  {
+   "name": "Chimney Rock",
+   "short": "2,409 m, the highest point",
+   "lat": 37.194675,
+   "lon": -107.300546
   }
  ],
  "highest": [
@@ -88,5 +94,7 @@
  "stills": [
   "relief.jpg",
   "photo.jpg"
- ]
+ ],
+ "video": "orbit.mp4",
+ "poster": "orbit.jpg"
 }

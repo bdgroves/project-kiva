@@ -15,7 +15,7 @@
    "relief.jpg",
    "photo.jpg"
   ],
-  "video": null
+  "video": "orbit.mp4"
  },
  {
   "id": "aztec",
@@ -33,7 +33,7 @@
    "relief.jpg",
    "photo.jpg"
   ],
-  "video": null
+  "video": "orbit.mp4"
  },
  {
   "id": "far-view",
@@ -51,7 +51,7 @@
    "relief.jpg",
    "photo.jpg"
   ],
-  "video": null
+  "video": "orbit.mp4"
  },
  {
   "id": "chimney-rock",
@@ -69,7 +69,7 @@
    "relief.jpg",
    "photo.jpg"
   ],
-  "video": null
+  "video": "orbit.mp4"
  },
  {
   "id": "pueblo-grande",
@@ -87,7 +87,7 @@
    "relief.jpg",
    "photo.jpg"
   ],
-  "video": null
+  "video": "orbit.mp4"
  },
  {
   "id": "cahokia",
@@ -105,7 +105,7 @@
    "relief.jpg",
    "photo.jpg"
   ],
-  "video": null
+  "video": "orbit.mp4"
  },
  {
   "id": "serpent-mound",
@@ -123,7 +123,7 @@
    "relief.jpg",
    "photo.jpg"
   ],
-  "video": null
+  "video": "orbit.mp4"
  },
  {
   "id": "poverty-point",
@@ -141,7 +141,7 @@
    "relief.jpg",
    "photo.jpg"
   ],
-  "video": null
+  "video": "orbit.mp4"
  },
  {
   "id": "fort-steilacoom",
@@ -159,7 +159,7 @@
    "relief.jpg",
    "photo.jpg"
   ],
-  "video": null
+  "video": "orbit.mp4"
  },
  {
   "id": "newark",
@@ -167,16 +167,16 @@
   "place": "Newark, Ohio",
   "region": "east",
   "center": [
-   40.047,
-   -82.436
+   40.0482,
+   -82.4398
   ],
-  "blurb": "Geometric earthworks built by the Hopewell culture about 2,000 years ago: an octagon joined to a circle, and the Great Circle. Part of a UNESCO World Heritage listing since 2023. The octagon is a golf course.",
+  "blurb": "Geometric earthworks built by the Hopewell culture about 2,000 years ago: an octagon joined to a circle, and the Great Circle. Part of a UNESCO World Heritage listing since 2023. The Octagon is also a golf course.",
   "res_m": 1.0,
   "ground_density": 6.56,
   "stills": [
    "relief.jpg",
    "photo.jpg"
   ],
-  "video": null
+  "video": "orbit.mp4"
  }
 ]

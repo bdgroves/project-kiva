@@ -3,27 +3,40 @@
  "name": "Newark Earthworks",
  "place": "Newark, Ohio",
  "region": "east",
- "blurb": "Geometric earthworks built by the Hopewell culture about 2,000 years ago: an octagon joined to a circle, and the Great Circle. Part of a UNESCO World Heritage listing since 2023. The octagon is a golf course.",
+ "blurb": "Geometric earthworks built by the Hopewell culture about 2,000 years ago: an octagon joined to a circle, and the Great Circle. Part of a UNESCO World Heritage listing since 2023. The Octagon is also a golf course.",
  "center": [
-  40.047,
-  -82.436
+  40.0482,
+  -82.4398
  ],
  "res_m": 1.0,
  "crs": "EPSG:26917",
  "size_m": [
-  2600,
-  2400
+  2200,
+  2300
  ],
  "source": "USGS 3DEP point cloud (EPT on AWS)",
  "project": "OH_Statewide_Phase2_4_2020",
- "ground_points": 40935627,
+ "ground_points": 33170334,
  "ground_density": 6.56,
- "coverage": 0.9844,
+ "coverage": 0.9855,
  "elev_m": [
-  247.0,
+  251.5,
   273.1
  ],
- "features": [],
+ "features": [
+  {
+   "name": "Octagon",
+   "short": "and Observatory Circle",
+   "lat": 40.05478,
+   "lon": -82.44418
+  },
+  {
+   "name": "Great Circle",
+   "short": "360 m across",
+   "lat": 40.04108,
+   "lon": -82.43125
+  }
+ ],
  "highest": [
   [
    40.051101,
@@ -31,24 +44,24 @@
    273.1
   ],
   [
-   40.04816,
-   -82.450474,
+   40.048159,
+   -82.450509,
    271.2
   ],
   [
-   40.048151,
-   -82.450474,
+   40.04815,
+   -82.450509,
    271.2
   ]
  ],
  "bounds": [
   [
-   40.03599084718729,
-   -82.4514658133274
+   40.03767769488796,
+   -82.4529128348085
   ],
   [
-   40.05798928244054,
-   -82.42053841930391
+   40.0587156727088,
+   -82.42669872159347
   ]
  ],
  "layers": {
@@ -62,7 +75,7 @@
   },
   "lrm": {
    "file": "lrm.webp",
-   "label": "Local relief, ±0.72 m"
+   "label": "Local relief, ±0.76 m"
   },
   "svf": {
    "file": "svf.webp",
@@ -73,7 +86,7 @@
    "label": "Negative openness"
   }
  },
- "lrm_clip_m": 0.72,
+ "lrm_clip_m": 0.76,
  "photo": {
   "source": "USDA NAIP",
   "year": 2023
@@ -81,5 +94,7 @@
  "stills": [
   "relief.jpg",
   "photo.jpg"
- ]
+ ],
+ "video": "orbit.mp4",
+ "poster": "orbit.jpg"
 }

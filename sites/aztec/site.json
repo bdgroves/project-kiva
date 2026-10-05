@@ -26,10 +26,33 @@
  "features": [
   {
    "name": "West Ruin",
-   "short": "great house",
-   "lat": 36.8358,
-   "lon": -107.9981
+   "short": "great house and great kiva",
+   "lat": 36.83523,
+   "lon": -107.9996
+  },
+  {
+   "name": "East Ruin",
+   "short": "mostly unexcavated",
+   "lat": 36.83618,
+   "lon": -107.99708
   }
+ ],
+ "highest": [
+  [
+   36.84007,
+   -108.000408,
+   1761.7
+  ],
+  [
+   36.840247,
+   -107.998386,
+   1759.6
+  ],
+  [
+   36.840086,
+   -108.004737,
+   1758.7
+  ]
  ],
  "bounds": [
   [
@@ -71,5 +94,7 @@
  "stills": [
   "relief.jpg",
   "photo.jpg"
- ]
+ ],
+ "video": "orbit.mp4",
+ "poster": "orbit.jpg"
 }
