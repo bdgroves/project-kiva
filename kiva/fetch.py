@@ -22,6 +22,7 @@ from __future__ import annotations
 
 import json
 import re
+import time
 from pathlib import Path
 
 import numpy as np
@@ -116,6 +117,31 @@ def tnm_tiles(site):
     return tiles
 
 
+ROCKY = "https://rockyweb.usgs.gov/vdelivery/Datasets/Staged/"
+S3 = "https://prd-tnm.s3.amazonaws.com/StagedProducts/"
+
+
+def _download(url, dst: Path, log=print):
+    """TNM hands out rockyweb links, which crawl; the same files sit on S3."""
+    if dst.exists():
+        return
+    tmp = dst.with_suffix(".part")
+    for u in ([url.replace(ROCKY, S3)] if url.startswith(ROCKY) else []) + [url]:
+        try:
+            t0 = time.time()
+            with requests.get(u, stream=True, timeout=120) as r:
+                r.raise_for_status()
+                with open(tmp, "wb") as f:
+                    for chunk in r.iter_content(1 << 20):
+                        f.write(chunk)
+            tmp.rename(dst)
+            log(f"  {dst.name}: {dst.stat().st_size / 1e6:.0f} MB in {time.time() - t0:.0f} s from {u.split('/')[2]}")
+            return
+        except Exception as e:  # noqa: BLE001 - try the next mirror
+            log(f"  {dst.name}: {u.split('/')[2]} failed ({e.__class__.__name__})")
+    raise SystemExit(f"could not download {url}")
+
+
 def fetch_tnm(site, out_tif: Path, cache: Path, log=print) -> dict:
     """Download every LPC tile over the window, grid each project separately,
     then fill from the best project down (newest first, or the one named in
@@ -146,16 +172,11 @@ def fetch_tnm(site, out_tif: Path, cache: Path, log=print) -> dict:
             log(f"  skipping {proj}: {need / 1e9:.1f} GB is more than this window needs")
             continue
         budget -= need
-        for t in by_proj[proj]:
-            dst = cache / t["url"].rsplit("/", 1)[-1]
-            if not dst.exists():
-                log(f"  downloading {dst.name} ({t['bytes'] / 1e6:.0f} MB)")
-                with requests.get(t["url"], stream=True, timeout=600) as r:
-                    r.raise_for_status()
-                    with open(dst, "wb") as f:
-                        for chunk in r.iter_content(1 << 20):
-                            f.write(chunk)
-            laz.append(dst)
+        from concurrent.futures import ThreadPoolExecutor
+        dsts = [cache / t["url"].rsplit("/", 1)[-1] for t in by_proj[proj]]
+        with ThreadPoolExecutor(6) as pool:
+            list(pool.map(lambda td: _download(td[0]["url"], td[1], log), zip(by_proj[proj], dsts)))
+        laz = dsts
         part = out_tif.with_name(out_tif.stem + f"_{len(used)}.tif")
         pipe = [{"type": "readers.las", "filename": str(p)} for p in laz]
         if len(laz) > 1:
