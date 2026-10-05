@@ -35,7 +35,11 @@ nav.sites button{font-family:var(--ui);font-stretch:75%;font-weight:600;font-siz
   padding:8px 10px 12px;white-space:nowrap;cursor:pointer;border-bottom:3px solid transparent}
 nav.sites button:hover{color:var(--bone)}
 nav.sites button[aria-current="true"]{color:var(--bone);border-bottom-color:var(--ochre)}
-header .out{font-family:var(--ui);font-stretch:75%;font-size:15px;align-self:center;padding-bottom:14px;white-space:nowrap;color:var(--lichen)}
+header .out{font-family:var(--ui);font-stretch:75%;font-size:15px;align-self:center;padding-bottom:14px;white-space:nowrap;display:flex;gap:16px}
+header .out a{color:var(--lichen)}
+header .out a:hover{color:var(--ochre)}
+.mark a.by{color:var(--lichen);text-decoration:none}
+.mark a.by:hover{color:var(--ochre);text-decoration:underline}
 
 main{flex:1;display:grid;grid-template-columns:minmax(0,1fr) 400px;min-height:0}
 #mapwrap{position:relative;min-height:520px}
@@ -110,9 +114,13 @@ aside p{margin-bottom:14px}
 </head>
 <body>
 <header>
-  <div class="mark">Project Kiva <small>Reading the ground with lasers</small></div>
+  <div class="mark">Project Kiva <small>Reading the ground with lasers &middot; <a class="by" href="https://brooksgroves.com/">by Brooks Groves</a></small></div>
   <nav class="sites" id="sites" aria-label="Sites"></nav>
-  <a class="out" href="https://github.com/bdgroves/project-kiva">Code and notes on GitHub</a>
+  <nav class="out" aria-label="More">
+    <a href="https://brooksgroves.com/">&larr; Home</a>
+    <a href="https://brooksgroves.com/blog/project-kiva-post.html">The story</a>
+    <a href="https://github.com/bdgroves/project-kiva">Code</a>
+  </nav>
 </header>
 <main>
   <div id="mapwrap">
@@ -310,7 +318,8 @@ function panel() {
     </dl>
     <div class="explain" id="explain"></div>
     <p class="foot">Bare earth means the laser returns classified as ground: trees, buildings and water are gone, and where nothing reached the ground the map is blank. The relief views show shape, not age; a bump is a question, not a find.
-    <br><a href="https://github.com/bdgroves/project-kiva#readme">How this works</a></p>`;
+    <br><a href="https://github.com/bdgroves/project-kiva#readme">How this works</a></p>
+    <p class="foot">Read <a href="https://brooksgroves.com/blog/project-kiva-post.html">the story behind the atlas</a> on the blog, or head back to <a href="https://brooksgroves.com/">brooksgroves.com</a>.</p>`;
   renderBlock();
   explain();
 }
