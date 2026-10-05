@@ -137,7 +137,7 @@ class Block:
         aspect = size[0] / size[1]
         hf = math.degrees(2 * math.atan(math.tan(math.radians(vfov) / 2) * aspect))
         relief = (float(self.dem.max()) - self.min_h) * self.zs
-        r = 0.95 * max(self.half / math.tan(math.radians(hf) / 2),
+        r = 1.05 * max(self.half / math.tan(math.radians(hf) / 2),
                        (self.half * math.sin(math.radians(elev_deg)) + relief) / math.tan(math.radians(vfov) / 2))
         r *= float(self.site.get("camera_zoom", 1.0))
         e, p = math.radians(elev_deg), math.radians(phi_deg)

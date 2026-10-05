@@ -102,6 +102,7 @@ sites:
       standstill, when the Moon rises between the pinnacles.
     features:
       - {name: Great House, short: Chacoan outlier, lat: 37.19167, lon: -107.30639}
+      - {name: Chimney Rock, short: "2,409 m, the highest point", lat: 37.194675, lon: -107.300546}
 
   pueblo-grande:
     name: Pueblo Grande
@@ -214,8 +215,8 @@ sites:
     region: east
     source: ept
     project: OH_Statewide_Phase2_4_2020
-    center: [40.0470, -82.4360]
-    size_m: [2600, 2400]
+    center: [40.0482, -82.4398]
+    size_m: [2200, 2300]
     res: 1.0
     crs: EPSG:26917
     zscale: 4.0
@@ -225,5 +226,7 @@ sites:
     blurb: >-
       Geometric earthworks built by the Hopewell culture about 2,000 years ago:
       an octagon joined to a circle, and the Great Circle. Part of a UNESCO
-      World Heritage listing since 2023. The octagon is a golf course.
-    features: []
+      World Heritage listing since 2023. The Octagon is also a golf course.
+    features:
+      - {name: Octagon, short: and Observatory Circle, lat: 40.05478, lon: -82.44418}
+      - {name: Great Circle, short: 360 m across, lat: 40.04108, lon: -82.43125}
