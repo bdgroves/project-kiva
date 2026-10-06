@@ -114,5 +114,20 @@
   "photo.jpg"
  ],
  "video": "orbit.mp4",
- "poster": "orbit.jpg"
+ "poster": "orbit.jpg",
+ "about": "Ancestral Puebloan people built Pueblo Bonito in stages over about three centuries, until it had some 800 rooms and stood four or five stories tall at the back. Fewer people seem to have lived in it than its size suggests: it was more likely a ceremonial and gathering place, the heart of a network of great houses and long straight roads across the San Juan Basin. Chaco is a UNESCO World Heritage Site and a place of deep importance to the Pueblo peoples of New Mexico and Arizona, the Hopi among them, and to the Navajo. The park is at the end of dirt roads, and a short trail goes right through the great house.",
+ "links": [
+  {
+   "name": "Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Pueblo_Bonito"
+  },
+  {
+   "name": "Chaco Culture NHP (NPS)",
+   "url": "https://www.nps.gov/chcu/"
+  },
+  {
+   "name": "UNESCO",
+   "url": "https://whc.unesco.org/en/list/353"
+  }
+ ]
 }

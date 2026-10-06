@@ -3,7 +3,7 @@
  "name": "Newark Earthworks",
  "place": "Newark, Ohio",
  "region": "east",
- "blurb": "Geometric earthworks built by the Hopewell culture about 2,000 years ago: an octagon joined to a circle, and the Great Circle. Part of a UNESCO World Heritage listing since 2023. The Octagon is also a golf course.",
+ "blurb": "Geometric earthworks built by the Hopewell culture about 2,000 years ago: an octagon joined to a circle, and the Great Circle. Part of a UNESCO World Heritage listing since 2023.",
  "center": [
   40.0482,
   -82.4398
@@ -96,5 +96,16 @@
   "photo.jpg"
  ],
  "video": "orbit.mp4",
- "poster": "orbit.jpg"
+ "poster": "orbit.jpg",
+ "about": "The Hopewell culture built these between about 100 BCE and 400 CE: the largest set of geometric earthworks in the world, once spread over several square kilometres where the city now stands. The Octagon is lined up with the moon's 18.6-year cycle and tracks its rising and setting points more precisely than Stonehenge does. The Great Circle is about 365 m across, with walls 2.4 m high above an inner ditch. Since 2023 they've been part of the Hopewell Ceremonial Earthworks World Heritage Site, and at the start of 2025 the golf club that had leased the Octagon since 1910 moved out.",
+ "links": [
+  {
+   "name": "Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Newark_Earthworks"
+  },
+  {
+   "name": "UNESCO",
+   "url": "https://whc.unesco.org/en/list/1689"
+  }
+ ]
 }

@@ -32,6 +32,19 @@ sites:
       The great house at the centre of the Chacoan world, built in stages from
       about 850 to 1150 CE. The polished USGS elevation model has a hole over
       the canyon core; a 2024 gap-fill lidar tile does not.
+    about: >-
+      Ancestral Puebloan people built Pueblo Bonito in stages over about three
+      centuries, until it had some 800 rooms and stood four or five stories tall at
+      the back. Fewer people seem to have lived in it than its size suggests: it was
+      more likely a ceremonial and gathering place, the heart of a network of great
+      houses and long straight roads across the San Juan Basin. Chaco is a UNESCO
+      World Heritage Site and a place of deep importance to the Pueblo peoples of
+      New Mexico and Arizona, the Hopi among them, and to the Navajo. The park is at
+      the end of dirt roads, and a short trail goes right through the great house.
+    links:
+      - {name: "Wikipedia", url: https://en.wikipedia.org/wiki/Pueblo_Bonito}
+      - {name: "Chaco Culture NHP (NPS)", url: https://www.nps.gov/chcu/}
+      - {name: "UNESCO", url: https://whc.unesco.org/en/list/353}
     features:
       - {name: Pueblo Bonito, short: D-shaped great house, lat: 36.06064, lon: -107.96160}
       - {name: Chetro Ketl, short: great house, lat: 36.06034, lon: -107.95418}
@@ -56,6 +69,18 @@ sites:
     blurb: >-
       A Chacoan great house on the Animas River, built in the 1100s, with a
       great kiva rebuilt by Earl Morris in the 1930s.
+    about: >-
+      Despite the name, the Aztecs had nothing to do with it: 19th-century settlers
+      guessed wrong, and the name stuck. Ancestral Puebloan people built it in the
+      1100s and 1200s as a great house in the Chaco style, about 90 km north of the
+      canyon. The West Ruin is unusually well preserved, with some original roof
+      timbers still in place, and the Great Kiva in its plaza was rebuilt in the
+      1930s so you can walk inside one. It's part of the Chaco Culture World
+      Heritage Site.
+    links:
+      - {name: "Wikipedia", url: https://en.wikipedia.org/wiki/Aztec_Ruins_National_Monument}
+      - {name: "Aztec Ruins NM (NPS)", url: https://www.nps.gov/azru/}
+      - {name: "UNESCO", url: https://whc.unesco.org/en/list/353}
     features:
       - {name: West Ruin, short: great house and great kiva, lat: 36.83523, lon: -107.99960}
       - {name: East Ruin, short: mostly unexcavated, lat: 36.83618, lon: -107.99708}
@@ -78,6 +103,18 @@ sites:
       The mesa-top villages above the cliff dwellings. Lidar can't see under
       an overhang, so Cliff Palace isn't here, but the farmhouses, check dams
       and the big round depression called Mummy Lake are.
+    about: >-
+      Before the famous cliff dwellings, most people at Mesa Verde lived up on the
+      mesa tops, and Far View was one of the busiest neighbourhoods: dozens of small
+      villages farmed here between about 900 and 1300 CE. Mummy Lake, the big ring
+      near the middle, was long called a reservoir; a 2014 study argued it was more
+      likely an open-air plaza for gatherings, and the debate goes on. Mesa Verde is
+      a national park and a World Heritage Site, and the Far View sites are a short
+      walk from the main park road.
+    links:
+      - {name: "Mesa Verde on Wikipedia", url: https://en.wikipedia.org/wiki/Mesa_Verde_National_Park}
+      - {name: "Mesa Verde NP (NPS)", url: https://www.nps.gov/meve/}
+      - {name: "Mummy Lake (Smithsonian)", url: https://www.smithsonianmag.com/smart-news/ancient-structure-mesa-verde-used-ritual-not-reservoir-180951351/}
     features:
       - {name: Mummy Lake, short: "reservoir, or plaza?", lat: 37.24061, lon: -108.50483}
       - {name: Far View House, short: mesa-top pueblo, lat: 37.23875, lon: -108.50350}
@@ -100,6 +137,16 @@ sites:
       A Chacoan great house on a high ridge beside two rock pinnacles. Its
       timbers were cut in 1076 and 1093, both years of a major lunar
       standstill, when the Moon rises between the pinnacles.
+    about: >-
+      The highest of all the Chacoan great houses, on a narrow ridge far above the
+      Piedra River valley, beside two pinnacles called Chimney Rock and Companion
+      Rock. Tree rings date its building to 1076 and an expansion to 1093. Both were
+      years of a major lunar standstill, which comes every 18.6 years, when the moon
+      seen from the great house rises between the two pinnacles. The most recent one
+      was in 2024 and 2025. It became a national monument in 2012 and is run by the
+      US Forest Service, with guided tours in the warmer months.
+    links:
+      - {name: "Wikipedia", url: https://en.wikipedia.org/wiki/Chimney_Rock_National_Monument}
     features:
       - {name: Great House, short: Chacoan outlier, lat: 37.19167, lon: -107.30639}
       - {name: Chimney Rock, short: "2,409 m, the highest point", lat: 37.194675, lon: -107.300546}
@@ -121,6 +168,17 @@ sites:
     blurb: >-
       A Hohokam platform mound at the head of one of the largest canal systems
       in pre-contact North America, now surrounded by Phoenix and its airport.
+    about: >-
+      The Hohokam farmed the Salt River valley for about a thousand years, and this
+      village was lived in from around 450 to 1450 CE. By hand, they dug hundreds of
+      miles of irrigation canals, and the longest one starting near here ran more
+      than 25 km toward today's Glendale. Some of Phoenix's modern canals still
+      follow their lines. In 2023 the city's museum here was renamed S'edav Va'aki,
+      O'odham for 'central platform mound,' honouring the O'odham communities who
+      count the Hohokam among their ancestors. A trail goes past the mound and a
+      reconstructed ball court.
+    links:
+      - {name: "Wikipedia", url: https://en.wikipedia.org/wiki/Pueblo_Grande_Ruin_and_Irrigation_Sites}
     features:
       - {name: Platform Mound, short: Hohokam, lat: 33.44571, lon: -111.98403}
       - {name: Ball court, short: reconstructed, lat: 33.44705, lon: -111.98411}
@@ -142,6 +200,18 @@ sites:
     blurb: >-
       The largest pre-Columbian city north of Mexico, around 1050–1350 CE.
       Monks Mound is the biggest earthwork in the Americas north of Mexico.
+    about: >-
+      From about 1050 to 1350 CE, Cahokia was the largest city north of Mexico, home
+      at its peak to perhaps 10,000 to 15,000 people. Monks Mound is about 30 m tall
+      and covers 14 acres, all of it carried up by hand in baskets of earth, with a
+      large building once on top. Around it were more than a hundred other mounds, a
+      great plaza, and 'Woodhenge,' rings of tall posts used to track the sun. It's
+      a state historic site and a UNESCO World Heritage Site, just across the
+      Mississippi from St. Louis.
+    links:
+      - {name: "Wikipedia", url: https://en.wikipedia.org/wiki/Cahokia}
+      - {name: "Cahokia Mounds", url: https://cahokiamounds.org/}
+      - {name: "UNESCO", url: https://whc.unesco.org/en/list/198}
     features:
       - {name: Monks Mound, short: 30 m high, lat: 38.6604, lon: -90.0620}
 
@@ -163,6 +233,17 @@ sites:
       A 411 m effigy of a serpent along a ridge above Brush Creek, about a
       metre high. Who built it, the Adena around 300 BCE or the Fort Ancient
       people around 1070 CE, is still argued.
+    about: >-
+      The largest serpent effigy in the world: a low, winding mound 411 m long, with
+      an oval at its head and a coiled tail, on a ridge above Brush Creek. Who built
+      it, and when, is still argued over: some dates point to the Adena culture
+      around 300 BCE, others to the Fort Ancient culture around 1070 CE. The head
+      lines up with the summer-solstice sunset. The ridge it's on sits inside the
+      Serpent Mound crater, an old structure about 14 km across that was probably
+      made by a meteorite impact hundreds of millions of years ago. The Ohio History
+      Connection runs the site, with a path all the way around and a viewing tower.
+    links:
+      - {name: "Wikipedia", url: https://en.wikipedia.org/wiki/Serpent_Mound}
     features:
       - {name: Serpent's head, short: and the oval, lat: 39.02642, lon: -83.43103}
       - {name: Coiled tail, lat: 39.02520, lon: -83.43065}
@@ -184,6 +265,19 @@ sites:
     blurb: >-
       Six concentric earthen ridges and a giant bird-shaped mound, built
       about 1700–1100 BCE by hunter-gatherers. A UNESCO World Heritage Site.
+    about: >-
+      About 3,500 years ago, people who lived by hunting, fishing and gathering, not
+      farming, built one of the largest earthwork complexes in North America here:
+      six C-shaped ridges more than a kilometre across, curving around a plaza by
+      the bayou. Mound A, 22 m high, seems to have gone up in less than three
+      months, which means a great many people working together. Copper from the
+      Great Lakes and soapstone from the Appalachians turn up here, so people came
+      from far away. It's a state historic site and national monument, and in 2014
+      it became Louisiana's first World Heritage Site.
+    links:
+      - {name: "Wikipedia", url: https://en.wikipedia.org/wiki/Poverty_Point}
+      - {name: "Poverty Point NM (NPS)", url: https://www.nps.gov/popo/}
+      - {name: "UNESCO", url: https://whc.unesco.org/en/list/1435}
     features:
       - {name: Mound A, short: 22 m high, lat: 32.63556, lon: -91.41104}
       - {name: Mound B, short: the first earthwork, lat: 32.64106, lon: -91.41022}
@@ -207,6 +301,18 @@ sites:
       The grounds of the 1849 US Army post, later Western State Hospital, in
       Lakewood. Old field boundaries, terraces and tracks survive under the
       grass.
+    about: >-
+      The US Army built Fort Steilacoom in 1849 on Nisqually land, on a farm the
+      Hudson's Bay Company had been running, after a clash at nearby Fort Nisqually
+      that spring. It was the Army's headquarters in the Puget Sound War of 1855-56,
+      and the Nisqually leader Leschi was hanged nearby in 1858; a historical court
+      cleared his name in 2004. In 1871 the old post became the territory's asylum,
+      today's Western State Hospital. Four of the officers' cottages still stand as
+      a small museum, and much of the open ground around them is Fort Steilacoom
+      Park.
+    links:
+      - {name: "Wikipedia", url: https://en.wikipedia.org/wiki/Fort_Steilacoom}
+      - {name: "Historic Fort Steilacoom", url: http://www.historicfortsteilacoom.org/}
     features: []
 
   newark:
@@ -226,7 +332,19 @@ sites:
     blurb: >-
       Geometric earthworks built by the Hopewell culture about 2,000 years ago:
       an octagon joined to a circle, and the Great Circle. Part of a UNESCO
-      World Heritage listing since 2023. The Octagon is also a golf course.
+      World Heritage listing since 2023.
+    about: >-
+      The Hopewell culture built these between about 100 BCE and 400 CE: the largest
+      set of geometric earthworks in the world, once spread over several square
+      kilometres where the city now stands. The Octagon is lined up with the moon's
+      18.6-year cycle and tracks its rising and setting points more precisely than
+      Stonehenge does. The Great Circle is about 365 m across, with walls 2.4 m high
+      above an inner ditch. Since 2023 they've been part of the Hopewell Ceremonial
+      Earthworks World Heritage Site, and at the start of 2025 the golf club that
+      had leased the Octagon since 1910 moved out.
+    links:
+      - {name: "Wikipedia", url: https://en.wikipedia.org/wiki/Newark_Earthworks}
+      - {name: "UNESCO", url: https://whc.unesco.org/en/list/1689}
     features:
       - {name: Octagon, short: and Observatory Circle, lat: 40.05478, lon: -82.44418}
       - {name: Great Circle, short: 360 m across, lat: 40.04108, lon: -82.43125}

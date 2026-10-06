@@ -95,5 +95,12 @@
   "photo.jpg"
  ],
  "video": "orbit.mp4",
- "poster": "orbit.jpg"
+ "poster": "orbit.jpg",
+ "about": "The largest serpent effigy in the world: a low, winding mound 411 m long, with an oval at its head and a coiled tail, on a ridge above Brush Creek. Who built it, and when, is still argued over: some dates point to the Adena culture around 300 BCE, others to the Fort Ancient culture around 1070 CE. The head lines up with the summer-solstice sunset. The ridge it's on sits inside the Serpent Mound crater, an old structure about 14 km across that was probably made by a meteorite impact hundreds of millions of years ago. The Ohio History Connection runs the site, with a path all the way around and a viewing tower.",
+ "links": [
+  {
+   "name": "Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Serpent_Mound"
+  }
+ ]
 }

@@ -96,5 +96,20 @@
   "photo.jpg"
  ],
  "video": "orbit.mp4",
- "poster": "orbit.jpg"
+ "poster": "orbit.jpg",
+ "about": "Despite the name, the Aztecs had nothing to do with it: 19th-century settlers guessed wrong, and the name stuck. Ancestral Puebloan people built it in the 1100s and 1200s as a great house in the Chaco style, about 90 km north of the canyon. The West Ruin is unusually well preserved, with some original roof timbers still in place, and the Great Kiva in its plaza was rebuilt in the 1930s so you can walk inside one. It's part of the Chaco Culture World Heritage Site.",
+ "links": [
+  {
+   "name": "Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Aztec_Ruins_National_Monument"
+  },
+  {
+   "name": "Aztec Ruins NM (NPS)",
+   "url": "https://www.nps.gov/azru/"
+  },
+  {
+   "name": "UNESCO",
+   "url": "https://whc.unesco.org/en/list/353"
+  }
+ ]
 }

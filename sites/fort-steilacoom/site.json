@@ -83,5 +83,16 @@
   "photo.jpg"
  ],
  "video": "orbit.mp4",
- "poster": "orbit.jpg"
+ "poster": "orbit.jpg",
+ "about": "The US Army built Fort Steilacoom in 1849 on Nisqually land, on a farm the Hudson's Bay Company had been running, after a clash at nearby Fort Nisqually that spring. It was the Army's headquarters in the Puget Sound War of 1855-56, and the Nisqually leader Leschi was hanged nearby in 1858; a historical court cleared his name in 2004. In 1871 the old post became the territory's asylum, today's Western State Hospital. Four of the officers' cottages still stand as a small museum, and much of the open ground around them is Fort Steilacoom Park.",
+ "links": [
+  {
+   "name": "Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Fort_Steilacoom"
+  },
+  {
+   "name": "Historic Fort Steilacoom",
+   "url": "http://www.historicfortsteilacoom.org/"
+  }
+ ]
 }

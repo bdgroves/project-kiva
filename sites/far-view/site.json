@@ -96,5 +96,20 @@
   "photo.jpg"
  ],
  "video": "orbit.mp4",
- "poster": "orbit.jpg"
+ "poster": "orbit.jpg",
+ "about": "Before the famous cliff dwellings, most people at Mesa Verde lived up on the mesa tops, and Far View was one of the busiest neighbourhoods: dozens of small villages farmed here between about 900 and 1300 CE. Mummy Lake, the big ring near the middle, was long called a reservoir; a 2014 study argued it was more likely an open-air plaza for gatherings, and the debate goes on. Mesa Verde is a national park and a World Heritage Site, and the Far View sites are a short walk from the main park road.",
+ "links": [
+  {
+   "name": "Mesa Verde on Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Mesa_Verde_National_Park"
+  },
+  {
+   "name": "Mesa Verde NP (NPS)",
+   "url": "https://www.nps.gov/meve/"
+  },
+  {
+   "name": "Mummy Lake (Smithsonian)",
+   "url": "https://www.smithsonianmag.com/smart-news/ancient-structure-mesa-verde-used-ritual-not-reservoir-180951351/"
+  }
+ ]
 }

@@ -96,5 +96,12 @@
   "photo.jpg"
  ],
  "video": "orbit.mp4",
- "poster": "orbit.jpg"
+ "poster": "orbit.jpg",
+ "about": "The Hohokam farmed the Salt River valley for about a thousand years, and this village was lived in from around 450 to 1450 CE. By hand, they dug hundreds of miles of irrigation canals, and the longest one starting near here ran more than 25 km toward today's Glendale. Some of Phoenix's modern canals still follow their lines. In 2023 the city's museum here was renamed S'edav Va'aki, O'odham for 'central platform mound,' honouring the O'odham communities who count the Hohokam among their ancestors. A trail goes past the mound and a reconstructed ball court.",
+ "links": [
+  {
+   "name": "Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Pueblo_Grande_Ruin_and_Irrigation_Sites"
+  }
+ ]
 }

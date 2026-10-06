@@ -90,5 +90,20 @@
   "photo.jpg"
  ],
  "video": "orbit.mp4",
- "poster": "orbit.jpg"
+ "poster": "orbit.jpg",
+ "about": "From about 1050 to 1350 CE, Cahokia was the largest city north of Mexico, home at its peak to perhaps 10,000 to 15,000 people. Monks Mound is about 30 m tall and covers 14 acres, all of it carried up by hand in baskets of earth, with a large building once on top. Around it were more than a hundred other mounds, a great plaza, and 'Woodhenge,' rings of tall posts used to track the sun. It's a state historic site and a UNESCO World Heritage Site, just across the Mississippi from St. Louis.",
+ "links": [
+  {
+   "name": "Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Cahokia"
+  },
+  {
+   "name": "Cahokia Mounds",
+   "url": "https://cahokiamounds.org/"
+  },
+  {
+   "name": "UNESCO",
+   "url": "https://whc.unesco.org/en/list/198"
+  }
+ ]
 }

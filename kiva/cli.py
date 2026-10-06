@@ -112,6 +112,8 @@ def build(sid, refetch):
     info = {
         "id": sid, "name": site["name"], "place": site["place"], "region": site.get("region"),
         "blurb": " ".join(site.get("blurb", "").split()),
+        "about": " ".join(site.get("about", "").split()),
+        "links": site.get("links", []),
         "center": site["center"], "res_m": site["res"], "crs": site["crs"],
         "size_m": site["size_m"], "source": prov["source"], "project": prov["project"],
         "ground_points": prov["ground_points"],

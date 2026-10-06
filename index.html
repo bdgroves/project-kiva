@@ -66,6 +66,10 @@ aside{border-left:1px solid var(--seam);overflow-y:auto;padding:26px 26px 40px}
 aside h1{font-family:var(--ui);font-stretch:110%;font-weight:800;font-size:34px;line-height:1.05;letter-spacing:-.005em}
 aside .place{color:var(--lichen);font-style:italic;margin:6px 0 16px}
 aside p{margin-bottom:14px}
+.about{margin:20px 0 22px;padding-top:14px;border-top:1px solid var(--seam)}
+.about h2{font-family:var(--ui);font-stretch:85%;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--lichen);margin-bottom:8px}
+.about .more{font-family:var(--ui);font-stretch:85%;font-size:15px;display:flex;flex-wrap:wrap;gap:4px 16px;margin:0}
+.about .more a::after{content:" \2197";color:var(--ochre);text-decoration:none;display:inline-block;margin-left:2px}
 .figures{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;margin:18px 0 22px;font-size:15px}
 .figures dt{font-family:var(--ui);font-stretch:80%;font-weight:600;color:var(--lichen)}
 .figures dd{font-variant-numeric:tabular-nums}
@@ -300,6 +304,10 @@ document.addEventListener("keydown", e => {
   e.stopPropagation();
 }, true);
 
+function esc(t) {
+  return String(t).replace(/[&<>"']/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[c]));
+}
+
 function panel() {
   const s = site;
   const pts = s.ground_points ? fmt(s.ground_points) : "–";
@@ -309,6 +317,8 @@ function panel() {
     <p>${s.blurb || ""}</p>
     <div class="render" id="render"></div>
     <div class="render-tabs" id="rtabs" aria-label="3D render"></div>
+    ${s.about ? `<section class="about" aria-label="About the place"><h2>About the place</h2><p>${esc(s.about)}</p>
+      ${(s.links || []).length ? `<p class="more"><span style="color:var(--lichen)">Read more:</span>${s.links.map(l => `<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.name)}</a>`).join("")}</p>` : ""}</section>` : ""}
     <dl class="figures">
       <dt>Ground returns</dt><dd>${pts} (${s.ground_density} per m²)</dd>
       <dt>Grid</dt><dd>${s.res_m} m, ${fmt(s.size_m[0])} × ${fmt(s.size_m[1])} m</dd>

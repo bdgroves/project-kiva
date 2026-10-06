@@ -102,5 +102,20 @@
   "photo.jpg"
  ],
  "video": "orbit.mp4",
- "poster": "orbit.jpg"
+ "poster": "orbit.jpg",
+ "about": "About 3,500 years ago, people who lived by hunting, fishing and gathering, not farming, built one of the largest earthwork complexes in North America here: six C-shaped ridges more than a kilometre across, curving around a plaza by the bayou. Mound A, 22 m high, seems to have gone up in less than three months, which means a great many people working together. Copper from the Great Lakes and soapstone from the Appalachians turn up here, so people came from far away. It's a state historic site and national monument, and in 2014 it became Louisiana's first World Heritage Site.",
+ "links": [
+  {
+   "name": "Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Poverty_Point"
+  },
+  {
+   "name": "Poverty Point NM (NPS)",
+   "url": "https://www.nps.gov/popo/"
+  },
+  {
+   "name": "UNESCO",
+   "url": "https://whc.unesco.org/en/list/1435"
+  }
+ ]
 }

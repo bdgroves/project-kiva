@@ -96,5 +96,12 @@
   "photo.jpg"
  ],
  "video": "orbit.mp4",
- "poster": "orbit.jpg"
+ "poster": "orbit.jpg",
+ "about": "The highest of all the Chacoan great houses, on a narrow ridge far above the Piedra River valley, beside two pinnacles called Chimney Rock and Companion Rock. Tree rings date its building to 1076 and an expansion to 1093. Both were years of a major lunar standstill, which comes every 18.6 years, when the moon seen from the great house rises between the two pinnacles. The most recent one was in 2024 and 2025. It became a national monument in 2012 and is run by the US Forest Service, with guided tours in the warmer months.",
+ "links": [
+  {
+   "name": "Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Chimney_Rock_National_Monument"
+  }
+ ]
 }
