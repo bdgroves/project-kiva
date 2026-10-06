@@ -348,3 +348,70 @@ sites:
     features:
       - {name: Octagon, short: and Observatory Circle, lat: 40.05478, lon: -82.44418}
       - {name: Great Circle, short: 360 m across, lat: 40.04108, lon: -82.43125}
+
+  devils-lake-birdman:
+    name: Devil's Lake Birdman
+    place: Devil's Lake State Park, Wisconsin
+    region: midwest
+    source: ept
+    project: WI_8County_Sauk_2020
+    center: [43.41206, -89.72506]
+    size_m: [600, 460]
+    res: 0.5
+    crs: EPSG:26916
+    zscale: 3.0
+    view_az: 200
+    sun_az: 300
+    sun_el: 18
+    blurb: >-
+      A winged effigy mound on the south shore of Devil's Lake, about 65 m
+      from wingtip to wingtip, built by Late Woodland people roughly 700–1100
+      CE. Under the trees it's hard to make out; the lidar shows the whole
+      figure.
+    about: >-
+      Between about 700 and 1100 CE, Late Woodland people in what is now southern
+      Wisconsin built thousands of low earthen mounds, many of them in the shapes
+      of birds, bears, panthers and other animals: effigy mounds, found almost
+      nowhere else in the world. This one spreads its wings at the eastern edge of
+      the south-shore picnic area, and has been read as a bird, a thunderbird, or
+      a person with wings. More mounds sit around the lake, a lynx among them. The
+      Ho-Chunk, whose ancestors built them, still hold the lake and its mounds
+      sacred, so they're for looking at, not walking on.
+    links:
+      - {name: "Effigy mounds on Wikipedia", url: https://en.wikipedia.org/wiki/Effigy_mound}
+      - {name: "Devil's Lake State Park on Wikipedia", url: "https://en.wikipedia.org/wiki/Devil%27s_Lake_State_Park_(Wisconsin)"}
+      - {name: "Honoring sacred space", url: https://devilslakewisconsin.com/2019/07/24/honoring-sacred-space/}
+    features:
+      - {name: Birdman, short: winged effigy, lat: 43.41206, lon: -89.72506}
+
+  heim-mound:
+    name: Heim Fox Mound
+    place: Middleton, Wisconsin
+    region: midwest
+    source: ept
+    project: WI_DaneCo_2017
+    center: [43.09408, -89.48952]
+    size_m: [420, 340]
+    res: 0.5
+    crs: EPSG:26916
+    zscale: 3.0
+    view_az: 200
+    sun_az: 300
+    sun_el: 18
+    blurb: >-
+      A fox or wolf effigy about 30 m long, built around 750–1000 CE, now
+      under the trees of a Middleton neighbourhood near Lake Mendota.
+    about: >-
+      Charles E. Brown, who spent his life recording Wisconsin's mounds, mapped
+      this one in 1915. In 1937 the landowner, Ferdinand Heim, gave it to the
+      Wisconsin Archeological Society, which still looks after it, and it was
+      listed on the National Register of Historic Places in 2004. The country
+      around Madison's lakes once held well over a thousand mounds, and most were
+      ploughed under or built over, so an animal still lying intact between the
+      houses is a rare thing. It's one of the stops on Middleton's historic tour.
+    links:
+      - {name: "Wikipedia", url: https://en.wikipedia.org/wiki/Heim_Mound}
+      - {name: "Wisconsin Archeological Society", url: https://wiarcheologicalsociety.org/heim-mound}
+      - {name: "Visit Middleton", url: https://visitmiddleton.com/location/heim-effigy-mound/}
+    features:
+      - {name: Fox effigy, short: Heim Mound, lat: 43.09408, lon: -89.48952}

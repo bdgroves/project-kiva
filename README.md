@@ -43,7 +43,7 @@ forget.
 *Serpent Mound, Ohio: 2.3 million ground returns, gridded at half a metre and
 draped with the relief composite, lit by forge3d from a low north-west sun.*
 
-Ten places, each a window of bare-earth lidar streamed from the USGS 3DEP
+Twelve places, each a window of bare-earth lidar streamed from the USGS 3DEP
 archive and run through the same pipeline. On the web page you drag a line
 across the aerial photo to reveal the ground beneath it, switch between five
 ways of looking at relief, and see the site turned in 3D.
@@ -60,6 +60,8 @@ ways of looking at relief, and see the site turned in 3D.
 | **Newark Earthworks** | Newark, OH | The Octagon and the Great Circle, 2,000-year-old geometry |
 | **Poverty Point** | West Carroll Parish, LA | Six concentric ridges, Mound A and Mound B |
 | **Fort Steilacoom** | Lakewood, WA | Field boundaries and tracks of the 1849 Army post |
+| **Devil's Lake Birdman** | Baraboo, WI | A winged effigy mound under the trees of the south shore |
+| **Heim Fox Mound** | Middleton, WI | A fox effigy surviving between the houses |
 
 Every pin on the map was checked against the lidar itself, not just copied
 from a gazetteer (see *Checking the pins*, below).
@@ -205,7 +207,7 @@ aws s3 ls --no-sign-request s3://usgs-lidar-public/
 
 PDAL's `readers.ept` walks the octree and pulls only the nodes intersecting a
 bounding box. Same range-request idea as a COG, applied to points instead of
-pixels. You never download the project. This is now how nine of the ten atlas
+pixels. You never download the project. This is now how eleven of the twelve atlas
 sites are built.
 
 Every project publishes an `ept.json` with a point count and bounds, so density
