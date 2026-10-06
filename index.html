@@ -7,7 +7,7 @@
 <meta name="description" content="Bare-earth lidar of twelve archaeological places in the United States, from Chaco Canyon to Cahokia and the Wisconsin effigy mounds. Drag the line to peel the aerial photo back to the ground underneath.">
 <meta property="og:title" content="Project Kiva">
 <meta property="og:description" content="Drag the line to peel the aerial photo back to the ground underneath: bare-earth lidar of twelve archaeological places.">
-<meta property="og:image" content="https://brooksgroves.com/project-kiva/sites/cahokia/relief.jpg">
+<meta property="og:image" content="https://brooksgroves.com/project-kiva/sites/serpent-mound/relief.jpg">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='none' stroke='%23d4a03a' stroke-width='10'/><circle cx='50' cy='50' r='14' fill='%23d4a03a'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -364,7 +364,7 @@ fetch("sites.json").then(r => r.json()).then(list => {
     nav.appendChild(b);
   });
   const want = location.hash.slice(1);
-  choose(list.find(s => s.id === want) ? want : (list.find(s => s.id === "pueblo-bonito") || list[0]).id, false);
+  choose(list.find(s => s.id === want) ? want : (list.find(s => s.id === "serpent-mound") || list[0]).id, false);
 }).catch(() => {
   document.getElementById("panel").innerHTML = "<h1>No sites yet</h1><p>The site list didn't load. Run the Build sites workflow, or <code>pixi run kiva all &lt;site&gt;</code> locally, then reload.</p>";
 });
