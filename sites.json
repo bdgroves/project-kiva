@@ -178,5 +178,41 @@
    "photo.jpg"
   ],
   "video": "orbit.mp4"
+ },
+ {
+  "id": "devils-lake-birdman",
+  "name": "Devil's Lake Birdman",
+  "place": "Devil's Lake State Park, Wisconsin",
+  "region": "midwest",
+  "center": [
+   43.41206,
+   -89.72506
+  ],
+  "blurb": "A winged effigy mound on the south shore of Devil's Lake, about 65 m from wingtip to wingtip, built by Late Woodland people roughly 700–1100 CE. Under the trees it's hard to make out; the lidar shows the whole figure.",
+  "res_m": 0.5,
+  "ground_density": 2.4,
+  "stills": [
+   "relief.jpg",
+   "photo.jpg"
+  ],
+  "video": "orbit.mp4"
+ },
+ {
+  "id": "heim-mound",
+  "name": "Heim Fox Mound",
+  "place": "Middleton, Wisconsin",
+  "region": "midwest",
+  "center": [
+   43.09408,
+   -89.48952
+  ],
+  "blurb": "A fox or wolf effigy about 30 m long, built around 750–1000 CE, now under the trees of a Middleton neighbourhood near Lake Mendota.",
+  "res_m": 0.5,
+  "ground_density": 4.47,
+  "stills": [
+   "relief.jpg",
+   "photo.jpg"
+  ],
+  "video": "orbit.mp4"
  }
 ]

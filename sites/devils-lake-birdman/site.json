@@ -1,0 +1,109 @@
+{
+ "id": "devils-lake-birdman",
+ "name": "Devil's Lake Birdman",
+ "place": "Devil's Lake State Park, Wisconsin",
+ "region": "midwest",
+ "blurb": "A winged effigy mound on the south shore of Devil's Lake, about 65 m from wingtip to wingtip, built by Late Woodland people roughly 700–1100 CE. Under the trees it's hard to make out; the lidar shows the whole figure.",
+ "about": "Between about 700 and 1100 CE, Late Woodland people in what is now southern Wisconsin built thousands of low earthen mounds, many of them in the shapes of birds, bears, panthers and other animals: effigy mounds, found almost nowhere else in the world. This one spreads its wings at the eastern edge of the south-shore picnic area, and has been read as a bird, a thunderbird, or a person with wings. More mounds sit around the lake, a lynx among them. The Ho-Chunk, whose ancestors built them, still hold the lake and its mounds sacred, so they're for looking at, not walking on.",
+ "links": [
+  {
+   "name": "Effigy mounds on Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Effigy_mound"
+  },
+  {
+   "name": "Devil's Lake State Park on Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Devil%27s_Lake_State_Park_(Wisconsin)"
+  },
+  {
+   "name": "Honoring sacred space",
+   "url": "https://devilslakewisconsin.com/2019/07/24/honoring-sacred-space/"
+  }
+ ],
+ "center": [
+  43.41206,
+  -89.72506
+ ],
+ "res_m": 0.5,
+ "crs": "EPSG:26916",
+ "size_m": [
+  600,
+  460
+ ],
+ "source": "USGS 3DEP point cloud (EPT on AWS)",
+ "project": "WI_8County_Sauk_2020",
+ "ground_points": 661076,
+ "ground_density": 2.4,
+ "coverage": 0.6376,
+ "elev_m": [
+  293.8,
+  403.3
+ ],
+ "features": [
+  {
+   "name": "Birdman",
+   "short": "winged effigy",
+   "lat": 43.41206,
+   "lon": -89.72506
+  }
+ ],
+ "highest": [
+  [
+   43.414196,
+   -89.721898,
+   403.3
+  ],
+  [
+   43.4142,
+   -89.721911,
+   403.3
+  ],
+  [
+   43.414185,
+   -89.72254,
+   398.1
+  ]
+ ],
+ "bounds": [
+  [
+   43.409899025963554,
+   -89.72885403250201
+  ],
+  [
+   43.41421294383002,
+   -89.72126558328067
+  ]
+ ],
+ "layers": {
+  "composite": {
+   "file": "composite.webp",
+   "label": "Relief composite (after VAT)"
+  },
+  "multi_hillshade": {
+   "file": "multi_hillshade.webp",
+   "label": "Hillshade, 16 directions"
+  },
+  "lrm": {
+   "file": "lrm.webp",
+   "label": "Local relief, ±1.74 m"
+  },
+  "svf": {
+   "file": "svf.webp",
+   "label": "Sky-view factor"
+  },
+  "neg_openness": {
+   "file": "neg_openness.webp",
+   "label": "Negative openness"
+  }
+ },
+ "lrm_clip_m": 1.74,
+ "photo": {
+  "source": "USDA NAIP",
+  "year": 2022
+ },
+ "stills": [
+  "relief.jpg",
+  "photo.jpg"
+ ],
+ "video": "orbit.mp4",
+ "poster": "orbit.jpg"
+}
