@@ -185,12 +185,12 @@
   "place": "Devil's Lake State Park, Wisconsin",
   "region": "midwest",
   "center": [
-   43.41206,
-   -89.72506
+   43.41188,
+   -89.72444
   ],
   "blurb": "A winged effigy mound on the south shore of Devil's Lake, about 65 m from wingtip to wingtip, built by Late Woodland people roughly 700–1100 CE. Under the trees it's hard to make out; the lidar shows the whole figure.",
   "res_m": 0.5,
-  "ground_density": 2.4,
+  "ground_density": 3.76,
   "stills": [
    "relief.jpg",
    "photo.jpg"
@@ -208,7 +208,7 @@
   ],
   "blurb": "A fox or wolf effigy about 30 m long, built around 750–1000 CE, now under the trees of a Middleton neighbourhood near Lake Mendota.",
   "res_m": 0.5,
-  "ground_density": 4.47,
+  "ground_density": 6.49,
   "stills": [
    "relief.jpg",
    "photo.jpg"
