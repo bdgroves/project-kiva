@@ -32,7 +32,7 @@
  "source": "USGS 3DEP point cloud (EPT on AWS)",
  "project": "WI_DaneCo_2017",
  "ground_points": 207559,
- "ground_density": 6.49,
+ "ground_density": 4.32,
  "coverage": 0.9848,
  "elev_m": [
   258.8,

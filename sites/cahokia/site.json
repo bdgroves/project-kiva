@@ -17,7 +17,7 @@
  "source": "USGS 3DEP point cloud (EPT on AWS)",
  "project": "USGS_LPC_IL_MadisonCo_2014_LAS_2016",
  "ground_points": 5155870,
- "ground_density": 0.9,
+ "ground_density": 0.87,
  "coverage": 0.9684,
  "elev_m": [
   121.6,

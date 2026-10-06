@@ -17,7 +17,7 @@
  "source": "USGS 3DEP point cloud (EPT on AWS)",
  "project": "OH_Statewide_Phase2_4_2020",
  "ground_points": 33170334,
- "ground_density": 6.56,
+ "ground_density": 6.33,
  "coverage": 0.9855,
  "elev_m": [
   251.5,

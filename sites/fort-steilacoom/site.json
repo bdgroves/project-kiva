@@ -17,7 +17,7 @@
  "source": "USGS 3DEP point cloud (EPT on AWS)",
  "project": "WA_PierceCounty_1_2020",
  "ground_points": 8532286,
- "ground_density": 5.93,
+ "ground_density": 5.55,
  "coverage": 0.9774,
  "elev_m": [
   53.8,

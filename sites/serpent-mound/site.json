@@ -17,7 +17,7 @@
  "source": "USGS 3DEP point cloud (EPT on AWS)",
  "project": "OH_StatewideP3_2_B21",
  "ground_points": 2287450,
- "ground_density": 7.86,
+ "ground_density": 6.81,
  "coverage": 0.9549,
  "elev_m": [
   202.9,

@@ -17,7 +17,7 @@
  "source": "USGS 3DEP point cloud (EPT on AWS)",
  "project": "AZ_MaricopaPinal_1_2020",
  "ground_points": 7504670,
- "ground_density": 10.42,
+ "ground_density": 9.5,
  "coverage": 0.9429,
  "elev_m": [
   337.9,

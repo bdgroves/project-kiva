@@ -10,7 +10,7 @@
   ],
   "blurb": "The great house at the centre of the Chacoan world, built in stages from about 850 to 1150 CE. The polished USGS elevation model has a hole over the canyon core; a 2024 gap-fill lidar tile does not.",
   "res_m": 0.5,
-  "ground_density": 14.55,
+  "ground_density": 13.8,
   "stills": [
    "relief.jpg",
    "photo.jpg"
@@ -28,7 +28,7 @@
   ],
   "blurb": "A Chacoan great house on the Animas River, built in the 1100s, with a great kiva rebuilt by Earl Morris in the 1930s.",
   "res_m": 1.0,
-  "ground_density": 2.4,
+  "ground_density": 2.22,
   "stills": [
    "relief.jpg",
    "photo.jpg"
@@ -46,7 +46,7 @@
   ],
   "blurb": "The mesa-top villages above the cliff dwellings. Lidar can't see under an overhang, so Cliff Palace isn't here, but the farmhouses, check dams and the big round depression called Mummy Lake are.",
   "res_m": 1.0,
-  "ground_density": 5.1,
+  "ground_density": 4.83,
   "stills": [
    "relief.jpg",
    "photo.jpg"
@@ -64,7 +64,7 @@
   ],
   "blurb": "A Chacoan great house on a high ridge beside two rock pinnacles. Its timbers were cut in 1076 and 1093, both years of a major lunar standstill, when the Moon rises between the pinnacles.",
   "res_m": 1.0,
-  "ground_density": 3.49,
+  "ground_density": 3.27,
   "stills": [
    "relief.jpg",
    "photo.jpg"
@@ -82,7 +82,7 @@
   ],
   "blurb": "A Hohokam platform mound at the head of one of the largest canal systems in pre-contact North America, now surrounded by Phoenix and its airport.",
   "res_m": 0.5,
-  "ground_density": 10.42,
+  "ground_density": 9.5,
   "stills": [
    "relief.jpg",
    "photo.jpg"
@@ -100,7 +100,7 @@
   ],
   "blurb": "The largest pre-Columbian city north of Mexico, around 1050–1350 CE. Monks Mound is the biggest earthwork in the Americas north of Mexico.",
   "res_m": 1.0,
-  "ground_density": 0.9,
+  "ground_density": 0.87,
   "stills": [
    "relief.jpg",
    "photo.jpg"
@@ -118,7 +118,7 @@
   ],
   "blurb": "A 411 m effigy of a serpent along a ridge above Brush Creek, about a metre high. Who built it, the Adena around 300 BCE or the Fort Ancient people around 1070 CE, is still argued.",
   "res_m": 0.5,
-  "ground_density": 7.86,
+  "ground_density": 6.81,
   "stills": [
    "relief.jpg",
    "photo.jpg"
@@ -136,7 +136,7 @@
   ],
   "blurb": "Six concentric earthen ridges and a giant bird-shaped mound, built about 1700–1100 BCE by hunter-gatherers. A UNESCO World Heritage Site.",
   "res_m": 1.0,
-  "ground_density": 6.61,
+  "ground_density": 6.4,
   "stills": [
    "relief.jpg",
    "photo.jpg"
@@ -154,7 +154,7 @@
   ],
   "blurb": "The grounds of the 1849 US Army post, later Western State Hospital, in Lakewood. Old field boundaries, terraces and tracks survive under the grass.",
   "res_m": 0.5,
-  "ground_density": 5.93,
+  "ground_density": 5.55,
   "stills": [
    "relief.jpg",
    "photo.jpg"
@@ -172,7 +172,7 @@
   ],
   "blurb": "Geometric earthworks built by the Hopewell culture about 2,000 years ago: an octagon joined to a circle, and the Great Circle. Part of a UNESCO World Heritage listing since 2023.",
   "res_m": 1.0,
-  "ground_density": 6.56,
+  "ground_density": 6.33,
   "stills": [
    "relief.jpg",
    "photo.jpg"
@@ -190,7 +190,7 @@
   ],
   "blurb": "A winged effigy mound on the south shore of Devil's Lake, about 65 m from wingtip to wingtip, built by Late Woodland people roughly 700–1100 CE. Under the trees it's hard to make out; the lidar shows the whole figure.",
   "res_m": 0.5,
-  "ground_density": 3.76,
+  "ground_density": 2.74,
   "stills": [
    "relief.jpg",
    "photo.jpg"
@@ -208,7 +208,7 @@
   ],
   "blurb": "A fox or wolf effigy about 30 m long, built around 750–1000 CE, now under the trees of a Middleton neighbourhood near Lake Mendota.",
   "res_m": 0.5,
-  "ground_density": 6.49,
+  "ground_density": 4.32,
   "stills": [
    "relief.jpg",
    "photo.jpg"

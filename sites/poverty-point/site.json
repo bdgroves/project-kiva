@@ -17,7 +17,7 @@
  "source": "USGS 3DEP point cloud (EPT on AWS)",
  "project": "LA_NortheastDOTD_2_2017",
  "ground_points": 41244246,
- "ground_density": 6.61,
+ "ground_density": 6.4,
  "coverage": 0.9878,
  "elev_m": [
   17.5,

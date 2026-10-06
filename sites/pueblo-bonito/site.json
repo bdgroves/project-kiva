@@ -17,7 +17,7 @@
  "source": "USGS 3DEP point-cloud tiles (The National Map)",
  "project": "CO_CONMGaps_D24",
  "ground_points": 32588118,
- "ground_density": 14.55,
+ "ground_density": 13.8,
  "coverage": 0.9998,
  "elev_m": [
   1857.6,

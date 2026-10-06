@@ -32,7 +32,7 @@
  "source": "USGS 3DEP point cloud (EPT on AWS)",
  "project": "WI_8County_Sauk_2020",
  "ground_points": 210697,
- "ground_density": 3.76,
+ "ground_density": 2.74,
  "coverage": 0.858,
  "elev_m": [
   293.8,

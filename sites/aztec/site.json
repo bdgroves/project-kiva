@@ -17,7 +17,7 @@
  "source": "USGS 3DEP point cloud (EPT on AWS)",
  "project": "USGS_LPC_NM_Animas_2014_LAS_2017",
  "ground_points": 2378096,
- "ground_density": 2.4,
+ "ground_density": 2.22,
  "coverage": 0.9691,
  "elev_m": [
   1708.1,

@@ -107,7 +107,9 @@ def build(sid, refetch):
     meta = web.export(prods, prof, out)
 
     peaks = highest(dtm, prof, site["res"])
-    area = dtm.size * site["res"] ** 2
+    # points are cropped 20 m outside the window (fetch._ground_stages), so count them over that area
+    pad = 2 * 20.0
+    area = (site["size_m"][0] + pad) * (site["size_m"][1] + pad)
     zf = dtm[np.isfinite(dtm)]
     info = {
         "id": sid, "name": site["name"], "place": site["place"], "region": site.get("region"),

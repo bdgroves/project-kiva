@@ -17,7 +17,7 @@
  "source": "USGS 3DEP point cloud (EPT on AWS)",
  "project": "CO_Southwest_NRCS_B1_2018",
  "ground_points": 10712384,
- "ground_density": 5.1,
+ "ground_density": 4.83,
  "coverage": 1.0,
  "elev_m": [
   2144.5,
