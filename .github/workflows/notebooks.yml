@@ -41,6 +41,8 @@ jobs:
           echo "OUT=notebooks/$out" >> "$GITHUB_ENV"
           xvfb-run -a -s "-screen 0 1920x1080x24" pixi run -e notebook jupyter nbconvert --execute --to notebook \
             --ExecutePreprocessor.timeout=3600 --output "$out" notebooks/kiva.ipynb 2>&1 | grep -v "PDAL Error" | tee run.log
+          # PDAL complains about two HDF plugins it can't load (harmless); keep that out of the notebook
+          python3 -c "import json,sys; p=sys.argv[1]; nb=json.load(open(p)); [c.__setitem__('outputs',[o for o in c.get('outputs',[]) if not (o.get('output_type')=='stream' and 'PDAL Error' in ''.join(o.get('text','')))]) for c in nb['cells'] if c['cell_type']=='code']; json.dump(nb,open(p,'w'),indent=1,ensure_ascii=False)" "notebooks/$out"
       - name: Push the log when it fails
         if: failure()
         env:

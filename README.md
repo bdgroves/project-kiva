@@ -453,6 +453,12 @@ Collected from things that went wrong here, so they don't have to go wrong again
 
 ---
 
+## The notebook
+
+**[notebooks/kiva.ipynb](notebooks/kiva.ipynb)** walks one site from laser points to the forge3d block with the same `kiva/` code: the window and the EPSG:3857 trap, streaming ground returns into a bare-earth DTM, all six relief views side by side, a transect showing why the local relief model makes a metre-high mound stand out, the pin check, NAIP, and the block from four sides. It's committed with its outputs (Serpent Mound), so it reads on GitHub without running anything.
+
+`pixi run -e notebook notebooks` opens it in Jupyter Lab. Or run **Actions → Run notebooks** with any site id: Serpent Mound updates `notebooks/kiva.ipynb`, and any other site is saved as `notebooks/kiva-<site>.ipynb`.
+
 ## Run it
 
 ```powershell
