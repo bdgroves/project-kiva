@@ -1,0 +1,60 @@
+name: Run notebooks
+
+# Executes notebooks/kiva.ipynb on GitHub's CPUs (it streams lidar from AWS and
+# NAIP from the Planetary Computer, and renders with forge3d under Mesa's
+# software Vulkan) and commits it back with its outputs. The default site
+# overwrites notebooks/kiva.ipynb; any other writes notebooks/kiva-<site>.ipynb.
+on:
+  workflow_dispatch:
+    inputs:
+      site:
+        description: "Site id from sites.yaml"
+        default: "serpent-mound"
+      width:
+        description: "Render width (16:9)"
+        default: "1280"
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v5
+      - uses: prefix-dev/setup-pixi@v0.9.0
+        with:
+          environments: notebook
+          cache: false
+          locked: false
+      - name: Software Vulkan + virtual display
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq mesa-vulkan-drivers libvulkan1 xvfb libx11-xcb1 libxkbcommon-x11-0 libxkbcommon0 libxcursor1 libxi6 libxrandr2 libxcb-xkb1 libxcb-randr0 libxcb-shape0 libxcb-xfixes0 libwayland-client0 libegl1 >/dev/null
+      - name: Execute
+        env:
+          XDG_RUNTIME_DIR: /tmp
+          KIVA_SITE: ${{ inputs.site }}
+          KIVA_WIDTH: ${{ inputs.width }}
+        run: |
+          set -o pipefail
+          out=kiva.ipynb; [ "$KIVA_SITE" = "serpent-mound" ] || out="kiva-$KIVA_SITE.ipynb"
+          echo "OUT=notebooks/$out" >> "$GITHUB_ENV"
+          xvfb-run -a -s "-screen 0 1920x1080x24" pixi run -e notebook jupyter nbconvert --execute --to notebook \
+            --ExecutePreprocessor.timeout=3600 --output "$out" notebooks/kiva.ipynb 2>&1 | grep -v "PDAL Error" | tee run.log
+      - name: Push the log when it fails
+        if: failure()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p /tmp/l && cp run.log /tmp/l/ 2>/dev/null; cd /tmp/l && git init -q -b logs
+          git config user.name "github-actions[bot]"; git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A && git commit -q -m log && git push -f -q "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" logs:notebook-log
+      - name: Commit the executed notebook
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$OUT"
+          git diff --cached --quiet && { echo "no changes"; exit 0; }
+          git commit -q -m "Run notebook: ${{ inputs.site }} (width ${{ inputs.width }})"
+          for i in 1 2 3; do git pull -q --rebase && git push -q && exit 0; sleep 5; done
+          exit 1
