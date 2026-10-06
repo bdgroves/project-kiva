@@ -355,11 +355,11 @@ sites:
     region: midwest
     source: ept
     project: WI_8County_Sauk_2020
-    center: [43.41206, -89.72506]
-    size_m: [600, 460]
+    center: [43.41188, -89.72444]
+    size_m: [280, 200]
     res: 0.5
     crs: EPSG:26916
-    zscale: 3.0
+    zscale: 2.5
     view_az: 200
     sun_az: 300
     sun_el: 18
@@ -391,10 +391,10 @@ sites:
     source: ept
     project: WI_DaneCo_2017
     center: [43.09408, -89.48952]
-    size_m: [420, 340]
+    size_m: [200, 160]
     res: 0.5
     crs: EPSG:26916
-    zscale: 3.0
+    zscale: 2.5
     view_az: 200
     sun_az: 300
     sun_el: 18
