@@ -20,7 +20,7 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{background:var(--basalt);color:var(--bone)}
-body{font-family:var(--text);font-size:17px;line-height:1.6;height:100vh;display:flex;flex-direction:column;overflow:hidden}
+body{font-family:var(--text);font-size:17px;line-height:1.6;min-height:100vh;display:flex;flex-direction:column}
 a{color:var(--bone);text-decoration-color:var(--ochre);text-underline-offset:3px}
 a:hover{color:var(--ochre)}
 :focus-visible{outline:2px solid var(--ochre);outline-offset:2px}
@@ -41,7 +41,8 @@ header .out a:hover{color:var(--ochre)}
 .mark a.by{color:var(--lichen);text-decoration:none}
 .mark a.by:hover{color:var(--ochre);text-decoration:underline}
 
-main{flex:1;display:grid;grid-template-columns:minmax(0,1fr) 400px;min-height:0}
+/* The atlas fills the first screen; the site footer sits one scroll below. --hdr is the header height, set by the script at the bottom. */
+main{flex:none;height:calc(100vh - var(--hdr,71px));display:grid;grid-template-columns:minmax(0,1fr) 400px;min-height:0}
 #mapwrap{position:relative;min-height:520px}
 #map{position:absolute;inset:0;background:#141816}
 
@@ -108,7 +109,7 @@ aside p{margin-bottom:14px}
   nav.sites{order:3;flex-basis:100%}
   header .out{padding-bottom:0}
   body{height:auto;overflow:visible}
-  main{grid-template-columns:1fr}
+  main{grid-template-columns:1fr;height:auto}
   #mapwrap{height:62vh;min-height:380px}
   aside{border-left:0;border-top:1px solid var(--seam);padding:22px 16px 40px}
   aside h1{font-size:28px}
@@ -369,5 +370,9 @@ fetch("sites.json").then(r => r.json()).then(list => {
   document.getElementById("panel").innerHTML = "<h1>No sites yet</h1><p>The site list didn't load. Run the Build sites workflow, or <code>pixi run kiva all &lt;site&gt;</code> locally, then reload.</p>";
 });
 </script>
+<script>
+(function(){var h=document.querySelector('body>header');function set(){if(h)document.documentElement.style.setProperty('--hdr',h.offsetHeight+'px')}set();addEventListener('resize',set);})();
+</script>
+<script src="https://brooksgroves.com/js/site-footer.js" defer></script>
 </body>
 </html>
