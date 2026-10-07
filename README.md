@@ -1,7 +1,7 @@
 # Project Kiva
 
 <p align="center">
-  <img src="data/assets/project-kiva_flag_V2.png" alt="Project Kiva" width="800"/>
+  <img src="data/assets/project-kiva-banner.jpg" alt="Project Kiva: reading the ground with lasers" width="800"/>
 </p>
 
 <p align="center">
